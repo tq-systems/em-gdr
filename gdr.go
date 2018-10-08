@@ -13,6 +13,11 @@ func (obisCode OBISCode) String() string {
 }
 
 //Function for tranforming Byte-String to ObisCode
+func DecodeOBISCodeToString(value uint64) string {
+	return fmt.Sprintf("%d-%d:%d.%d.%d*%d", unshift(value, 5), unshift(value, 4), unshift(value, 3), unshift(value, 2), unshift(value, 1), unshift(value, 0))
+}
+
+//Function for tranforming Byte-String to ObisCode
 func (obisCode OBISCode) Encode() uint64 {
 	//uint64 = 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
 	//All ObisCodes max 8 Bits
