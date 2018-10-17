@@ -5,6 +5,12 @@ package gdr
 
 import (
 	"fmt"
+	"regexp"
+	"strconv"
+)
+
+var (
+	obisCodeMatch = regexp.MustCompile(`^(?:([0-9]+)-)?(?:([0-9]+):)?([0-9]+)\.([0-9])+(?:\.([0-9]+))?(?:[*&]([0-9]+))?$`)
 )
 
 //Function for tranforming ObisCode to Text-String
@@ -43,6 +49,35 @@ func DecodeOBISCode(value uint64) OBISCode {
 		Storage:    unshift(value, 0),
 	}
 
+}
+
+func parseByte(num string) uint8 {
+	if num == "" {
+		return 255
+	}
+
+	v, err := strconv.ParseUint(num, 10, 8)
+	if err != nil {
+		panic(err)
+	}
+	return uint8(v)
+}
+
+// ParseOBISCode converts an OBIS code in standard text representation
+// to an OBISCode struct
+func ParseOBISCode(code string) *OBISCode {
+	match := obisCodeMatch.FindStringSubmatch(code)
+	if match == nil {
+		return nil
+	}
+	return &OBISCode{
+		Media:      parseByte(match[1]),
+		Channel:    parseByte(match[2]),
+		Indicator:  parseByte(match[3]),
+		Mode:       parseByte(match[4]),
+		Quantities: parseByte(match[5]),
+		Storage:    parseByte(match[6]),
+	}
 }
 
 func shift(value uint8, shift uint) uint64 {
