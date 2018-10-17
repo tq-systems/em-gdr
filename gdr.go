@@ -51,16 +51,15 @@ func DecodeOBISCode(value uint64) OBISCode {
 
 }
 
-func parseByte(num string) uint8 {
+func parseByte(store *uint8, num string) bool {
 	if num == "" {
-		return 255
+		*store = 255
+		return true
 	}
 
 	v, err := strconv.ParseUint(num, 10, 8)
-	if err != nil {
-		panic(err)
-	}
-	return uint8(v)
+	*store = uint8(v)
+	return err == nil
 }
 
 // ParseOBISCode converts an OBIS code in standard text representation
@@ -70,14 +69,18 @@ func ParseOBISCode(code string) *OBISCode {
 	if match == nil {
 		return nil
 	}
-	return &OBISCode{
-		Media:      parseByte(match[1]),
-		Channel:    parseByte(match[2]),
-		Indicator:  parseByte(match[3]),
-		Mode:       parseByte(match[4]),
-		Quantities: parseByte(match[5]),
-		Storage:    parseByte(match[6]),
+
+	ret := OBISCode{}
+	if !parseByte(&ret.Media, match[1]) ||
+		!parseByte(&ret.Channel, match[2]) ||
+		!parseByte(&ret.Indicator, match[3]) ||
+		!parseByte(&ret.Mode, match[4]) ||
+		!parseByte(&ret.Quantities, match[5]) ||
+		!parseByte(&ret.Storage, match[6]) {
+		return nil
 	}
+
+	return &ret
 }
 
 func shift(value uint8, shift uint) uint64 {
