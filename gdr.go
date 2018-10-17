@@ -14,7 +14,7 @@ func (obisCode OBISCode) String() string {
 
 //Function for tranforming Byte-String to ObisCode
 func DecodeOBISCodeToString(value uint64) string {
-	return fmt.Sprintf("%d-%d:%d.%d.%d*%d", unshift(value, 5), unshift(value, 4), unshift(value, 3), unshift(value, 2), unshift(value, 1), unshift(value, 0))
+	return DecodeOBISCode(value).String()
 }
 
 //Function for tranforming Byte-String to ObisCode
