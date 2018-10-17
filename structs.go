@@ -8,10 +8,10 @@ package gdr
 // quantities - tariff level, e.g. total, tariff 1, tarif 2...
 // storage -  00...99
 type OBISCode struct {
-	Media      uint32
-	Channel    uint32
-	Indicator  uint32
-	Mode       uint32
-	Quantities uint32
-	Storage    uint32
+	Media      uint8
+	Channel    uint8
+	Indicator  uint8
+	Mode       uint8
+	Quantities uint8
+	Storage    uint8
 }

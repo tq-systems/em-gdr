@@ -45,13 +45,12 @@ func DecodeOBISCode(value uint64) OBISCode {
 
 }
 
-func shift(value uint32, shift uint) uint64 {
+func shift(value uint8, shift uint) uint64 {
 	//Shift Value n Bytes
 	return uint64(value) << (8 * shift)
 }
 
-func unshift(value uint64, shift uint) uint32 {
+func unshift(value uint64, shift uint) uint8 {
 	//Unshift Value n Bytes
-	//Bitwise AND with 0xFF to cut off the other ObisCodes (Only leaves the last Byte)
-	return uint32((value >> (8 * shift)) & 0xff)
+	return uint8(value >> (8 * shift))
 }
