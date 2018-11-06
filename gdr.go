@@ -48,7 +48,6 @@ func DecodeOBISCode(value uint64) OBISCode {
 		Quantities: unshift(value, 1),
 		Storage:    unshift(value, 0),
 	}
-
 }
 
 func parseByte(store *uint8, num string) bool {
@@ -91,4 +90,114 @@ func shift(value uint8, shift uint) uint64 {
 func unshift(value uint64, shift uint) uint8 {
 	//Unshift Value n Bytes
 	return uint8(value >> (8 * shift))
+}
+
+//Function for tranforming Byte-String to ExternalObisDescription
+func DecodeOBISCodeToExternalDescription(value uint64) *ExternalObisDescription {
+
+	obisCodeAsString := DecodeOBISCodeToString(value)
+	oc := DecodeOBISCode(value)
+	label := ""
+	unit := ""
+	if mm("1.4", oc) {
+		label = "active power +"
+		unit = "mW"
+	}
+	if mm("2.4", oc) {
+		label = "active power -"
+		unit = "mW"
+	}
+	if mm("1.8", oc) {
+		label = "active energy +"
+		unit = "mWh"
+	}
+	if mm("2.8", oc) {
+		label = "active energy -"
+		unit = "mWh"
+	}
+	if mm("3.4", oc) {
+		label = "reactive power +"
+		unit = "mvar"
+	}
+	if mm("4.4", oc) {
+		label = "reactive power -"
+		unit = "mvar"
+	}
+
+	if mm("3.8", oc) {
+		label = "reactive energy +"
+		unit = "mvarh"
+	}
+	if mm("4.8", oc) {
+		label = "reactive energy -"
+		unit = "mvarh"
+	}
+
+	if mm("9.4", oc) {
+		label = "apparent power +"
+		unit = "mVA"
+	}
+	if mm("10.4", oc) {
+		label = "apparent power -"
+		unit = "mVA"
+	}
+
+	if mm("9.8", oc) {
+		label = "apparent energy +"
+		unit = "mVAh"
+	}
+	if mm("10.8", oc) {
+		label = "apparent energy -"
+		unit = "mVAh"
+	}
+
+	if mm("11.4", oc) {
+		label = "Current"
+		unit = "mA"
+	}
+
+	if mm("12.4", oc) {
+		label = "Voltage"
+		unit = "mV"
+	}
+
+	if mm("13.4", oc) {
+		label = "power factor"
+		unit = "cos φ"
+	}
+
+	if mm("14.4", oc) {
+		label = "supply frequency"
+		unit = "Hz"
+	}
+
+	if oc.Indicator >= 0 && oc.Indicator <= 10 {
+		label = "∑ " + label
+	}
+
+	if oc.Indicator >= 21 && oc.Indicator <= 33 {
+		label = label + " L1"
+	}
+	if oc.Indicator >= 41 && oc.Indicator <= 53 {
+		label = label + " L2"
+	}
+	if oc.Indicator >= 61 && oc.Indicator <= 73 {
+		label = label + " L3"
+	}
+
+	externalObis := ExternalObisDescription{
+		Label: label,
+		Obis:  obisCodeAsString,
+		Unit:  unit,
+	}
+
+	return &externalObis
+}
+
+/**
+ * matches indicator % 20 and mode
+ */
+func mm(code string, obis OBISCode) bool {
+	s := fmt.Sprintf("%d.%d", obis.Indicator%20, obis.Mode)
+	return code == s
 }
