@@ -15,3 +15,22 @@ type OBISCode struct {
 	Quantities uint8
 	Storage    uint8
 }
+
+type ExternalGCRs struct {
+	GCRs map[string]*ExternalGCR `json:"gcrs"`
+}
+
+type ExternalGCR struct {
+	Id         string                              `json:"id"`
+	Label      string                              `json:"label"`
+	Class      Class                               `json:"class"`
+	Sources    []string                            `json:"sources"`
+	Values     map[uint64]*ExternalObisDescription `json:"values"`
+	Devicetype DeviceType                          `json:"devicetype"`
+}
+
+type ExternalObisDescription struct {
+	Obis  string `json:"obis"`
+	Label string `json:"label"`
+	Unit  string `json:"unit"`
+}
