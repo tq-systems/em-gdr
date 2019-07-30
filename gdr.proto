@@ -44,6 +44,7 @@ message GCR {
 	repeated uint64 codes = 5;
 	DeviceType devicetype = 6;
 	map<string,string> meta = 7;
+	google.protobuf.Timestamp timestamp = 8;
 }
 
 // devicetype - declares which Type of Device the Data Source is 
