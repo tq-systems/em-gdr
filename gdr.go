@@ -1,4 +1,4 @@
-//go:generate protoc --go_out=. gdr.proto
+//go:generate protoc --gogofaster_out=Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types:. gdr.proto
 //go:generate omitemptyremover
 
 package gdr
