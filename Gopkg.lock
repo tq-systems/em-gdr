@@ -2,50 +2,23 @@
 
 
 [[projects]]
-  digest = "1:5b2157bbd32012348297ab9ce5028635e40a559541c97be4f465381801592a23"
-  name = "github.com/golang/protobuf"
+  digest = "1:90d79bbf6abc5fcbf9bc538766e523f7d33d07d7fda462fc299556a80dc03a7d"
+  name = "github.com/gogo/protobuf"
   packages = [
-    "descriptor",
-    "jsonpb/jsonpb_test_proto",
     "proto",
-    "proto/proto3_proto",
-    "proto/test_proto",
-    "protoc-gen-go/descriptor",
-    "protoc-gen-go/generator",
-    "protoc-gen-go/generator/internal/remap",
-    "protoc-gen-go/grpc",
-    "protoc-gen-go/plugin",
-    "ptypes",
-    "ptypes/any",
-    "ptypes/duration",
-    "ptypes/struct",
-    "ptypes/timestamp",
-    "ptypes/wrappers",
+    "sortkeys",
+    "types",
   ]
   pruneopts = "UT"
-  revision = "6c65a5562fc06764971b7c5d05c76c75e84bdbf7"
-  version = "v1.3.2"
+  revision = "5628607bb4c51c3157aacc3a50f0ab707582b805"
+  version = "v1.3.1"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
-    "github.com/golang/protobuf/descriptor",
-    "github.com/golang/protobuf/jsonpb/jsonpb_test_proto",
-    "github.com/golang/protobuf/proto",
-    "github.com/golang/protobuf/proto/proto3_proto",
-    "github.com/golang/protobuf/proto/test_proto",
-    "github.com/golang/protobuf/protoc-gen-go/descriptor",
-    "github.com/golang/protobuf/protoc-gen-go/generator",
-    "github.com/golang/protobuf/protoc-gen-go/generator/internal/remap",
-    "github.com/golang/protobuf/protoc-gen-go/grpc",
-    "github.com/golang/protobuf/protoc-gen-go/plugin",
-    "github.com/golang/protobuf/ptypes",
-    "github.com/golang/protobuf/ptypes/any",
-    "github.com/golang/protobuf/ptypes/duration",
-    "github.com/golang/protobuf/ptypes/struct",
-    "github.com/golang/protobuf/ptypes/timestamp",
-    "github.com/golang/protobuf/ptypes/wrappers",
+    "github.com/gogo/protobuf/proto",
+    "github.com/gogo/protobuf/types",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -1,4 +1,4 @@
-//go:generate protoc --go_out=. gdr.proto
+//go:generate protoc --gogofaster_out=Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types:. gdr.proto
 //go:generate omitemptyremover
 
 package gdr
@@ -13,17 +13,17 @@ var (
 	obisCodeMatch = regexp.MustCompile(`^(?:([0-9]+)-)?(?:([0-9]+):)?([0-9]+)\.([0-9])+(?:\.([0-9]+))?(?:[*&]([0-9]+))?$`)
 )
 
-//Function for tranforming ObisCode to Text-String
+// String tranforms ObisCode into human-readable string
 func (obisCode OBISCode) String() string {
 	return fmt.Sprintf("%d-%d:%d.%d.%d*%d", obisCode.Media, obisCode.Channel, obisCode.Indicator, obisCode.Mode, obisCode.Quantities, obisCode.Storage)
 }
 
-//Function for tranforming Byte-String to ObisCode
+// DecodeOBISCodeToString transforms an integer-encoded OBIS code into a human-readable string
 func DecodeOBISCodeToString(value uint64) string {
 	return DecodeOBISCode(value).String()
 }
 
-//Function for tranforming Byte-String to ObisCode
+// Encode encodes an OBIS code as a 64bit integer
 func (obisCode OBISCode) Encode() uint64 {
 	//uint64 = 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
 	//All ObisCodes max 8 Bits
@@ -38,7 +38,7 @@ func (obisCode OBISCode) Encode() uint64 {
 		shift(obisCode.Storage, 0)
 }
 
-//Function for tranforming Byte-String to ObisCode
+// DecodeOBISCode decodes an integer-encoded OBIS code
 func DecodeOBISCode(value uint64) OBISCode {
 	return OBISCode{
 		Media:      unshift(value, 5),
@@ -92,7 +92,7 @@ func unshift(value uint64, shift uint) uint8 {
 	return uint8(value >> (8 * shift))
 }
 
-//Function for tranforming Byte-String to ExternalObisDescription
+// DecodeOBISCodeToExternalDescription returns an ExternalObisDescription describing the OBIS code
 func DecodeOBISCodeToExternalDescription(value uint64) *ExternalObisDescription {
 
 	obisCodeAsString := DecodeOBISCodeToString(value)
