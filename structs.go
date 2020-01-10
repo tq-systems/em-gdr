@@ -1,11 +1,11 @@
 package gdr
 
-//ObisCode for Data-Value:
-// Media - Elektricity , Gas, Water, Heat...
+// OBISCode for Data-Value:
+// media - electricity, gas, water, heat, ...
 // channel - internal or external channels
-// indicator - Active, Reactive , Apparent, Amperage, Voltage, ....
-// mode - maximum, current value, energy...
-// quantities - tariff level, e.g. total, tariff 1, tarif 2...
+// indicator - Active, Reactive, Apparent, Amperage, Voltage, ...
+// mode - maximum, current value, energy, ...
+// quantities - tariff level, e.g. total, tariff 1, tarif 2, ...
 // storage -  00...99
 type OBISCode struct {
 	Media      uint8
@@ -16,12 +16,14 @@ type OBISCode struct {
 	Storage    uint8
 }
 
+// ExternalGCRs maps ExternalGCR values by their respective IDs
 type ExternalGCRs struct {
 	GCRs map[string]*ExternalGCR `json:"gcrs"`
 }
 
+// ExternalGCR extends GCR with additional metainformation (OBIS description)
 type ExternalGCR struct {
-	Id         string                              `json:"id"`
+	ID         string                              `json:"id"`
 	Label      string                              `json:"label"`
 	Class      Class                               `json:"class"`
 	Sources    []string                            `json:"sources"`
@@ -29,6 +31,7 @@ type ExternalGCR struct {
 	Devicetype DeviceType                          `json:"devicetype"`
 }
 
+// ExternalObisDescription associates an OBIS code with a human-readable label and the unit of the referenced value
 type ExternalObisDescription struct {
 	Obis  string `json:"obis"`
 	Label string `json:"label"`
