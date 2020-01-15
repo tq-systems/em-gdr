@@ -16,6 +16,29 @@ type OBISCode struct {
 	Storage    uint8
 }
 
+// Obis indicators and modes used in OBISCode
+const (
+	ObisIndicatorActivePlus    = 1
+	ObisIndicatorActiveMinus   = 2
+	ObisIndicatorReactivePlus  = 3
+	ObisIndicatorReactiveMinus = 4
+	ObisIndicatorApparentPlus  = 9
+	ObisIndicatorApparentMinus = 10
+	ObisIndicatorCurrent       = 11
+	ObisIndicatorVoltage       = 12
+	ObisIndicatorPowerFactor   = 13
+	ObisIndicatorFrequency     = 14
+
+	// ObisIndicatorPhaseModulo can be used to transform the indicators of phases L1-L3
+	// to the indicators specified above
+	ObisIndicatorPhaseModulo = 20
+
+	// ObisModeMean is the mode used for power
+	ObisModeMean = 4
+	// ObisModeIntegral is the mode used for energy
+	ObisModeIntegral = 8
+)
+
 // ExternalGCRs maps ExternalGCR values by their respective IDs
 type ExternalGCRs struct {
 	GCRs map[string]*ExternalGCR `json:"gcrs"`
