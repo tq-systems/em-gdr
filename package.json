@@ -1,5 +1,6 @@
 {
   "name": "gdr",
+  "version": "0.0.0",
   "private": true,
   "copyright": "TQ-Systems GmbH 2020",
   "license": "LicenseRef-TQSSLA-1.0.2",
