@@ -1,0 +1,11 @@
+{
+  "name": "gdr",
+  "private": true,
+  "copyright": "TQ-Systems GmbH 2020",
+  "license": "LicenseRef-TQSSLA-1.0.2",
+  "main": "./gdr.js",
+  "types": "./gdr.d.ts",
+  "dependencies": {
+    "protobufjs": "^6.8.8"
+  }
+}
