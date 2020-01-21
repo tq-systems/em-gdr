@@ -1,13 +1,15 @@
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
-import * as $protobuf from "protobufjs/minimal";
+"use strict";
+
+var $protobuf = require("protobufjs/minimal");
 
 // Common aliases
-const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
 // Exported root namespace
-const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
+var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
-export const GDRs = $root.GDRs = (() => {
+$root.GDRs = (function() {
 
     /**
      * Properties of a GDRs.
@@ -28,7 +30,7 @@ export const GDRs = $root.GDRs = (() => {
     function GDRs(properties) {
         this.GDRs = {};
         if (properties)
-            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -74,7 +76,7 @@ export const GDRs = $root.GDRs = (() => {
         if (!writer)
             writer = $Writer.create();
         if (message.GDRs != null && Object.hasOwnProperty.call(message, "GDRs"))
-            for (let keys = Object.keys(message.GDRs), i = 0; i < keys.length; ++i) {
+            for (var keys = Object.keys(message.GDRs), i = 0; i < keys.length; ++i) {
                 writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
                 $root.GDR.encode(message.GDRs[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
             }
@@ -110,18 +112,18 @@ export const GDRs = $root.GDRs = (() => {
     GDRs.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GDRs(), key, value;
+        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.GDRs(), key, value;
         while (reader.pos < end) {
-            let tag = reader.uint32();
+            var tag = reader.uint32();
             switch (tag >>> 3) {
             case 1:
                 if (message.GDRs === $util.emptyObject)
                     message.GDRs = {};
-                let end2 = reader.uint32() + reader.pos;
+                var end2 = reader.uint32() + reader.pos;
                 key = "";
                 value = null;
                 while (reader.pos < end2) {
-                    let tag2 = reader.uint32();
+                    var tag2 = reader.uint32();
                     switch (tag2 >>> 3) {
                     case 1:
                         key = reader.string();
@@ -177,9 +179,9 @@ export const GDRs = $root.GDRs = (() => {
         if (message.GDRs != null && message.hasOwnProperty("GDRs")) {
             if (!$util.isObject(message.GDRs))
                 return "GDRs: object expected";
-            let key = Object.keys(message.GDRs);
-            for (let i = 0; i < key.length; ++i) {
-                let error = $root.GDR.verify(message.GDRs[key[i]]);
+            var key = Object.keys(message.GDRs);
+            for (var i = 0; i < key.length; ++i) {
+                var error = $root.GDR.verify(message.GDRs[key[i]]);
                 if (error)
                     return "GDRs." + error;
             }
@@ -201,12 +203,12 @@ export const GDRs = $root.GDRs = (() => {
     GDRs.fromObject = function fromObject(object) {
         if (object instanceof $root.GDRs)
             return object;
-        let message = new $root.GDRs();
+        var message = new $root.GDRs();
         if (object.GDRs) {
             if (typeof object.GDRs !== "object")
                 throw TypeError(".GDRs.GDRs: object expected");
             message.GDRs = {};
-            for (let keys = Object.keys(object.GDRs), i = 0; i < keys.length; ++i) {
+            for (var keys = Object.keys(object.GDRs), i = 0; i < keys.length; ++i) {
                 if (typeof object.GDRs[keys[i]] !== "object")
                     throw TypeError(".GDRs.GDRs: object expected");
                 message.GDRs[keys[i]] = $root.GDR.fromObject(object.GDRs[keys[i]]);
@@ -229,15 +231,15 @@ export const GDRs = $root.GDRs = (() => {
     GDRs.toObject = function toObject(message, options) {
         if (!options)
             options = {};
-        let object = {};
+        var object = {};
         if (options.objects || options.defaults)
             object.GDRs = {};
         if (options.defaults)
             object.configUuid = "";
-        let keys2;
+        var keys2;
         if (message.GDRs && (keys2 = Object.keys(message.GDRs)).length) {
             object.GDRs = {};
-            for (let j = 0; j < keys2.length; ++j)
+            for (var j = 0; j < keys2.length; ++j)
                 object.GDRs[keys2[j]] = $root.GDR.toObject(message.GDRs[keys2[j]], options);
         }
         if (message.configUuid != null && message.hasOwnProperty("configUuid"))
@@ -259,7 +261,7 @@ export const GDRs = $root.GDRs = (() => {
     return GDRs;
 })();
 
-export const GCRs = $root.GCRs = (() => {
+$root.GCRs = (function() {
 
     /**
      * Properties of a GCRs.
@@ -280,7 +282,7 @@ export const GCRs = $root.GCRs = (() => {
     function GCRs(properties) {
         this.GCRs = {};
         if (properties)
-            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -326,7 +328,7 @@ export const GCRs = $root.GCRs = (() => {
         if (!writer)
             writer = $Writer.create();
         if (message.GCRs != null && Object.hasOwnProperty.call(message, "GCRs"))
-            for (let keys = Object.keys(message.GCRs), i = 0; i < keys.length; ++i) {
+            for (var keys = Object.keys(message.GCRs), i = 0; i < keys.length; ++i) {
                 writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
                 $root.GCR.encode(message.GCRs[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
             }
@@ -362,18 +364,18 @@ export const GCRs = $root.GCRs = (() => {
     GCRs.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GCRs(), key, value;
+        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.GCRs(), key, value;
         while (reader.pos < end) {
-            let tag = reader.uint32();
+            var tag = reader.uint32();
             switch (tag >>> 3) {
             case 1:
                 if (message.GCRs === $util.emptyObject)
                     message.GCRs = {};
-                let end2 = reader.uint32() + reader.pos;
+                var end2 = reader.uint32() + reader.pos;
                 key = "";
                 value = null;
                 while (reader.pos < end2) {
-                    let tag2 = reader.uint32();
+                    var tag2 = reader.uint32();
                     switch (tag2 >>> 3) {
                     case 1:
                         key = reader.string();
@@ -429,9 +431,9 @@ export const GCRs = $root.GCRs = (() => {
         if (message.GCRs != null && message.hasOwnProperty("GCRs")) {
             if (!$util.isObject(message.GCRs))
                 return "GCRs: object expected";
-            let key = Object.keys(message.GCRs);
-            for (let i = 0; i < key.length; ++i) {
-                let error = $root.GCR.verify(message.GCRs[key[i]]);
+            var key = Object.keys(message.GCRs);
+            for (var i = 0; i < key.length; ++i) {
+                var error = $root.GCR.verify(message.GCRs[key[i]]);
                 if (error)
                     return "GCRs." + error;
             }
@@ -453,12 +455,12 @@ export const GCRs = $root.GCRs = (() => {
     GCRs.fromObject = function fromObject(object) {
         if (object instanceof $root.GCRs)
             return object;
-        let message = new $root.GCRs();
+        var message = new $root.GCRs();
         if (object.GCRs) {
             if (typeof object.GCRs !== "object")
                 throw TypeError(".GCRs.GCRs: object expected");
             message.GCRs = {};
-            for (let keys = Object.keys(object.GCRs), i = 0; i < keys.length; ++i) {
+            for (var keys = Object.keys(object.GCRs), i = 0; i < keys.length; ++i) {
                 if (typeof object.GCRs[keys[i]] !== "object")
                     throw TypeError(".GCRs.GCRs: object expected");
                 message.GCRs[keys[i]] = $root.GCR.fromObject(object.GCRs[keys[i]]);
@@ -481,15 +483,15 @@ export const GCRs = $root.GCRs = (() => {
     GCRs.toObject = function toObject(message, options) {
         if (!options)
             options = {};
-        let object = {};
+        var object = {};
         if (options.objects || options.defaults)
             object.GCRs = {};
         if (options.defaults)
             object.configUuid = "";
-        let keys2;
+        var keys2;
         if (message.GCRs && (keys2 = Object.keys(message.GCRs)).length) {
             object.GCRs = {};
-            for (let j = 0; j < keys2.length; ++j)
+            for (var j = 0; j < keys2.length; ++j)
                 object.GCRs[keys2[j]] = $root.GCR.toObject(message.GCRs[keys2[j]], options);
         }
         if (message.configUuid != null && message.hasOwnProperty("configUuid"))
@@ -511,7 +513,7 @@ export const GCRs = $root.GCRs = (() => {
     return GCRs;
 })();
 
-export const GDR = $root.GDR = (() => {
+$root.GDR = (function() {
 
     /**
      * Properties of a GDR.
@@ -534,7 +536,7 @@ export const GDR = $root.GDR = (() => {
     function GDR(properties) {
         this.values = {};
         if (properties)
-            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -602,7 +604,7 @@ export const GDR = $root.GDR = (() => {
         if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
             $root.google.protobuf.Timestamp.encode(message.timestamp, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
         if (message.values != null && Object.hasOwnProperty.call(message, "values"))
-            for (let keys = Object.keys(message.values), i = 0; i < keys.length; ++i)
+            for (var keys = Object.keys(message.values), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 4, wireType 2 =*/34).fork().uint32(/* id 1, wireType 0 =*/8).uint64(keys[i]).uint32(/* id 2, wireType 0 =*/16).uint64(message.values[keys[i]]).ldelim();
         return writer;
     };
@@ -634,9 +636,9 @@ export const GDR = $root.GDR = (() => {
     GDR.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GDR(), key, value;
+        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.GDR(), key, value;
         while (reader.pos < end) {
-            let tag = reader.uint32();
+            var tag = reader.uint32();
             switch (tag >>> 3) {
             case 1:
                 message.id = reader.string();
@@ -650,11 +652,11 @@ export const GDR = $root.GDR = (() => {
             case 4:
                 if (message.values === $util.emptyObject)
                     message.values = {};
-                let end2 = reader.uint32() + reader.pos;
+                var end2 = reader.uint32() + reader.pos;
                 key = 0;
                 value = 0;
                 while (reader.pos < end2) {
-                    let tag2 = reader.uint32();
+                    var tag2 = reader.uint32();
                     switch (tag2 >>> 3) {
                     case 1:
                         key = reader.uint64();
@@ -718,15 +720,15 @@ export const GDR = $root.GDR = (() => {
                 break;
             }
         if (message.timestamp != null && message.hasOwnProperty("timestamp")) {
-            let error = $root.google.protobuf.Timestamp.verify(message.timestamp);
+            var error = $root.google.protobuf.Timestamp.verify(message.timestamp);
             if (error)
                 return "timestamp." + error;
         }
         if (message.values != null && message.hasOwnProperty("values")) {
             if (!$util.isObject(message.values))
                 return "values: object expected";
-            let key = Object.keys(message.values);
-            for (let i = 0; i < key.length; ++i) {
+            var key = Object.keys(message.values);
+            for (var i = 0; i < key.length; ++i) {
                 if (!$util.key64Re.test(key[i]))
                     return "values: integer|Long key{k:uint64} expected";
                 if (!$util.isInteger(message.values[key[i]]) && !(message.values[key[i]] && $util.isInteger(message.values[key[i]].low) && $util.isInteger(message.values[key[i]].high)))
@@ -747,7 +749,7 @@ export const GDR = $root.GDR = (() => {
     GDR.fromObject = function fromObject(object) {
         if (object instanceof $root.GDR)
             return object;
-        let message = new $root.GDR();
+        var message = new $root.GDR();
         if (object.id != null)
             message.id = String(object.id);
         switch (object.status) {
@@ -777,7 +779,7 @@ export const GDR = $root.GDR = (() => {
             if (typeof object.values !== "object")
                 throw TypeError(".GDR.values: object expected");
             message.values = {};
-            for (let keys = Object.keys(object.values), i = 0; i < keys.length; ++i)
+            for (var keys = Object.keys(object.values), i = 0; i < keys.length; ++i)
                 if ($util.Long)
                     (message.values[keys[i]] = $util.Long.fromValue(object.values[keys[i]])).unsigned = true;
                 else if (typeof object.values[keys[i]] === "string")
@@ -802,7 +804,7 @@ export const GDR = $root.GDR = (() => {
     GDR.toObject = function toObject(message, options) {
         if (!options)
             options = {};
-        let object = {};
+        var object = {};
         if (options.objects || options.defaults)
             object.values = {};
         if (options.defaults) {
@@ -816,10 +818,10 @@ export const GDR = $root.GDR = (() => {
             object.status = options.enums === String ? $root.Status[message.status] : message.status;
         if (message.timestamp != null && message.hasOwnProperty("timestamp"))
             object.timestamp = $root.google.protobuf.Timestamp.toObject(message.timestamp, options);
-        let keys2;
+        var keys2;
         if (message.values && (keys2 = Object.keys(message.values)).length) {
             object.values = {};
-            for (let j = 0; j < keys2.length; ++j)
+            for (var j = 0; j < keys2.length; ++j)
                 if (typeof message.values[keys2[j]] === "number")
                     object.values[keys2[j]] = options.longs === String ? String(message.values[keys2[j]]) : message.values[keys2[j]];
                 else
@@ -842,7 +844,7 @@ export const GDR = $root.GDR = (() => {
     return GDR;
 })();
 
-export const GCR = $root.GCR = (() => {
+$root.GCR = (function() {
 
     /**
      * Properties of a GCR.
@@ -871,7 +873,7 @@ export const GCR = $root.GCR = (() => {
         this.codes = [];
         this.meta = {};
         if (properties)
-            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
                     this[keys[i]] = properties[keys[i]];
     }
@@ -971,18 +973,18 @@ export const GCR = $root.GCR = (() => {
         if (message["class"] != null && Object.hasOwnProperty.call(message, "class"))
             writer.uint32(/* id 3, wireType 0 =*/24).int32(message["class"]);
         if (message.sources != null && message.sources.length)
-            for (let i = 0; i < message.sources.length; ++i)
+            for (var i = 0; i < message.sources.length; ++i)
                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.sources[i]);
         if (message.codes != null && message.codes.length) {
             writer.uint32(/* id 5, wireType 2 =*/42).fork();
-            for (let i = 0; i < message.codes.length; ++i)
+            for (var i = 0; i < message.codes.length; ++i)
                 writer.uint64(message.codes[i]);
             writer.ldelim();
         }
         if (message.devicetype != null && Object.hasOwnProperty.call(message, "devicetype"))
             writer.uint32(/* id 6, wireType 0 =*/48).int32(message.devicetype);
         if (message.meta != null && Object.hasOwnProperty.call(message, "meta"))
-            for (let keys = Object.keys(message.meta), i = 0; i < keys.length; ++i)
+            for (var keys = Object.keys(message.meta), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 7, wireType 2 =*/58).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.meta[keys[i]]).ldelim();
         if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
             $root.google.protobuf.Timestamp.encode(message.timestamp, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
@@ -1016,9 +1018,9 @@ export const GCR = $root.GCR = (() => {
     GCR.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.GCR(), key, value;
+        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.GCR(), key, value;
         while (reader.pos < end) {
-            let tag = reader.uint32();
+            var tag = reader.uint32();
             switch (tag >>> 3) {
             case 1:
                 message.id = reader.string();
@@ -1038,7 +1040,7 @@ export const GCR = $root.GCR = (() => {
                 if (!(message.codes && message.codes.length))
                     message.codes = [];
                 if ((tag & 7) === 2) {
-                    let end2 = reader.uint32() + reader.pos;
+                    var end2 = reader.uint32() + reader.pos;
                     while (reader.pos < end2)
                         message.codes.push(reader.uint64());
                 } else
@@ -1050,11 +1052,11 @@ export const GCR = $root.GCR = (() => {
             case 7:
                 if (message.meta === $util.emptyObject)
                     message.meta = {};
-                let end2 = reader.uint32() + reader.pos;
+                var end2 = reader.uint32() + reader.pos;
                 key = "";
                 value = "";
                 while (reader.pos < end2) {
-                    let tag2 = reader.uint32();
+                    var tag2 = reader.uint32();
                     switch (tag2 >>> 3) {
                     case 1:
                         key = reader.string();
@@ -1126,14 +1128,14 @@ export const GCR = $root.GCR = (() => {
         if (message.sources != null && message.hasOwnProperty("sources")) {
             if (!Array.isArray(message.sources))
                 return "sources: array expected";
-            for (let i = 0; i < message.sources.length; ++i)
+            for (var i = 0; i < message.sources.length; ++i)
                 if (!$util.isString(message.sources[i]))
                     return "sources: string[] expected";
         }
         if (message.codes != null && message.hasOwnProperty("codes")) {
             if (!Array.isArray(message.codes))
                 return "codes: array expected";
-            for (let i = 0; i < message.codes.length; ++i)
+            for (var i = 0; i < message.codes.length; ++i)
                 if (!$util.isInteger(message.codes[i]) && !(message.codes[i] && $util.isInteger(message.codes[i].low) && $util.isInteger(message.codes[i].high)))
                     return "codes: integer|Long[] expected";
         }
@@ -1182,13 +1184,13 @@ export const GCR = $root.GCR = (() => {
         if (message.meta != null && message.hasOwnProperty("meta")) {
             if (!$util.isObject(message.meta))
                 return "meta: object expected";
-            let key = Object.keys(message.meta);
-            for (let i = 0; i < key.length; ++i)
+            var key = Object.keys(message.meta);
+            for (var i = 0; i < key.length; ++i)
                 if (!$util.isString(message.meta[key[i]]))
                     return "meta: string{k:string} expected";
         }
         if (message.timestamp != null && message.hasOwnProperty("timestamp")) {
-            let error = $root.google.protobuf.Timestamp.verify(message.timestamp);
+            var error = $root.google.protobuf.Timestamp.verify(message.timestamp);
             if (error)
                 return "timestamp." + error;
         }
@@ -1206,7 +1208,7 @@ export const GCR = $root.GCR = (() => {
     GCR.fromObject = function fromObject(object) {
         if (object instanceof $root.GCR)
             return object;
-        let message = new $root.GCR();
+        var message = new $root.GCR();
         if (object.id != null)
             message.id = String(object.id);
         if (object.label != null)
@@ -1233,14 +1235,14 @@ export const GCR = $root.GCR = (() => {
             if (!Array.isArray(object.sources))
                 throw TypeError(".GCR.sources: array expected");
             message.sources = [];
-            for (let i = 0; i < object.sources.length; ++i)
+            for (var i = 0; i < object.sources.length; ++i)
                 message.sources[i] = String(object.sources[i]);
         }
         if (object.codes) {
             if (!Array.isArray(object.codes))
                 throw TypeError(".GCR.codes: array expected");
             message.codes = [];
-            for (let i = 0; i < object.codes.length; ++i)
+            for (var i = 0; i < object.codes.length; ++i)
                 if ($util.Long)
                     (message.codes[i] = $util.Long.fromValue(object.codes[i])).unsigned = true;
                 else if (typeof object.codes[i] === "string")
@@ -1400,7 +1402,7 @@ export const GCR = $root.GCR = (() => {
             if (typeof object.meta !== "object")
                 throw TypeError(".GCR.meta: object expected");
             message.meta = {};
-            for (let keys = Object.keys(object.meta), i = 0; i < keys.length; ++i)
+            for (var keys = Object.keys(object.meta), i = 0; i < keys.length; ++i)
                 message.meta[keys[i]] = String(object.meta[keys[i]]);
         }
         if (object.timestamp != null) {
@@ -1423,7 +1425,7 @@ export const GCR = $root.GCR = (() => {
     GCR.toObject = function toObject(message, options) {
         if (!options)
             options = {};
-        let object = {};
+        var object = {};
         if (options.arrays || options.defaults) {
             object.sources = [];
             object.codes = [];
@@ -1445,12 +1447,12 @@ export const GCR = $root.GCR = (() => {
             object["class"] = options.enums === String ? $root.Class[message["class"]] : message["class"];
         if (message.sources && message.sources.length) {
             object.sources = [];
-            for (let j = 0; j < message.sources.length; ++j)
+            for (var j = 0; j < message.sources.length; ++j)
                 object.sources[j] = message.sources[j];
         }
         if (message.codes && message.codes.length) {
             object.codes = [];
-            for (let j = 0; j < message.codes.length; ++j)
+            for (var j = 0; j < message.codes.length; ++j)
                 if (typeof message.codes[j] === "number")
                     object.codes[j] = options.longs === String ? String(message.codes[j]) : message.codes[j];
                 else
@@ -1458,10 +1460,10 @@ export const GCR = $root.GCR = (() => {
         }
         if (message.devicetype != null && message.hasOwnProperty("devicetype"))
             object.devicetype = options.enums === String ? $root.DeviceType[message.devicetype] : message.devicetype;
-        let keys2;
+        var keys2;
         if (message.meta && (keys2 = Object.keys(message.meta)).length) {
             object.meta = {};
-            for (let j = 0; j < keys2.length; ++j)
+            for (var j = 0; j < keys2.length; ++j)
                 object.meta[keys2[j]] = message.meta[keys2[j]];
         }
         if (message.timestamp != null && message.hasOwnProperty("timestamp"))
@@ -1525,7 +1527,7 @@ export const GCR = $root.GCR = (() => {
  * @property {number} DEVICE_TYPE_CONTROLLABLE_LOAD=35 DEVICE_TYPE_CONTROLLABLE_LOAD value
  */
 $root.DeviceType = (function() {
-    const valuesById = {}, values = Object.create(valuesById);
+    var valuesById = {}, values = Object.create(valuesById);
     values[valuesById[0] = "DEVICE_TYPE_UNKNOWN"] = 0;
     values[valuesById[1] = "DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM"] = 1;
     values[valuesById[2] = "DEVICE_TYPE_ELECTRIC_VEHICLE"] = 2;
@@ -1575,7 +1577,7 @@ $root.DeviceType = (function() {
  * @property {number} STATUS_ERROR=3 STATUS_ERROR value
  */
 $root.Status = (function() {
-    const valuesById = {}, values = Object.create(valuesById);
+    var valuesById = {}, values = Object.create(valuesById);
     values[valuesById[0] = "STATUS_UNKNOWN"] = 0;
     values[valuesById[1] = "STATUS_OK"] = 1;
     values[valuesById[2] = "STATUS_WARNING"] = 2;
@@ -1593,7 +1595,7 @@ $root.Status = (function() {
  * @property {number} CLASS_HYBRID=3 CLASS_HYBRID value
  */
 $root.Class = (function() {
-    const valuesById = {}, values = Object.create(valuesById);
+    var valuesById = {}, values = Object.create(valuesById);
     values[valuesById[0] = "CLASS_UNKNOWN"] = 0;
     values[valuesById[1] = "CLASS_CONSUMER"] = 1;
     values[valuesById[2] = "CLASS_PRODUCER"] = 2;
@@ -1601,14 +1603,14 @@ $root.Class = (function() {
     return values;
 })();
 
-export const google = $root.google = (() => {
+$root.google = (function() {
 
     /**
      * Namespace google.
      * @exports google
      * @namespace
      */
-    const google = {};
+    var google = {};
 
     google.protobuf = (function() {
 
@@ -1617,7 +1619,7 @@ export const google = $root.google = (() => {
          * @memberof google
          * @namespace
          */
-        const protobuf = {};
+        var protobuf = {};
 
         protobuf.Timestamp = (function() {
 
@@ -1639,7 +1641,7 @@ export const google = $root.google = (() => {
              */
             function Timestamp(properties) {
                 if (properties)
-                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -1718,9 +1720,9 @@ export const google = $root.google = (() => {
             Timestamp.decode = function decode(reader, length) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
                 while (reader.pos < end) {
-                    let tag = reader.uint32();
+                    var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1:
                         message.seconds = reader.int64();
@@ -1783,7 +1785,7 @@ export const google = $root.google = (() => {
             Timestamp.fromObject = function fromObject(object) {
                 if (object instanceof $root.google.protobuf.Timestamp)
                     return object;
-                let message = new $root.google.protobuf.Timestamp();
+                var message = new $root.google.protobuf.Timestamp();
                 if (object.seconds != null)
                     if ($util.Long)
                         (message.seconds = $util.Long.fromValue(object.seconds)).unsigned = false;
@@ -1810,10 +1812,10 @@ export const google = $root.google = (() => {
             Timestamp.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                let object = {};
+                var object = {};
                 if (options.defaults) {
                     if ($util.Long) {
-                        let long = new $util.Long(0, 0, false);
+                        var long = new $util.Long(0, 0, false);
                         object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                     } else
                         object.seconds = options.longs === String ? "0" : 0;
@@ -1849,4 +1851,4 @@ export const google = $root.google = (() => {
     return google;
 })();
 
-export { $root as default };
+module.exports = $root;

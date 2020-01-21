@@ -1,7 +1,7 @@
 //go:generate protoc --gogofaster_out=Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types:. gdr.proto
 //go:generate omitemptyremover
 
-//go:generate pbjs -t static-module -w es6 --force-number -o ./gdr.js ./gdr.proto
+//go:generate pbjs -t static-module -w commonjs --force-number -o ./gdr.js ./gdr.proto
 //go:generate pbts -o ./gdr.d.ts ./gdr.js
 
 package gdr
