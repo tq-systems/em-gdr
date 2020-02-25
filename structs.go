@@ -38,25 +38,3 @@ const (
 	// ObisModeIntegral is the mode used for energy
 	ObisModeIntegral = 8
 )
-
-// ExternalGCRs maps ExternalGCR values by their respective IDs
-type ExternalGCRs struct {
-	GCRs map[string]*ExternalGCR `json:"gcrs"`
-}
-
-// ExternalGCR extends GCR with additional metainformation (OBIS description)
-type ExternalGCR struct {
-	ID         string                              `json:"id"`
-	Label      string                              `json:"label"`
-	Class      Class                               `json:"class"`
-	Sources    []string                            `json:"sources"`
-	Values     map[uint64]*ExternalObisDescription `json:"values"`
-	Devicetype DeviceType                          `json:"devicetype"`
-}
-
-// ExternalObisDescription associates an OBIS code with a human-readable label and the unit of the referenced value
-type ExternalObisDescription struct {
-	Obis  string `json:"obis"`
-	Label string `json:"label"`
-	Unit  string `json:"unit"`
-}
