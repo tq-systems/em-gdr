@@ -1179,6 +1179,22 @@ $root.GCR = (function() {
             case 33:
             case 34:
             case 35:
+            case 36:
+            case 37:
+            case 38:
+            case 39:
+            case 40:
+            case 41:
+            case 42:
+            case 43:
+            case 44:
+            case 45:
+            case 46:
+            case 47:
+            case 48:
+            case 49:
+            case 50:
+            case 51:
                 break;
             }
         if (message.meta != null && message.hasOwnProperty("meta")) {
@@ -1397,6 +1413,70 @@ $root.GCR = (function() {
         case 35:
             message.devicetype = 35;
             break;
+        case "DEVICE_TYPE_LIGHTING":
+        case 36:
+            message.devicetype = 36;
+            break;
+        case "DEVICE_TYPE_OFFICES":
+        case 37:
+            message.devicetype = 37;
+            break;
+        case "DEVICE_TYPE_DOMESTIC_APPLIANCES":
+        case 38:
+            message.devicetype = 38;
+            break;
+        case "DEVICE_TYPE_HEATER_OF_HEAT_PUMP":
+        case 39:
+            message.devicetype = 39;
+            break;
+        case "DEVICE_TYPE_INDUSTRIAL_ENGINE":
+        case 40:
+            message.devicetype = 40;
+            break;
+        case "DEVICE_TYPE_AIR_CONDITIONING":
+        case 41:
+            message.devicetype = 41;
+            break;
+        case "DEVICE_TYPE_COMPRESSOR":
+        case 42:
+            message.devicetype = 42;
+            break;
+        case "DEVICE_TYPE_PC_DATA_CENTER":
+        case 43:
+            message.devicetype = 43;
+            break;
+        case "DEVICE_TYPE_FUSES_THREE":
+        case 44:
+            message.devicetype = 44;
+            break;
+        case "DEVICE_TYPE_FUSES_SIX":
+        case 45:
+            message.devicetype = 45;
+            break;
+        case "DEVICE_TYPE_FUSES_NINE":
+        case 46:
+            message.devicetype = 46;
+            break;
+        case "DEVICE_TYPE_FUSES_TWELVE":
+        case 47:
+            message.devicetype = 47;
+            break;
+        case "DEVICE_TYPE_COMPACTOR":
+        case 48:
+            message.devicetype = 48;
+            break;
+        case "DEVICE_TYPE_WHITE_GOODS":
+        case 49:
+            message.devicetype = 49;
+            break;
+        case "DEVICE_TYPE_COLD_STORAGE_ROOM":
+        case 50:
+            message.devicetype = 50;
+            break;
+        case "DEVICE_TYPE_GARDEN_SHED":
+        case 51:
+            message.devicetype = 51;
+            break;
         }
         if (object.meta) {
             if (typeof object.meta !== "object")
@@ -1525,6 +1605,22 @@ $root.GCR = (function() {
  * @property {number} DEVICE_TYPE_ROOM_LIVING=33 DEVICE_TYPE_ROOM_LIVING value
  * @property {number} DEVICE_TYPE_ROOM_GENERIC=34 DEVICE_TYPE_ROOM_GENERIC value
  * @property {number} DEVICE_TYPE_CONTROLLABLE_LOAD=35 DEVICE_TYPE_CONTROLLABLE_LOAD value
+ * @property {number} DEVICE_TYPE_LIGHTING=36 DEVICE_TYPE_LIGHTING value
+ * @property {number} DEVICE_TYPE_OFFICES=37 DEVICE_TYPE_OFFICES value
+ * @property {number} DEVICE_TYPE_DOMESTIC_APPLIANCES=38 DEVICE_TYPE_DOMESTIC_APPLIANCES value
+ * @property {number} DEVICE_TYPE_HEATER_OF_HEAT_PUMP=39 DEVICE_TYPE_HEATER_OF_HEAT_PUMP value
+ * @property {number} DEVICE_TYPE_INDUSTRIAL_ENGINE=40 DEVICE_TYPE_INDUSTRIAL_ENGINE value
+ * @property {number} DEVICE_TYPE_AIR_CONDITIONING=41 DEVICE_TYPE_AIR_CONDITIONING value
+ * @property {number} DEVICE_TYPE_COMPRESSOR=42 DEVICE_TYPE_COMPRESSOR value
+ * @property {number} DEVICE_TYPE_PC_DATA_CENTER=43 DEVICE_TYPE_PC_DATA_CENTER value
+ * @property {number} DEVICE_TYPE_FUSES_THREE=44 DEVICE_TYPE_FUSES_THREE value
+ * @property {number} DEVICE_TYPE_FUSES_SIX=45 DEVICE_TYPE_FUSES_SIX value
+ * @property {number} DEVICE_TYPE_FUSES_NINE=46 DEVICE_TYPE_FUSES_NINE value
+ * @property {number} DEVICE_TYPE_FUSES_TWELVE=47 DEVICE_TYPE_FUSES_TWELVE value
+ * @property {number} DEVICE_TYPE_COMPACTOR=48 DEVICE_TYPE_COMPACTOR value
+ * @property {number} DEVICE_TYPE_WHITE_GOODS=49 DEVICE_TYPE_WHITE_GOODS value
+ * @property {number} DEVICE_TYPE_COLD_STORAGE_ROOM=50 DEVICE_TYPE_COLD_STORAGE_ROOM value
+ * @property {number} DEVICE_TYPE_GARDEN_SHED=51 DEVICE_TYPE_GARDEN_SHED value
  */
 $root.DeviceType = (function() {
     var valuesById = {}, values = Object.create(valuesById);
@@ -1564,6 +1660,22 @@ $root.DeviceType = (function() {
     values[valuesById[33] = "DEVICE_TYPE_ROOM_LIVING"] = 33;
     values[valuesById[34] = "DEVICE_TYPE_ROOM_GENERIC"] = 34;
     values[valuesById[35] = "DEVICE_TYPE_CONTROLLABLE_LOAD"] = 35;
+    values[valuesById[36] = "DEVICE_TYPE_LIGHTING"] = 36;
+    values[valuesById[37] = "DEVICE_TYPE_OFFICES"] = 37;
+    values[valuesById[38] = "DEVICE_TYPE_DOMESTIC_APPLIANCES"] = 38;
+    values[valuesById[39] = "DEVICE_TYPE_HEATER_OF_HEAT_PUMP"] = 39;
+    values[valuesById[40] = "DEVICE_TYPE_INDUSTRIAL_ENGINE"] = 40;
+    values[valuesById[41] = "DEVICE_TYPE_AIR_CONDITIONING"] = 41;
+    values[valuesById[42] = "DEVICE_TYPE_COMPRESSOR"] = 42;
+    values[valuesById[43] = "DEVICE_TYPE_PC_DATA_CENTER"] = 43;
+    values[valuesById[44] = "DEVICE_TYPE_FUSES_THREE"] = 44;
+    values[valuesById[45] = "DEVICE_TYPE_FUSES_SIX"] = 45;
+    values[valuesById[46] = "DEVICE_TYPE_FUSES_NINE"] = 46;
+    values[valuesById[47] = "DEVICE_TYPE_FUSES_TWELVE"] = 47;
+    values[valuesById[48] = "DEVICE_TYPE_COMPACTOR"] = 48;
+    values[valuesById[49] = "DEVICE_TYPE_WHITE_GOODS"] = 49;
+    values[valuesById[50] = "DEVICE_TYPE_COLD_STORAGE_ROOM"] = 50;
+    values[valuesById[51] = "DEVICE_TYPE_GARDEN_SHED"] = 51;
     return values;
 })();
 
