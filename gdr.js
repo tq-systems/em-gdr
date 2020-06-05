@@ -1195,6 +1195,10 @@ $root.GCR = (function() {
             case 49:
             case 50:
             case 51:
+            case 52:
+            case 53:
+            case 54:
+            case 55:
                 break;
             }
         if (message.meta != null && message.hasOwnProperty("meta")) {
@@ -1477,6 +1481,22 @@ $root.GCR = (function() {
         case 51:
             message.devicetype = 51;
             break;
+        case "DEVICE_TYPE_COOLING_COMBINATION":
+        case 52:
+            message.devicetype = 52;
+            break;
+        case "DEVICE_TYPE_FACILITIES":
+        case 53:
+            message.devicetype = 53;
+            break;
+        case "DEVICE_TYPE_FREEZER":
+        case 54:
+            message.devicetype = 54;
+            break;
+        case "DEVICE_TYPE_FRIDGE":
+        case 55:
+            message.devicetype = 55;
+            break;
         }
         if (object.meta) {
             if (typeof object.meta !== "object")
@@ -1621,6 +1641,10 @@ $root.GCR = (function() {
  * @property {number} DEVICE_TYPE_WHITE_GOODS=49 DEVICE_TYPE_WHITE_GOODS value
  * @property {number} DEVICE_TYPE_COLD_STORAGE_ROOM=50 DEVICE_TYPE_COLD_STORAGE_ROOM value
  * @property {number} DEVICE_TYPE_GARDEN_SHED=51 DEVICE_TYPE_GARDEN_SHED value
+ * @property {number} DEVICE_TYPE_COOLING_COMBINATION=52 DEVICE_TYPE_COOLING_COMBINATION value
+ * @property {number} DEVICE_TYPE_FACILITIES=53 DEVICE_TYPE_FACILITIES value
+ * @property {number} DEVICE_TYPE_FREEZER=54 DEVICE_TYPE_FREEZER value
+ * @property {number} DEVICE_TYPE_FRIDGE=55 DEVICE_TYPE_FRIDGE value
  */
 $root.DeviceType = (function() {
     var valuesById = {}, values = Object.create(valuesById);
@@ -1676,6 +1700,10 @@ $root.DeviceType = (function() {
     values[valuesById[49] = "DEVICE_TYPE_WHITE_GOODS"] = 49;
     values[valuesById[50] = "DEVICE_TYPE_COLD_STORAGE_ROOM"] = 50;
     values[valuesById[51] = "DEVICE_TYPE_GARDEN_SHED"] = 51;
+    values[valuesById[52] = "DEVICE_TYPE_COOLING_COMBINATION"] = 52;
+    values[valuesById[53] = "DEVICE_TYPE_FACILITIES"] = 53;
+    values[valuesById[54] = "DEVICE_TYPE_FREEZER"] = 54;
+    values[valuesById[55] = "DEVICE_TYPE_FRIDGE"] = 55;
     return values;
 })();
 
