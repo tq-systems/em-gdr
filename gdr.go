@@ -8,8 +8,10 @@ package gdr
 
 import (
 	"fmt"
+	"github.com/gogo/protobuf/types"
 	"regexp"
 	"strconv"
+	"time"
 )
 
 var (
@@ -93,4 +95,12 @@ func shift(value uint8, shift uint) uint64 {
 func unshift(value uint64, shift uint) uint8 {
 	//Unshift Value n Bytes
 	return uint8(value >> (8 * shift))
+}
+
+// TimeToTimestamp converts a golang time to a protobuf timestamp
+func TimeToTimestamp(t time.Time) *types.Timestamp {
+	return &types.Timestamp{
+		Seconds: t.Unix(),
+		Nanos:   int32(t.Nanosecond()),
+	}
 }
