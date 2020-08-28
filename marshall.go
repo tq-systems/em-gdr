@@ -76,3 +76,47 @@ func (s *Status) UnmarshalJSON(data []byte) error {
 	*s = Status(val)
 	return nil
 }
+
+// MarshalJSON is the custom marshalling implementation for Unit
+func (s Unit) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.String())
+}
+
+// UnmarshalJSON is the custom unmarshalling implementation for Unit
+func (s *Unit) UnmarshalJSON(data []byte) error {
+	var str string
+	err := json.Unmarshal(data, &str)
+	if err != nil {
+		return err
+	}
+
+	val, ok := Unit_value[str]
+	if !ok {
+		return errors.New("invalid unit: " + str)
+	}
+
+	*s = Unit(val)
+	return nil
+}
+
+// MarshalJSON is the custom marshalling implementation for FlexValueType
+func (s FlexValueType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.String())
+}
+
+// UnmarshalJSON is the custom unmarshalling implementation for FlexValueType
+func (s *FlexValueType) UnmarshalJSON(data []byte) error {
+	var str string
+	err := json.Unmarshal(data, &str)
+	if err != nil {
+		return err
+	}
+
+	val, ok := FlexValueType_value[str]
+	if !ok {
+		return errors.New("invalid flexible value type: " + str)
+	}
+
+	*s = FlexValueType(val)
+	return nil
+}
