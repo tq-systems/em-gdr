@@ -208,8 +208,8 @@ export interface IGDR {
     /** GDR values */
     values?: ({ [k: string]: number }|null);
 
-    /** GDR flexvalues */
-    flexvalues?: ({ [k: string]: IFlexValue }|null);
+    /** GDR flexValues */
+    flexValues?: ({ [k: string]: IFlexValue }|null);
 }
 
 /** Represents a GDR. */
@@ -233,8 +233,8 @@ export class GDR implements IGDR {
     /** GDR values. */
     public values: { [k: string]: number };
 
-    /** GDR flexvalues. */
-    public flexvalues: { [k: string]: IFlexValue };
+    /** GDR flexValues. */
+    public flexValues: { [k: string]: IFlexValue };
 
     /**
      * Creates a new GDR instance using the specified properties.
@@ -334,8 +334,8 @@ export interface IGCR {
     /** GCR timestamp */
     timestamp?: (google.protobuf.ITimestamp|null);
 
-    /** GCR flexdefinitions */
-    flexdefinitions?: ({ [k: string]: IFlexDefinition }|null);
+    /** GCR flexDefinitions */
+    flexDefinitions?: ({ [k: string]: IFlexDefinition }|null);
 }
 
 /** Represents a GCR. */
@@ -371,8 +371,8 @@ export class GCR implements IGCR {
     /** GCR timestamp. */
     public timestamp?: (google.protobuf.ITimestamp|null);
 
-    /** GCR flexdefinitions. */
-    public flexdefinitions: { [k: string]: IFlexDefinition };
+    /** GCR flexDefinitions. */
+    public flexDefinitions: { [k: string]: IFlexDefinition };
 
     /**
      * Creates a new GCR instance using the specified properties.

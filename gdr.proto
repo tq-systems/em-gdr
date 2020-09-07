@@ -23,14 +23,14 @@ message GCRs {
 // values - Key = Binary ObisCode, Value = Value of ObisCode 
 //        - based on ObisCode the basic Data information
 //        - in groups here is the comparison of the childs data information
-// flexvalues - Key = string
+// flexValues - Key = string
 //              Value = FlexValue
 message GDR {
 	string id = 1;
 	Status status = 2;
 	google.protobuf.Timestamp timestamp = 3;
 	map<uint64,uint64> values = 4;
-	map<string,FlexValue> flexvalues = 5;
+	map<string,FlexValue> flexValues = 5;
 }
 
 //GCR = Generic Config Record
@@ -45,7 +45,7 @@ message GDR {
 // devicetype - see DeviceType declaration
 // meta - may include app-dependent meta information
 // timestamp - last time the config was updated
-// flexdefinitions - definition of flexible values
+// flexDefinitions - definition of flexible values
 message GCR {
 	string id = 1;
 	string label = 2;
@@ -55,7 +55,7 @@ message GCR {
 	DeviceType devicetype = 6;
 	map<string,string> meta = 7;
 	google.protobuf.Timestamp timestamp = 8;
-	map<string,FlexDefinition> flexdefinitions = 9;
+	map<string,FlexDefinition> flexDefinitions = 9;
 }
 
 

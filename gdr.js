@@ -523,7 +523,7 @@ $root.GDR = (function() {
      * @property {Status|null} [status] GDR status
      * @property {google.protobuf.ITimestamp|null} [timestamp] GDR timestamp
      * @property {Object.<string,number>|null} [values] GDR values
-     * @property {Object.<string,IFlexValue>|null} [flexvalues] GDR flexvalues
+     * @property {Object.<string,IFlexValue>|null} [flexValues] GDR flexValues
      */
 
     /**
@@ -536,7 +536,7 @@ $root.GDR = (function() {
      */
     function GDR(properties) {
         this.values = {};
-        this.flexvalues = {};
+        this.flexValues = {};
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -576,12 +576,12 @@ $root.GDR = (function() {
     GDR.prototype.values = $util.emptyObject;
 
     /**
-     * GDR flexvalues.
-     * @member {Object.<string,IFlexValue>} flexvalues
+     * GDR flexValues.
+     * @member {Object.<string,IFlexValue>} flexValues
      * @memberof GDR
      * @instance
      */
-    GDR.prototype.flexvalues = $util.emptyObject;
+    GDR.prototype.flexValues = $util.emptyObject;
 
     /**
      * Creates a new GDR instance using the specified properties.
@@ -616,10 +616,10 @@ $root.GDR = (function() {
         if (message.values != null && Object.hasOwnProperty.call(message, "values"))
             for (var keys = Object.keys(message.values), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 4, wireType 2 =*/34).fork().uint32(/* id 1, wireType 0 =*/8).uint64(keys[i]).uint32(/* id 2, wireType 0 =*/16).uint64(message.values[keys[i]]).ldelim();
-        if (message.flexvalues != null && Object.hasOwnProperty.call(message, "flexvalues"))
-            for (var keys = Object.keys(message.flexvalues), i = 0; i < keys.length; ++i) {
+        if (message.flexValues != null && Object.hasOwnProperty.call(message, "flexValues"))
+            for (var keys = Object.keys(message.flexValues), i = 0; i < keys.length; ++i) {
                 writer.uint32(/* id 5, wireType 2 =*/42).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
-                $root.FlexValue.encode(message.flexvalues[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                $root.FlexValue.encode(message.flexValues[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
             }
         return writer;
     };
@@ -687,8 +687,8 @@ $root.GDR = (function() {
                 message.values[typeof key === "object" ? $util.longToHash(key) : key] = value;
                 break;
             case 5:
-                if (message.flexvalues === $util.emptyObject)
-                    message.flexvalues = {};
+                if (message.flexValues === $util.emptyObject)
+                    message.flexValues = {};
                 var end2 = reader.uint32() + reader.pos;
                 key = "";
                 value = null;
@@ -706,7 +706,7 @@ $root.GDR = (function() {
                         break;
                     }
                 }
-                message.flexvalues[key] = value;
+                message.flexValues[key] = value;
                 break;
             default:
                 reader.skipType(tag & 7);
@@ -772,14 +772,14 @@ $root.GDR = (function() {
                     return "values: integer|Long{k:uint64} expected";
             }
         }
-        if (message.flexvalues != null && message.hasOwnProperty("flexvalues")) {
-            if (!$util.isObject(message.flexvalues))
-                return "flexvalues: object expected";
-            var key = Object.keys(message.flexvalues);
+        if (message.flexValues != null && message.hasOwnProperty("flexValues")) {
+            if (!$util.isObject(message.flexValues))
+                return "flexValues: object expected";
+            var key = Object.keys(message.flexValues);
             for (var i = 0; i < key.length; ++i) {
-                var error = $root.FlexValue.verify(message.flexvalues[key[i]]);
+                var error = $root.FlexValue.verify(message.flexValues[key[i]]);
                 if (error)
-                    return "flexvalues." + error;
+                    return "flexValues." + error;
             }
         }
         return null;
@@ -836,14 +836,14 @@ $root.GDR = (function() {
                 else if (typeof object.values[keys[i]] === "object")
                     message.values[keys[i]] = new $util.LongBits(object.values[keys[i]].low >>> 0, object.values[keys[i]].high >>> 0).toNumber(true);
         }
-        if (object.flexvalues) {
-            if (typeof object.flexvalues !== "object")
-                throw TypeError(".GDR.flexvalues: object expected");
-            message.flexvalues = {};
-            for (var keys = Object.keys(object.flexvalues), i = 0; i < keys.length; ++i) {
-                if (typeof object.flexvalues[keys[i]] !== "object")
-                    throw TypeError(".GDR.flexvalues: object expected");
-                message.flexvalues[keys[i]] = $root.FlexValue.fromObject(object.flexvalues[keys[i]]);
+        if (object.flexValues) {
+            if (typeof object.flexValues !== "object")
+                throw TypeError(".GDR.flexValues: object expected");
+            message.flexValues = {};
+            for (var keys = Object.keys(object.flexValues), i = 0; i < keys.length; ++i) {
+                if (typeof object.flexValues[keys[i]] !== "object")
+                    throw TypeError(".GDR.flexValues: object expected");
+                message.flexValues[keys[i]] = $root.FlexValue.fromObject(object.flexValues[keys[i]]);
             }
         }
         return message;
@@ -864,7 +864,7 @@ $root.GDR = (function() {
         var object = {};
         if (options.objects || options.defaults) {
             object.values = {};
-            object.flexvalues = {};
+            object.flexValues = {};
         }
         if (options.defaults) {
             object.id = "";
@@ -886,10 +886,10 @@ $root.GDR = (function() {
                 else
                     object.values[keys2[j]] = options.longs === String ? $util.Long.prototype.toString.call(message.values[keys2[j]]) : options.longs === Number ? new $util.LongBits(message.values[keys2[j]].low >>> 0, message.values[keys2[j]].high >>> 0).toNumber(true) : message.values[keys2[j]];
         }
-        if (message.flexvalues && (keys2 = Object.keys(message.flexvalues)).length) {
-            object.flexvalues = {};
+        if (message.flexValues && (keys2 = Object.keys(message.flexValues)).length) {
+            object.flexValues = {};
             for (var j = 0; j < keys2.length; ++j)
-                object.flexvalues[keys2[j]] = $root.FlexValue.toObject(message.flexvalues[keys2[j]], options);
+                object.flexValues[keys2[j]] = $root.FlexValue.toObject(message.flexValues[keys2[j]], options);
         }
         return object;
     };
@@ -922,7 +922,7 @@ $root.GCR = (function() {
      * @property {DeviceType|null} [devicetype] GCR devicetype
      * @property {Object.<string,string>|null} [meta] GCR meta
      * @property {google.protobuf.ITimestamp|null} [timestamp] GCR timestamp
-     * @property {Object.<string,IFlexDefinition>|null} [flexdefinitions] GCR flexdefinitions
+     * @property {Object.<string,IFlexDefinition>|null} [flexDefinitions] GCR flexDefinitions
      */
 
     /**
@@ -937,7 +937,7 @@ $root.GCR = (function() {
         this.sources = [];
         this.codes = [];
         this.meta = {};
-        this.flexdefinitions = {};
+        this.flexDefinitions = {};
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -1009,12 +1009,12 @@ $root.GCR = (function() {
     GCR.prototype.timestamp = null;
 
     /**
-     * GCR flexdefinitions.
-     * @member {Object.<string,IFlexDefinition>} flexdefinitions
+     * GCR flexDefinitions.
+     * @member {Object.<string,IFlexDefinition>} flexDefinitions
      * @memberof GCR
      * @instance
      */
-    GCR.prototype.flexdefinitions = $util.emptyObject;
+    GCR.prototype.flexDefinitions = $util.emptyObject;
 
     /**
      * Creates a new GCR instance using the specified properties.
@@ -1062,10 +1062,10 @@ $root.GCR = (function() {
                 writer.uint32(/* id 7, wireType 2 =*/58).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.meta[keys[i]]).ldelim();
         if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
             $root.google.protobuf.Timestamp.encode(message.timestamp, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
-        if (message.flexdefinitions != null && Object.hasOwnProperty.call(message, "flexdefinitions"))
-            for (var keys = Object.keys(message.flexdefinitions), i = 0; i < keys.length; ++i) {
+        if (message.flexDefinitions != null && Object.hasOwnProperty.call(message, "flexDefinitions"))
+            for (var keys = Object.keys(message.flexDefinitions), i = 0; i < keys.length; ++i) {
                 writer.uint32(/* id 9, wireType 2 =*/74).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
-                $root.FlexDefinition.encode(message.flexdefinitions[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                $root.FlexDefinition.encode(message.flexDefinitions[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
             }
         return writer;
     };
@@ -1154,8 +1154,8 @@ $root.GCR = (function() {
                 message.timestamp = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
                 break;
             case 9:
-                if (message.flexdefinitions === $util.emptyObject)
-                    message.flexdefinitions = {};
+                if (message.flexDefinitions === $util.emptyObject)
+                    message.flexDefinitions = {};
                 var end2 = reader.uint32() + reader.pos;
                 key = "";
                 value = null;
@@ -1173,7 +1173,7 @@ $root.GCR = (function() {
                         break;
                     }
                 }
-                message.flexdefinitions[key] = value;
+                message.flexDefinitions[key] = value;
                 break;
             default:
                 reader.skipType(tag & 7);
@@ -1315,14 +1315,14 @@ $root.GCR = (function() {
             if (error)
                 return "timestamp." + error;
         }
-        if (message.flexdefinitions != null && message.hasOwnProperty("flexdefinitions")) {
-            if (!$util.isObject(message.flexdefinitions))
-                return "flexdefinitions: object expected";
-            var key = Object.keys(message.flexdefinitions);
+        if (message.flexDefinitions != null && message.hasOwnProperty("flexDefinitions")) {
+            if (!$util.isObject(message.flexDefinitions))
+                return "flexDefinitions: object expected";
+            var key = Object.keys(message.flexDefinitions);
             for (var i = 0; i < key.length; ++i) {
-                var error = $root.FlexDefinition.verify(message.flexdefinitions[key[i]]);
+                var error = $root.FlexDefinition.verify(message.flexDefinitions[key[i]]);
                 if (error)
-                    return "flexdefinitions." + error;
+                    return "flexDefinitions." + error;
             }
         }
         return null;
@@ -1621,14 +1621,14 @@ $root.GCR = (function() {
                 throw TypeError(".GCR.timestamp: object expected");
             message.timestamp = $root.google.protobuf.Timestamp.fromObject(object.timestamp);
         }
-        if (object.flexdefinitions) {
-            if (typeof object.flexdefinitions !== "object")
-                throw TypeError(".GCR.flexdefinitions: object expected");
-            message.flexdefinitions = {};
-            for (var keys = Object.keys(object.flexdefinitions), i = 0; i < keys.length; ++i) {
-                if (typeof object.flexdefinitions[keys[i]] !== "object")
-                    throw TypeError(".GCR.flexdefinitions: object expected");
-                message.flexdefinitions[keys[i]] = $root.FlexDefinition.fromObject(object.flexdefinitions[keys[i]]);
+        if (object.flexDefinitions) {
+            if (typeof object.flexDefinitions !== "object")
+                throw TypeError(".GCR.flexDefinitions: object expected");
+            message.flexDefinitions = {};
+            for (var keys = Object.keys(object.flexDefinitions), i = 0; i < keys.length; ++i) {
+                if (typeof object.flexDefinitions[keys[i]] !== "object")
+                    throw TypeError(".GCR.flexDefinitions: object expected");
+                message.flexDefinitions[keys[i]] = $root.FlexDefinition.fromObject(object.flexDefinitions[keys[i]]);
             }
         }
         return message;
@@ -1653,7 +1653,7 @@ $root.GCR = (function() {
         }
         if (options.objects || options.defaults) {
             object.meta = {};
-            object.flexdefinitions = {};
+            object.flexDefinitions = {};
         }
         if (options.defaults) {
             object.id = "";
@@ -1691,10 +1691,10 @@ $root.GCR = (function() {
         }
         if (message.timestamp != null && message.hasOwnProperty("timestamp"))
             object.timestamp = $root.google.protobuf.Timestamp.toObject(message.timestamp, options);
-        if (message.flexdefinitions && (keys2 = Object.keys(message.flexdefinitions)).length) {
-            object.flexdefinitions = {};
+        if (message.flexDefinitions && (keys2 = Object.keys(message.flexDefinitions)).length) {
+            object.flexDefinitions = {};
             for (var j = 0; j < keys2.length; ++j)
-                object.flexdefinitions[keys2[j]] = $root.FlexDefinition.toObject(message.flexdefinitions[keys2[j]], options);
+                object.flexDefinitions[keys2[j]] = $root.FlexDefinition.toObject(message.flexDefinitions[keys2[j]], options);
         }
         return object;
     };
