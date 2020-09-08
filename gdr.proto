@@ -23,11 +23,14 @@ message GCRs {
 // values - Key = Binary ObisCode, Value = Value of ObisCode 
 //        - based on ObisCode the basic Data information
 //        - in groups here is the comparison of the childs data information
+// flexValues - Key = string
+//              Value = FlexValue
 message GDR {
 	string id = 1;
 	Status status = 2;
 	google.protobuf.Timestamp timestamp = 3;
 	map<uint64,uint64> values = 4;
+	map<string,FlexValue> flexValues = 5;
 }
 
 //GCR = Generic Config Record
@@ -35,13 +38,14 @@ message GDR {
 // label - describes the Datasource
 // class - see Class declaration
 // sources - points to the childs of the measuring point
-// 	       - references on the GDR ids
+//           - references on the GDR ids
 //         - structure of groupings
 // codes  - based on Binary ObisCodes
 //        - declares which ObisCodes the associated GDR has
-// devicetype - see DeviceType declaration 
+// devicetype - see DeviceType declaration
 // meta - may include app-dependent meta information
 // timestamp - last time the config was updated
+// flexDefinitions - definition of flexible values
 message GCR {
 	string id = 1;
 	string label = 2;
@@ -51,10 +55,58 @@ message GCR {
 	DeviceType devicetype = 6;
 	map<string,string> meta = 7;
 	google.protobuf.Timestamp timestamp = 8;
+	map<string,FlexDefinition> flexDefinitions = 9;
 }
 
-// devicetype - declares which Type of Device the Data Source is 
-//    		  - necessary for Sankey-Diagram 
+
+// FlexValue is a message type which handles flexible datapoints inside a GDR
+message FlexValue {
+	int64 int_value = 1;
+	string string_value = 2;
+}
+
+// FlexValueType declares which field should be used parsing the flexvalue
+enum FlexValueType {
+	FLEX_VALUE_TYPE_INTEGER = 0;
+	FLEX_VALUE_TYPE_STRING = 1;
+}
+
+// FlexDefinition describes the content of the flexible values
+message FlexDefinition {
+	string label = 1;
+	FlexValueType type = 2;
+	Unit unit = 3;
+	sint32 decimalpower = 4;
+}
+
+// Unit declares the unit of the flexible value
+enum Unit {
+	UNIT_UNKNOWN = 0;
+	// Electrical values
+	UNIT_AMPERE = 1;
+	UNIT_VOLT = 2;
+	UNIT_WATT = 3;
+	UNIT_HERTZ = 4;
+	UNIT_VOLT_AMPERE = 5;
+	UNIT_VOLT_AMPERE_REACTIVE = 6;
+	UNIT_WATT_HOUR = 7;
+	UNIT_KILO_WATT_HOUR = 8;
+	// Time Values
+	UNIT_SECOND = 9;
+	UNIT_MINUTE = 10;
+	UNIT_HOUR = 11;
+	UNIT_DAY = 12;
+	UNIT_WEEK = 13;
+	UNIT_MONTH = 14;
+	UNIT_YEAR = 15;
+	// Other values
+	UNIT_DEGREE_CELSIUS = 16;
+	UNIT_KELVIN = 17;
+	UNIT_DEGREE_FAHRENHEIT = 18;
+}
+
+// Devicetype - declares which Type of Device the Data Source is 
+//            - necessary for Sankey-Diagram 
 enum DeviceType {
 	DEVICE_TYPE_UNKNOWN = 0;
 	DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM = 1;

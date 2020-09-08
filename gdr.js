@@ -523,6 +523,7 @@ $root.GDR = (function() {
      * @property {Status|null} [status] GDR status
      * @property {google.protobuf.ITimestamp|null} [timestamp] GDR timestamp
      * @property {Object.<string,number>|null} [values] GDR values
+     * @property {Object.<string,IFlexValue>|null} [flexValues] GDR flexValues
      */
 
     /**
@@ -535,6 +536,7 @@ $root.GDR = (function() {
      */
     function GDR(properties) {
         this.values = {};
+        this.flexValues = {};
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -574,6 +576,14 @@ $root.GDR = (function() {
     GDR.prototype.values = $util.emptyObject;
 
     /**
+     * GDR flexValues.
+     * @member {Object.<string,IFlexValue>} flexValues
+     * @memberof GDR
+     * @instance
+     */
+    GDR.prototype.flexValues = $util.emptyObject;
+
+    /**
      * Creates a new GDR instance using the specified properties.
      * @function create
      * @memberof GDR
@@ -606,6 +616,11 @@ $root.GDR = (function() {
         if (message.values != null && Object.hasOwnProperty.call(message, "values"))
             for (var keys = Object.keys(message.values), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 4, wireType 2 =*/34).fork().uint32(/* id 1, wireType 0 =*/8).uint64(keys[i]).uint32(/* id 2, wireType 0 =*/16).uint64(message.values[keys[i]]).ldelim();
+        if (message.flexValues != null && Object.hasOwnProperty.call(message, "flexValues"))
+            for (var keys = Object.keys(message.flexValues), i = 0; i < keys.length; ++i) {
+                writer.uint32(/* id 5, wireType 2 =*/42).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
+                $root.FlexValue.encode(message.flexValues[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+            }
         return writer;
     };
 
@@ -671,6 +686,28 @@ $root.GDR = (function() {
                 }
                 message.values[typeof key === "object" ? $util.longToHash(key) : key] = value;
                 break;
+            case 5:
+                if (message.flexValues === $util.emptyObject)
+                    message.flexValues = {};
+                var end2 = reader.uint32() + reader.pos;
+                key = "";
+                value = null;
+                while (reader.pos < end2) {
+                    var tag2 = reader.uint32();
+                    switch (tag2 >>> 3) {
+                    case 1:
+                        key = reader.string();
+                        break;
+                    case 2:
+                        value = $root.FlexValue.decode(reader, reader.uint32());
+                        break;
+                    default:
+                        reader.skipType(tag2 & 7);
+                        break;
+                    }
+                }
+                message.flexValues[key] = value;
+                break;
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -735,6 +772,16 @@ $root.GDR = (function() {
                     return "values: integer|Long{k:uint64} expected";
             }
         }
+        if (message.flexValues != null && message.hasOwnProperty("flexValues")) {
+            if (!$util.isObject(message.flexValues))
+                return "flexValues: object expected";
+            var key = Object.keys(message.flexValues);
+            for (var i = 0; i < key.length; ++i) {
+                var error = $root.FlexValue.verify(message.flexValues[key[i]]);
+                if (error)
+                    return "flexValues." + error;
+            }
+        }
         return null;
     };
 
@@ -789,6 +836,16 @@ $root.GDR = (function() {
                 else if (typeof object.values[keys[i]] === "object")
                     message.values[keys[i]] = new $util.LongBits(object.values[keys[i]].low >>> 0, object.values[keys[i]].high >>> 0).toNumber(true);
         }
+        if (object.flexValues) {
+            if (typeof object.flexValues !== "object")
+                throw TypeError(".GDR.flexValues: object expected");
+            message.flexValues = {};
+            for (var keys = Object.keys(object.flexValues), i = 0; i < keys.length; ++i) {
+                if (typeof object.flexValues[keys[i]] !== "object")
+                    throw TypeError(".GDR.flexValues: object expected");
+                message.flexValues[keys[i]] = $root.FlexValue.fromObject(object.flexValues[keys[i]]);
+            }
+        }
         return message;
     };
 
@@ -805,8 +862,10 @@ $root.GDR = (function() {
         if (!options)
             options = {};
         var object = {};
-        if (options.objects || options.defaults)
+        if (options.objects || options.defaults) {
             object.values = {};
+            object.flexValues = {};
+        }
         if (options.defaults) {
             object.id = "";
             object.status = options.enums === String ? "STATUS_UNKNOWN" : 0;
@@ -826,6 +885,11 @@ $root.GDR = (function() {
                     object.values[keys2[j]] = options.longs === String ? String(message.values[keys2[j]]) : message.values[keys2[j]];
                 else
                     object.values[keys2[j]] = options.longs === String ? $util.Long.prototype.toString.call(message.values[keys2[j]]) : options.longs === Number ? new $util.LongBits(message.values[keys2[j]].low >>> 0, message.values[keys2[j]].high >>> 0).toNumber(true) : message.values[keys2[j]];
+        }
+        if (message.flexValues && (keys2 = Object.keys(message.flexValues)).length) {
+            object.flexValues = {};
+            for (var j = 0; j < keys2.length; ++j)
+                object.flexValues[keys2[j]] = $root.FlexValue.toObject(message.flexValues[keys2[j]], options);
         }
         return object;
     };
@@ -858,6 +922,7 @@ $root.GCR = (function() {
      * @property {DeviceType|null} [devicetype] GCR devicetype
      * @property {Object.<string,string>|null} [meta] GCR meta
      * @property {google.protobuf.ITimestamp|null} [timestamp] GCR timestamp
+     * @property {Object.<string,IFlexDefinition>|null} [flexDefinitions] GCR flexDefinitions
      */
 
     /**
@@ -872,6 +937,7 @@ $root.GCR = (function() {
         this.sources = [];
         this.codes = [];
         this.meta = {};
+        this.flexDefinitions = {};
         if (properties)
             for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -943,6 +1009,14 @@ $root.GCR = (function() {
     GCR.prototype.timestamp = null;
 
     /**
+     * GCR flexDefinitions.
+     * @member {Object.<string,IFlexDefinition>} flexDefinitions
+     * @memberof GCR
+     * @instance
+     */
+    GCR.prototype.flexDefinitions = $util.emptyObject;
+
+    /**
      * Creates a new GCR instance using the specified properties.
      * @function create
      * @memberof GCR
@@ -988,6 +1062,11 @@ $root.GCR = (function() {
                 writer.uint32(/* id 7, wireType 2 =*/58).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.meta[keys[i]]).ldelim();
         if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
             $root.google.protobuf.Timestamp.encode(message.timestamp, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+        if (message.flexDefinitions != null && Object.hasOwnProperty.call(message, "flexDefinitions"))
+            for (var keys = Object.keys(message.flexDefinitions), i = 0; i < keys.length; ++i) {
+                writer.uint32(/* id 9, wireType 2 =*/74).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
+                $root.FlexDefinition.encode(message.flexDefinitions[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+            }
         return writer;
     };
 
@@ -1073,6 +1152,28 @@ $root.GCR = (function() {
                 break;
             case 8:
                 message.timestamp = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                break;
+            case 9:
+                if (message.flexDefinitions === $util.emptyObject)
+                    message.flexDefinitions = {};
+                var end2 = reader.uint32() + reader.pos;
+                key = "";
+                value = null;
+                while (reader.pos < end2) {
+                    var tag2 = reader.uint32();
+                    switch (tag2 >>> 3) {
+                    case 1:
+                        key = reader.string();
+                        break;
+                    case 2:
+                        value = $root.FlexDefinition.decode(reader, reader.uint32());
+                        break;
+                    default:
+                        reader.skipType(tag2 & 7);
+                        break;
+                    }
+                }
+                message.flexDefinitions[key] = value;
                 break;
             default:
                 reader.skipType(tag & 7);
@@ -1213,6 +1314,16 @@ $root.GCR = (function() {
             var error = $root.google.protobuf.Timestamp.verify(message.timestamp);
             if (error)
                 return "timestamp." + error;
+        }
+        if (message.flexDefinitions != null && message.hasOwnProperty("flexDefinitions")) {
+            if (!$util.isObject(message.flexDefinitions))
+                return "flexDefinitions: object expected";
+            var key = Object.keys(message.flexDefinitions);
+            for (var i = 0; i < key.length; ++i) {
+                var error = $root.FlexDefinition.verify(message.flexDefinitions[key[i]]);
+                if (error)
+                    return "flexDefinitions." + error;
+            }
         }
         return null;
     };
@@ -1510,6 +1621,16 @@ $root.GCR = (function() {
                 throw TypeError(".GCR.timestamp: object expected");
             message.timestamp = $root.google.protobuf.Timestamp.fromObject(object.timestamp);
         }
+        if (object.flexDefinitions) {
+            if (typeof object.flexDefinitions !== "object")
+                throw TypeError(".GCR.flexDefinitions: object expected");
+            message.flexDefinitions = {};
+            for (var keys = Object.keys(object.flexDefinitions), i = 0; i < keys.length; ++i) {
+                if (typeof object.flexDefinitions[keys[i]] !== "object")
+                    throw TypeError(".GCR.flexDefinitions: object expected");
+                message.flexDefinitions[keys[i]] = $root.FlexDefinition.fromObject(object.flexDefinitions[keys[i]]);
+            }
+        }
         return message;
     };
 
@@ -1530,8 +1651,10 @@ $root.GCR = (function() {
             object.sources = [];
             object.codes = [];
         }
-        if (options.objects || options.defaults)
+        if (options.objects || options.defaults) {
             object.meta = {};
+            object.flexDefinitions = {};
+        }
         if (options.defaults) {
             object.id = "";
             object.label = "";
@@ -1568,6 +1691,11 @@ $root.GCR = (function() {
         }
         if (message.timestamp != null && message.hasOwnProperty("timestamp"))
             object.timestamp = $root.google.protobuf.Timestamp.toObject(message.timestamp, options);
+        if (message.flexDefinitions && (keys2 = Object.keys(message.flexDefinitions)).length) {
+            object.flexDefinitions = {};
+            for (var j = 0; j < keys2.length; ++j)
+                object.flexDefinitions[keys2[j]] = $root.FlexDefinition.toObject(message.flexDefinitions[keys2[j]], options);
+        }
         return object;
     };
 
@@ -1583,6 +1711,657 @@ $root.GCR = (function() {
     };
 
     return GCR;
+})();
+
+$root.FlexValue = (function() {
+
+    /**
+     * Properties of a FlexValue.
+     * @exports IFlexValue
+     * @interface IFlexValue
+     * @property {number|null} [intValue] FlexValue intValue
+     * @property {string|null} [stringValue] FlexValue stringValue
+     */
+
+    /**
+     * Constructs a new FlexValue.
+     * @exports FlexValue
+     * @classdesc Represents a FlexValue.
+     * @implements IFlexValue
+     * @constructor
+     * @param {IFlexValue=} [properties] Properties to set
+     */
+    function FlexValue(properties) {
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * FlexValue intValue.
+     * @member {number} intValue
+     * @memberof FlexValue
+     * @instance
+     */
+    FlexValue.prototype.intValue = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+    /**
+     * FlexValue stringValue.
+     * @member {string} stringValue
+     * @memberof FlexValue
+     * @instance
+     */
+    FlexValue.prototype.stringValue = "";
+
+    /**
+     * Creates a new FlexValue instance using the specified properties.
+     * @function create
+     * @memberof FlexValue
+     * @static
+     * @param {IFlexValue=} [properties] Properties to set
+     * @returns {FlexValue} FlexValue instance
+     */
+    FlexValue.create = function create(properties) {
+        return new FlexValue(properties);
+    };
+
+    /**
+     * Encodes the specified FlexValue message. Does not implicitly {@link FlexValue.verify|verify} messages.
+     * @function encode
+     * @memberof FlexValue
+     * @static
+     * @param {IFlexValue} message FlexValue message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    FlexValue.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.intValue != null && Object.hasOwnProperty.call(message, "intValue"))
+            writer.uint32(/* id 1, wireType 0 =*/8).int64(message.intValue);
+        if (message.stringValue != null && Object.hasOwnProperty.call(message, "stringValue"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.stringValue);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified FlexValue message, length delimited. Does not implicitly {@link FlexValue.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof FlexValue
+     * @static
+     * @param {IFlexValue} message FlexValue message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    FlexValue.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a FlexValue message from the specified reader or buffer.
+     * @function decode
+     * @memberof FlexValue
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {FlexValue} FlexValue
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    FlexValue.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.FlexValue();
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+            case 1:
+                message.intValue = reader.int64();
+                break;
+            case 2:
+                message.stringValue = reader.string();
+                break;
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a FlexValue message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof FlexValue
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {FlexValue} FlexValue
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    FlexValue.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a FlexValue message.
+     * @function verify
+     * @memberof FlexValue
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    FlexValue.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.intValue != null && message.hasOwnProperty("intValue"))
+            if (!$util.isInteger(message.intValue) && !(message.intValue && $util.isInteger(message.intValue.low) && $util.isInteger(message.intValue.high)))
+                return "intValue: integer|Long expected";
+        if (message.stringValue != null && message.hasOwnProperty("stringValue"))
+            if (!$util.isString(message.stringValue))
+                return "stringValue: string expected";
+        return null;
+    };
+
+    /**
+     * Creates a FlexValue message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof FlexValue
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {FlexValue} FlexValue
+     */
+    FlexValue.fromObject = function fromObject(object) {
+        if (object instanceof $root.FlexValue)
+            return object;
+        var message = new $root.FlexValue();
+        if (object.intValue != null)
+            if ($util.Long)
+                (message.intValue = $util.Long.fromValue(object.intValue)).unsigned = false;
+            else if (typeof object.intValue === "string")
+                message.intValue = parseInt(object.intValue, 10);
+            else if (typeof object.intValue === "number")
+                message.intValue = object.intValue;
+            else if (typeof object.intValue === "object")
+                message.intValue = new $util.LongBits(object.intValue.low >>> 0, object.intValue.high >>> 0).toNumber();
+        if (object.stringValue != null)
+            message.stringValue = String(object.stringValue);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a FlexValue message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof FlexValue
+     * @static
+     * @param {FlexValue} message FlexValue
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    FlexValue.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        var object = {};
+        if (options.defaults) {
+            if ($util.Long) {
+                var long = new $util.Long(0, 0, false);
+                object.intValue = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+            } else
+                object.intValue = options.longs === String ? "0" : 0;
+            object.stringValue = "";
+        }
+        if (message.intValue != null && message.hasOwnProperty("intValue"))
+            if (typeof message.intValue === "number")
+                object.intValue = options.longs === String ? String(message.intValue) : message.intValue;
+            else
+                object.intValue = options.longs === String ? $util.Long.prototype.toString.call(message.intValue) : options.longs === Number ? new $util.LongBits(message.intValue.low >>> 0, message.intValue.high >>> 0).toNumber() : message.intValue;
+        if (message.stringValue != null && message.hasOwnProperty("stringValue"))
+            object.stringValue = message.stringValue;
+        return object;
+    };
+
+    /**
+     * Converts this FlexValue to JSON.
+     * @function toJSON
+     * @memberof FlexValue
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    FlexValue.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    return FlexValue;
+})();
+
+/**
+ * FlexValueType enum.
+ * @exports FlexValueType
+ * @enum {string}
+ * @property {number} FLEX_VALUE_TYPE_INTEGER=0 FLEX_VALUE_TYPE_INTEGER value
+ * @property {number} FLEX_VALUE_TYPE_STRING=1 FLEX_VALUE_TYPE_STRING value
+ */
+$root.FlexValueType = (function() {
+    var valuesById = {}, values = Object.create(valuesById);
+    values[valuesById[0] = "FLEX_VALUE_TYPE_INTEGER"] = 0;
+    values[valuesById[1] = "FLEX_VALUE_TYPE_STRING"] = 1;
+    return values;
+})();
+
+$root.FlexDefinition = (function() {
+
+    /**
+     * Properties of a FlexDefinition.
+     * @exports IFlexDefinition
+     * @interface IFlexDefinition
+     * @property {string|null} [label] FlexDefinition label
+     * @property {FlexValueType|null} [type] FlexDefinition type
+     * @property {Unit|null} [unit] FlexDefinition unit
+     * @property {number|null} [decimalpower] FlexDefinition decimalpower
+     */
+
+    /**
+     * Constructs a new FlexDefinition.
+     * @exports FlexDefinition
+     * @classdesc Represents a FlexDefinition.
+     * @implements IFlexDefinition
+     * @constructor
+     * @param {IFlexDefinition=} [properties] Properties to set
+     */
+    function FlexDefinition(properties) {
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * FlexDefinition label.
+     * @member {string} label
+     * @memberof FlexDefinition
+     * @instance
+     */
+    FlexDefinition.prototype.label = "";
+
+    /**
+     * FlexDefinition type.
+     * @member {FlexValueType} type
+     * @memberof FlexDefinition
+     * @instance
+     */
+    FlexDefinition.prototype.type = 0;
+
+    /**
+     * FlexDefinition unit.
+     * @member {Unit} unit
+     * @memberof FlexDefinition
+     * @instance
+     */
+    FlexDefinition.prototype.unit = 0;
+
+    /**
+     * FlexDefinition decimalpower.
+     * @member {number} decimalpower
+     * @memberof FlexDefinition
+     * @instance
+     */
+    FlexDefinition.prototype.decimalpower = 0;
+
+    /**
+     * Creates a new FlexDefinition instance using the specified properties.
+     * @function create
+     * @memberof FlexDefinition
+     * @static
+     * @param {IFlexDefinition=} [properties] Properties to set
+     * @returns {FlexDefinition} FlexDefinition instance
+     */
+    FlexDefinition.create = function create(properties) {
+        return new FlexDefinition(properties);
+    };
+
+    /**
+     * Encodes the specified FlexDefinition message. Does not implicitly {@link FlexDefinition.verify|verify} messages.
+     * @function encode
+     * @memberof FlexDefinition
+     * @static
+     * @param {IFlexDefinition} message FlexDefinition message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    FlexDefinition.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.label != null && Object.hasOwnProperty.call(message, "label"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.label);
+        if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.type);
+        if (message.unit != null && Object.hasOwnProperty.call(message, "unit"))
+            writer.uint32(/* id 3, wireType 0 =*/24).int32(message.unit);
+        if (message.decimalpower != null && Object.hasOwnProperty.call(message, "decimalpower"))
+            writer.uint32(/* id 4, wireType 0 =*/32).sint32(message.decimalpower);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified FlexDefinition message, length delimited. Does not implicitly {@link FlexDefinition.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof FlexDefinition
+     * @static
+     * @param {IFlexDefinition} message FlexDefinition message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    FlexDefinition.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a FlexDefinition message from the specified reader or buffer.
+     * @function decode
+     * @memberof FlexDefinition
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {FlexDefinition} FlexDefinition
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    FlexDefinition.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.FlexDefinition();
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+            case 1:
+                message.label = reader.string();
+                break;
+            case 2:
+                message.type = reader.int32();
+                break;
+            case 3:
+                message.unit = reader.int32();
+                break;
+            case 4:
+                message.decimalpower = reader.sint32();
+                break;
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a FlexDefinition message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof FlexDefinition
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {FlexDefinition} FlexDefinition
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    FlexDefinition.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a FlexDefinition message.
+     * @function verify
+     * @memberof FlexDefinition
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    FlexDefinition.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.label != null && message.hasOwnProperty("label"))
+            if (!$util.isString(message.label))
+                return "label: string expected";
+        if (message.type != null && message.hasOwnProperty("type"))
+            switch (message.type) {
+            default:
+                return "type: enum value expected";
+            case 0:
+            case 1:
+                break;
+            }
+        if (message.unit != null && message.hasOwnProperty("unit"))
+            switch (message.unit) {
+            default:
+                return "unit: enum value expected";
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+                break;
+            }
+        if (message.decimalpower != null && message.hasOwnProperty("decimalpower"))
+            if (!$util.isInteger(message.decimalpower))
+                return "decimalpower: integer expected";
+        return null;
+    };
+
+    /**
+     * Creates a FlexDefinition message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof FlexDefinition
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {FlexDefinition} FlexDefinition
+     */
+    FlexDefinition.fromObject = function fromObject(object) {
+        if (object instanceof $root.FlexDefinition)
+            return object;
+        var message = new $root.FlexDefinition();
+        if (object.label != null)
+            message.label = String(object.label);
+        switch (object.type) {
+        case "FLEX_VALUE_TYPE_INTEGER":
+        case 0:
+            message.type = 0;
+            break;
+        case "FLEX_VALUE_TYPE_STRING":
+        case 1:
+            message.type = 1;
+            break;
+        }
+        switch (object.unit) {
+        case "UNIT_UNKNOWN":
+        case 0:
+            message.unit = 0;
+            break;
+        case "UNIT_AMPERE":
+        case 1:
+            message.unit = 1;
+            break;
+        case "UNIT_VOLT":
+        case 2:
+            message.unit = 2;
+            break;
+        case "UNIT_WATT":
+        case 3:
+            message.unit = 3;
+            break;
+        case "UNIT_HERTZ":
+        case 4:
+            message.unit = 4;
+            break;
+        case "UNIT_VOLT_AMPERE":
+        case 5:
+            message.unit = 5;
+            break;
+        case "UNIT_VOLT_AMPERE_REACTIVE":
+        case 6:
+            message.unit = 6;
+            break;
+        case "UNIT_WATT_HOUR":
+        case 7:
+            message.unit = 7;
+            break;
+        case "UNIT_KILO_WATT_HOUR":
+        case 8:
+            message.unit = 8;
+            break;
+        case "UNIT_SECOND":
+        case 9:
+            message.unit = 9;
+            break;
+        case "UNIT_MINUTE":
+        case 10:
+            message.unit = 10;
+            break;
+        case "UNIT_HOUR":
+        case 11:
+            message.unit = 11;
+            break;
+        case "UNIT_DAY":
+        case 12:
+            message.unit = 12;
+            break;
+        case "UNIT_WEEK":
+        case 13:
+            message.unit = 13;
+            break;
+        case "UNIT_MONTH":
+        case 14:
+            message.unit = 14;
+            break;
+        case "UNIT_YEAR":
+        case 15:
+            message.unit = 15;
+            break;
+        case "UNIT_DEGREE_CELSIUS":
+        case 16:
+            message.unit = 16;
+            break;
+        case "UNIT_KELVIN":
+        case 17:
+            message.unit = 17;
+            break;
+        case "UNIT_DEGREE_FAHRENHEIT":
+        case 18:
+            message.unit = 18;
+            break;
+        }
+        if (object.decimalpower != null)
+            message.decimalpower = object.decimalpower | 0;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a FlexDefinition message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof FlexDefinition
+     * @static
+     * @param {FlexDefinition} message FlexDefinition
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    FlexDefinition.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        var object = {};
+        if (options.defaults) {
+            object.label = "";
+            object.type = options.enums === String ? "FLEX_VALUE_TYPE_INTEGER" : 0;
+            object.unit = options.enums === String ? "UNIT_UNKNOWN" : 0;
+            object.decimalpower = 0;
+        }
+        if (message.label != null && message.hasOwnProperty("label"))
+            object.label = message.label;
+        if (message.type != null && message.hasOwnProperty("type"))
+            object.type = options.enums === String ? $root.FlexValueType[message.type] : message.type;
+        if (message.unit != null && message.hasOwnProperty("unit"))
+            object.unit = options.enums === String ? $root.Unit[message.unit] : message.unit;
+        if (message.decimalpower != null && message.hasOwnProperty("decimalpower"))
+            object.decimalpower = message.decimalpower;
+        return object;
+    };
+
+    /**
+     * Converts this FlexDefinition to JSON.
+     * @function toJSON
+     * @memberof FlexDefinition
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    FlexDefinition.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    return FlexDefinition;
+})();
+
+/**
+ * Unit enum.
+ * @exports Unit
+ * @enum {string}
+ * @property {number} UNIT_UNKNOWN=0 UNIT_UNKNOWN value
+ * @property {number} UNIT_AMPERE=1 UNIT_AMPERE value
+ * @property {number} UNIT_VOLT=2 UNIT_VOLT value
+ * @property {number} UNIT_WATT=3 UNIT_WATT value
+ * @property {number} UNIT_HERTZ=4 UNIT_HERTZ value
+ * @property {number} UNIT_VOLT_AMPERE=5 UNIT_VOLT_AMPERE value
+ * @property {number} UNIT_VOLT_AMPERE_REACTIVE=6 UNIT_VOLT_AMPERE_REACTIVE value
+ * @property {number} UNIT_WATT_HOUR=7 UNIT_WATT_HOUR value
+ * @property {number} UNIT_KILO_WATT_HOUR=8 UNIT_KILO_WATT_HOUR value
+ * @property {number} UNIT_SECOND=9 UNIT_SECOND value
+ * @property {number} UNIT_MINUTE=10 UNIT_MINUTE value
+ * @property {number} UNIT_HOUR=11 UNIT_HOUR value
+ * @property {number} UNIT_DAY=12 UNIT_DAY value
+ * @property {number} UNIT_WEEK=13 UNIT_WEEK value
+ * @property {number} UNIT_MONTH=14 UNIT_MONTH value
+ * @property {number} UNIT_YEAR=15 UNIT_YEAR value
+ * @property {number} UNIT_DEGREE_CELSIUS=16 UNIT_DEGREE_CELSIUS value
+ * @property {number} UNIT_KELVIN=17 UNIT_KELVIN value
+ * @property {number} UNIT_DEGREE_FAHRENHEIT=18 UNIT_DEGREE_FAHRENHEIT value
+ */
+$root.Unit = (function() {
+    var valuesById = {}, values = Object.create(valuesById);
+    values[valuesById[0] = "UNIT_UNKNOWN"] = 0;
+    values[valuesById[1] = "UNIT_AMPERE"] = 1;
+    values[valuesById[2] = "UNIT_VOLT"] = 2;
+    values[valuesById[3] = "UNIT_WATT"] = 3;
+    values[valuesById[4] = "UNIT_HERTZ"] = 4;
+    values[valuesById[5] = "UNIT_VOLT_AMPERE"] = 5;
+    values[valuesById[6] = "UNIT_VOLT_AMPERE_REACTIVE"] = 6;
+    values[valuesById[7] = "UNIT_WATT_HOUR"] = 7;
+    values[valuesById[8] = "UNIT_KILO_WATT_HOUR"] = 8;
+    values[valuesById[9] = "UNIT_SECOND"] = 9;
+    values[valuesById[10] = "UNIT_MINUTE"] = 10;
+    values[valuesById[11] = "UNIT_HOUR"] = 11;
+    values[valuesById[12] = "UNIT_DAY"] = 12;
+    values[valuesById[13] = "UNIT_WEEK"] = 13;
+    values[valuesById[14] = "UNIT_MONTH"] = 14;
+    values[valuesById[15] = "UNIT_YEAR"] = 15;
+    values[valuesById[16] = "UNIT_DEGREE_CELSIUS"] = 16;
+    values[valuesById[17] = "UNIT_KELVIN"] = 17;
+    values[valuesById[18] = "UNIT_DEGREE_FAHRENHEIT"] = 18;
+    return values;
 })();
 
 /**
