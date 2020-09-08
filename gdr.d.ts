@@ -207,6 +207,9 @@ export interface IGDR {
 
     /** GDR values */
     values?: ({ [k: string]: number }|null);
+
+    /** GDR flexValues */
+    flexValues?: ({ [k: string]: IFlexValue }|null);
 }
 
 /** Represents a GDR. */
@@ -229,6 +232,9 @@ export class GDR implements IGDR {
 
     /** GDR values. */
     public values: { [k: string]: number };
+
+    /** GDR flexValues. */
+    public flexValues: { [k: string]: IFlexValue };
 
     /**
      * Creates a new GDR instance using the specified properties.
@@ -327,6 +333,9 @@ export interface IGCR {
 
     /** GCR timestamp */
     timestamp?: (google.protobuf.ITimestamp|null);
+
+    /** GCR flexDefinitions */
+    flexDefinitions?: ({ [k: string]: IFlexDefinition }|null);
 }
 
 /** Represents a GCR. */
@@ -361,6 +370,9 @@ export class GCR implements IGCR {
 
     /** GCR timestamp. */
     public timestamp?: (google.protobuf.ITimestamp|null);
+
+    /** GCR flexDefinitions. */
+    public flexDefinitions: { [k: string]: IFlexDefinition };
 
     /**
      * Creates a new GCR instance using the specified properties.
@@ -431,6 +443,239 @@ export class GCR implements IGCR {
      * @returns JSON object
      */
     public toJSON(): { [k: string]: any };
+}
+
+/** Properties of a FlexValue. */
+export interface IFlexValue {
+
+    /** FlexValue intValue */
+    intValue?: (number|null);
+
+    /** FlexValue stringValue */
+    stringValue?: (string|null);
+}
+
+/** Represents a FlexValue. */
+export class FlexValue implements IFlexValue {
+
+    /**
+     * Constructs a new FlexValue.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IFlexValue);
+
+    /** FlexValue intValue. */
+    public intValue: number;
+
+    /** FlexValue stringValue. */
+    public stringValue: string;
+
+    /**
+     * Creates a new FlexValue instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns FlexValue instance
+     */
+    public static create(properties?: IFlexValue): FlexValue;
+
+    /**
+     * Encodes the specified FlexValue message. Does not implicitly {@link FlexValue.verify|verify} messages.
+     * @param message FlexValue message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IFlexValue, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified FlexValue message, length delimited. Does not implicitly {@link FlexValue.verify|verify} messages.
+     * @param message FlexValue message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IFlexValue, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a FlexValue message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns FlexValue
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): FlexValue;
+
+    /**
+     * Decodes a FlexValue message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns FlexValue
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): FlexValue;
+
+    /**
+     * Verifies a FlexValue message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a FlexValue message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns FlexValue
+     */
+    public static fromObject(object: { [k: string]: any }): FlexValue;
+
+    /**
+     * Creates a plain object from a FlexValue message. Also converts values to other types if specified.
+     * @param message FlexValue
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: FlexValue, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this FlexValue to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
+/** FlexValueType enum. */
+export enum FlexValueType {
+    FLEX_VALUE_TYPE_INTEGER = 0,
+    FLEX_VALUE_TYPE_STRING = 1
+}
+
+/** Properties of a FlexDefinition. */
+export interface IFlexDefinition {
+
+    /** FlexDefinition label */
+    label?: (string|null);
+
+    /** FlexDefinition type */
+    type?: (FlexValueType|null);
+
+    /** FlexDefinition unit */
+    unit?: (Unit|null);
+
+    /** FlexDefinition decimalpower */
+    decimalpower?: (number|null);
+}
+
+/** Represents a FlexDefinition. */
+export class FlexDefinition implements IFlexDefinition {
+
+    /**
+     * Constructs a new FlexDefinition.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IFlexDefinition);
+
+    /** FlexDefinition label. */
+    public label: string;
+
+    /** FlexDefinition type. */
+    public type: FlexValueType;
+
+    /** FlexDefinition unit. */
+    public unit: Unit;
+
+    /** FlexDefinition decimalpower. */
+    public decimalpower: number;
+
+    /**
+     * Creates a new FlexDefinition instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns FlexDefinition instance
+     */
+    public static create(properties?: IFlexDefinition): FlexDefinition;
+
+    /**
+     * Encodes the specified FlexDefinition message. Does not implicitly {@link FlexDefinition.verify|verify} messages.
+     * @param message FlexDefinition message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IFlexDefinition, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified FlexDefinition message, length delimited. Does not implicitly {@link FlexDefinition.verify|verify} messages.
+     * @param message FlexDefinition message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IFlexDefinition, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a FlexDefinition message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns FlexDefinition
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): FlexDefinition;
+
+    /**
+     * Decodes a FlexDefinition message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns FlexDefinition
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): FlexDefinition;
+
+    /**
+     * Verifies a FlexDefinition message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a FlexDefinition message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns FlexDefinition
+     */
+    public static fromObject(object: { [k: string]: any }): FlexDefinition;
+
+    /**
+     * Creates a plain object from a FlexDefinition message. Also converts values to other types if specified.
+     * @param message FlexDefinition
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: FlexDefinition, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this FlexDefinition to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
+/** Unit enum. */
+export enum Unit {
+    UNIT_UNKNOWN = 0,
+    UNIT_AMPERE = 1,
+    UNIT_VOLT = 2,
+    UNIT_WATT = 3,
+    UNIT_HERTZ = 4,
+    UNIT_VOLT_AMPERE = 5,
+    UNIT_VOLT_AMPERE_REACTIVE = 6,
+    UNIT_WATT_HOUR = 7,
+    UNIT_KILO_WATT_HOUR = 8,
+    UNIT_SECOND = 9,
+    UNIT_MINUTE = 10,
+    UNIT_HOUR = 11,
+    UNIT_DAY = 12,
+    UNIT_WEEK = 13,
+    UNIT_MONTH = 14,
+    UNIT_YEAR = 15,
+    UNIT_DEGREE_CELSIUS = 16,
+    UNIT_KELVIN = 17,
+    UNIT_DEGREE_FAHRENHEIT = 18
 }
 
 /** DeviceType enum. */
