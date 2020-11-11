@@ -1300,6 +1300,7 @@ $root.GCR = (function() {
             case 53:
             case 54:
             case 55:
+            case 56:
                 break;
             }
         if (message.meta != null && message.hasOwnProperty("meta")) {
@@ -1607,6 +1608,10 @@ $root.GCR = (function() {
         case "DEVICE_TYPE_FRIDGE":
         case 55:
             message.devicetype = 55;
+            break;
+        case "DEVICE_TYPE_GRID_CONNECTION_POINT":
+        case 56:
+            message.devicetype = 56;
             break;
         }
         if (object.meta) {
@@ -2424,6 +2429,7 @@ $root.Unit = (function() {
  * @property {number} DEVICE_TYPE_FACILITIES=53 DEVICE_TYPE_FACILITIES value
  * @property {number} DEVICE_TYPE_FREEZER=54 DEVICE_TYPE_FREEZER value
  * @property {number} DEVICE_TYPE_FRIDGE=55 DEVICE_TYPE_FRIDGE value
+ * @property {number} DEVICE_TYPE_GRID_CONNECTION_POINT=56 DEVICE_TYPE_GRID_CONNECTION_POINT value
  */
 $root.DeviceType = (function() {
     var valuesById = {}, values = Object.create(valuesById);
@@ -2483,6 +2489,7 @@ $root.DeviceType = (function() {
     values[valuesById[53] = "DEVICE_TYPE_FACILITIES"] = 53;
     values[valuesById[54] = "DEVICE_TYPE_FREEZER"] = 54;
     values[valuesById[55] = "DEVICE_TYPE_FRIDGE"] = 55;
+    values[valuesById[56] = "DEVICE_TYPE_GRID_CONNECTION_POINT"] = 56;
     return values;
 })();
 
