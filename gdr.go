@@ -7,11 +7,14 @@
 package gdr
 
 import (
+	"crypto/md5"
+	"encoding/json"
 	"fmt"
-	"github.com/gogo/protobuf/types"
 	"regexp"
 	"strconv"
 	"time"
+
+	"github.com/gogo/protobuf/types"
 )
 
 var (
@@ -103,4 +106,15 @@ func TimeToTimestamp(t time.Time) *types.Timestamp {
 		Seconds: t.Unix(),
 		Nanos:   int32(t.Nanosecond()),
 	}
+}
+
+// CalculateGCRHash calculates the MD5 checksum of a GCR
+// in order for the hash to be the same for equivalent GCRs
+// the timestamp should not be included when applying this function
+func CalculateGCRHash(gcr *GCRs) ([16]byte, error) {
+	bytes, err := json.Marshal(gcr)
+	if err != nil {
+		return [16]byte{}, err
+	}
+	return md5.Sum(bytes), nil
 }
