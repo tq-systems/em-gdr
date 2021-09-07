@@ -6,6 +6,9 @@
   "license": "LicenseRef-TQSSLA-1.0.2",
   "main": "./gdr.js",
   "types": "./gdr.d.ts",
+  "scripts": {
+    "generate": "pbjs -t static-module -w commonjs --force-number -o ./gdr.js ./gdr.proto && pbts -o ./gdr.d.ts ./gdr.js"
+  },
   "dependencies": {
     "protobufjs": "^6.11.2"
   }
