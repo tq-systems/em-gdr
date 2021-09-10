@@ -1947,20 +1947,6 @@ $root.FlexValue = (function() {
     return FlexValue;
 })();
 
-/**
- * FlexValueType enum.
- * @exports FlexValueType
- * @enum {string}
- * @property {number} FLEX_VALUE_TYPE_INTEGER=0 FLEX_VALUE_TYPE_INTEGER value
- * @property {number} FLEX_VALUE_TYPE_STRING=1 FLEX_VALUE_TYPE_STRING value
- */
-$root.FlexValueType = (function() {
-    var valuesById = {}, values = Object.create(valuesById);
-    values[valuesById[0] = "FLEX_VALUE_TYPE_INTEGER"] = 0;
-    values[valuesById[1] = "FLEX_VALUE_TYPE_STRING"] = 1;
-    return values;
-})();
-
 $root.FlexDefinition = (function() {
 
     /**
@@ -2327,9 +2313,23 @@ $root.FlexDefinition = (function() {
 })();
 
 /**
+ * FlexValueType enum.
+ * @exports FlexValueType
+ * @enum {number}
+ * @property {number} FLEX_VALUE_TYPE_INTEGER=0 FLEX_VALUE_TYPE_INTEGER value
+ * @property {number} FLEX_VALUE_TYPE_STRING=1 FLEX_VALUE_TYPE_STRING value
+ */
+$root.FlexValueType = (function() {
+    var valuesById = {}, values = Object.create(valuesById);
+    values[valuesById[0] = "FLEX_VALUE_TYPE_INTEGER"] = 0;
+    values[valuesById[1] = "FLEX_VALUE_TYPE_STRING"] = 1;
+    return values;
+})();
+
+/**
  * Unit enum.
  * @exports Unit
- * @enum {string}
+ * @enum {number}
  * @property {number} UNIT_UNKNOWN=0 UNIT_UNKNOWN value
  * @property {number} UNIT_AMPERE=1 UNIT_AMPERE value
  * @property {number} UNIT_VOLT=2 UNIT_VOLT value
@@ -2377,7 +2377,7 @@ $root.Unit = (function() {
 /**
  * DeviceType enum.
  * @exports DeviceType
- * @enum {string}
+ * @enum {number}
  * @property {number} DEVICE_TYPE_UNKNOWN=0 DEVICE_TYPE_UNKNOWN value
  * @property {number} DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM=1 DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM value
  * @property {number} DEVICE_TYPE_ELECTRIC_VEHICLE=2 DEVICE_TYPE_ELECTRIC_VEHICLE value
@@ -2503,7 +2503,7 @@ $root.DeviceType = (function() {
 /**
  * Status enum.
  * @exports Status
- * @enum {string}
+ * @enum {number}
  * @property {number} STATUS_UNKNOWN=0 STATUS_UNKNOWN value
  * @property {number} STATUS_OK=1 STATUS_OK value
  * @property {number} STATUS_WARNING=2 STATUS_WARNING value
@@ -2521,7 +2521,7 @@ $root.Status = (function() {
 /**
  * Class enum.
  * @exports Class
- * @enum {string}
+ * @enum {number}
  * @property {number} CLASS_UNKNOWN=0 CLASS_UNKNOWN value
  * @property {number} CLASS_CONSUMER=1 CLASS_CONSUMER value
  * @property {number} CLASS_PRODUCER=2 CLASS_PRODUCER value

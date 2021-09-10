@@ -65,18 +65,18 @@ message FlexValue {
 	string string_value = 2;
 }
 
-// FlexValueType declares which field should be used parsing the flexvalue
-enum FlexValueType {
-	FLEX_VALUE_TYPE_INTEGER = 0;
-	FLEX_VALUE_TYPE_STRING = 1;
-}
-
 // FlexDefinition describes the content of the flexible values
 message FlexDefinition {
 	string label = 1;
 	FlexValueType type = 2;
 	Unit unit = 3;
 	sint32 decimalpower = 4;
+}
+
+// FlexValueType declares which field should be used parsing the flexvalue
+enum FlexValueType {
+	FLEX_VALUE_TYPE_INTEGER = 0;
+	FLEX_VALUE_TYPE_STRING = 1;
 }
 
 // Unit declares the unit of the flexible value

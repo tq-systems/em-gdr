@@ -7,8 +7,11 @@ Lint:
     - tq-em-linux
 
 Code Generation:
+  before_script:
+    - yarn install
   script:
     - go generate -v ./...
+    - yarn generate
     - git add :/
     - git diff --exit-code HEAD
   tags:

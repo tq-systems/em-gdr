@@ -1,5 +1,3 @@
-import * as Long from "long";
-
 import * as $protobuf from "protobufjs";
 /** Properties of a GDRs. */
 export interface IGDRs {
@@ -541,12 +539,6 @@ export class FlexValue implements IFlexValue {
     public toJSON(): { [k: string]: any };
 }
 
-/** FlexValueType enum. */
-export enum FlexValueType {
-    FLEX_VALUE_TYPE_INTEGER = 0,
-    FLEX_VALUE_TYPE_STRING = 1
-}
-
 /** Properties of a FlexDefinition. */
 export interface IFlexDefinition {
 
@@ -653,6 +645,12 @@ export class FlexDefinition implements IFlexDefinition {
      * @returns JSON object
      */
     public toJSON(): { [k: string]: any };
+}
+
+/** FlexValueType enum. */
+export enum FlexValueType {
+    FLEX_VALUE_TYPE_INTEGER = 0,
+    FLEX_VALUE_TYPE_STRING = 1
 }
 
 /** Unit enum. */
