@@ -1,4 +1,4 @@
-module github.com/tq-systems/em-gdr.git
+module github.com/tq-systems/em-gdr
 
 go 1.13
 
