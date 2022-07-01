@@ -1723,7 +1723,7 @@ func (m *GDRs) Unmarshal(dAtA []byte) error {
 					if err != nil {
 						return err
 					}
-					if skippy < 0 {
+					if (skippy < 0) || (iNdEx+skippy) < 0 {
 						return ErrInvalidLengthGdr
 					}
 					if (iNdEx + skippy) > postIndex {
@@ -1772,10 +1772,7 @@ func (m *GDRs) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if skippy < 0 {
-				return ErrInvalidLengthGdr
-			}
-			if (iNdEx + skippy) < 0 {
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
 				return ErrInvalidLengthGdr
 			}
 			if (iNdEx + skippy) > l {
@@ -1937,7 +1934,7 @@ func (m *GCRs) Unmarshal(dAtA []byte) error {
 					if err != nil {
 						return err
 					}
-					if skippy < 0 {
+					if (skippy < 0) || (iNdEx+skippy) < 0 {
 						return ErrInvalidLengthGdr
 					}
 					if (iNdEx + skippy) > postIndex {
@@ -1986,10 +1983,7 @@ func (m *GCRs) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if skippy < 0 {
-				return ErrInvalidLengthGdr
-			}
-			if (iNdEx + skippy) < 0 {
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
 				return ErrInvalidLengthGdr
 			}
 			if (iNdEx + skippy) > l {
@@ -2208,7 +2202,7 @@ func (m *GDR) Unmarshal(dAtA []byte) error {
 					if err != nil {
 						return err
 					}
-					if skippy < 0 {
+					if (skippy < 0) || (iNdEx+skippy) < 0 {
 						return ErrInvalidLengthGdr
 					}
 					if (iNdEx + skippy) > postIndex {
@@ -2337,7 +2331,7 @@ func (m *GDR) Unmarshal(dAtA []byte) error {
 					if err != nil {
 						return err
 					}
-					if skippy < 0 {
+					if (skippy < 0) || (iNdEx+skippy) < 0 {
 						return ErrInvalidLengthGdr
 					}
 					if (iNdEx + skippy) > postIndex {
@@ -2354,10 +2348,7 @@ func (m *GDR) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if skippy < 0 {
-				return ErrInvalidLengthGdr
-			}
-			if (iNdEx + skippy) < 0 {
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
 				return ErrInvalidLengthGdr
 			}
 			if (iNdEx + skippy) > l {
@@ -2727,7 +2718,7 @@ func (m *GCR) Unmarshal(dAtA []byte) error {
 					if err != nil {
 						return err
 					}
-					if skippy < 0 {
+					if (skippy < 0) || (iNdEx+skippy) < 0 {
 						return ErrInvalidLengthGdr
 					}
 					if (iNdEx + skippy) > postIndex {
@@ -2892,7 +2883,7 @@ func (m *GCR) Unmarshal(dAtA []byte) error {
 					if err != nil {
 						return err
 					}
-					if skippy < 0 {
+					if (skippy < 0) || (iNdEx+skippy) < 0 {
 						return ErrInvalidLengthGdr
 					}
 					if (iNdEx + skippy) > postIndex {
@@ -2909,10 +2900,7 @@ func (m *GCR) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if skippy < 0 {
-				return ErrInvalidLengthGdr
-			}
-			if (iNdEx + skippy) < 0 {
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
 				return ErrInvalidLengthGdr
 			}
 			if (iNdEx + skippy) > l {
@@ -3013,10 +3001,7 @@ func (m *FlexValue) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if skippy < 0 {
-				return ErrInvalidLengthGdr
-			}
-			if (iNdEx + skippy) < 0 {
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
 				return ErrInvalidLengthGdr
 			}
 			if (iNdEx + skippy) > l {
@@ -3157,10 +3142,7 @@ func (m *FlexDefinition) Unmarshal(dAtA []byte) error {
 			if err != nil {
 				return err
 			}
-			if skippy < 0 {
-				return ErrInvalidLengthGdr
-			}
-			if (iNdEx + skippy) < 0 {
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
 				return ErrInvalidLengthGdr
 			}
 			if (iNdEx + skippy) > l {
