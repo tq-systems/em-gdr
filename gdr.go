@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	obisCodeMatch = regexp.MustCompile(`^(?:([0-9]+)-)?(?:([0-9]+):)?([0-9]+)\.([0-9])+(?:\.([0-9]+))?(?:[*&]([0-9]+))?$`)
+	obisCodeMatch = regexp.MustCompile(`^(?:([0-9]+)-)?(?:([0-9]+):)?([0-9]+)\.([0-9]+)(?:\.([0-9]+))?(?:[*&]([0-9]+))?$`)
 )
 
 // String tranforms ObisCode into human-readable string
