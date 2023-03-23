@@ -116,31 +116,33 @@ $root.GDRs = (function() {
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                if (message.GDRs === $util.emptyObject)
-                    message.GDRs = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = null;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = $root.GDR.decode(reader, reader.uint32());
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
+            case 1: {
+                    if (message.GDRs === $util.emptyObject)
+                        message.GDRs = {};
+                    var end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = null;
+                    while (reader.pos < end2) {
+                        var tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = $root.GDR.decode(reader, reader.uint32());
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
                     }
+                    message.GDRs[key] = value;
+                    break;
                 }
-                message.GDRs[key] = value;
-                break;
-            case 2:
-                message.configUuid = reader.string();
-                break;
+            case 2: {
+                    message.configUuid = reader.string();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -258,6 +260,21 @@ $root.GDRs = (function() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
     };
 
+    /**
+     * Gets the default type url for GDRs
+     * @function getTypeUrl
+     * @memberof GDRs
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    GDRs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/GDRs";
+    };
+
     return GDRs;
 })();
 
@@ -368,31 +385,33 @@ $root.GCRs = (function() {
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                if (message.GCRs === $util.emptyObject)
-                    message.GCRs = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = null;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = $root.GCR.decode(reader, reader.uint32());
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
+            case 1: {
+                    if (message.GCRs === $util.emptyObject)
+                        message.GCRs = {};
+                    var end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = null;
+                    while (reader.pos < end2) {
+                        var tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = $root.GCR.decode(reader, reader.uint32());
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
                     }
+                    message.GCRs[key] = value;
+                    break;
                 }
-                message.GCRs[key] = value;
-                break;
-            case 2:
-                message.configUuid = reader.string();
-                break;
+            case 2: {
+                    message.configUuid = reader.string();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -508,6 +527,21 @@ $root.GCRs = (function() {
      */
     GCRs.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for GCRs
+     * @function getTypeUrl
+     * @memberof GCRs
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    GCRs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/GCRs";
     };
 
     return GCRs;
@@ -655,59 +689,64 @@ $root.GDR = (function() {
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.id = reader.string();
-                break;
-            case 2:
-                message.status = reader.int32();
-                break;
-            case 3:
-                message.timestamp = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
-                break;
-            case 4:
-                if (message.values === $util.emptyObject)
-                    message.values = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = 0;
-                value = 0;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.uint64();
-                        break;
-                    case 2:
-                        value = reader.uint64();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
-                    }
+            case 1: {
+                    message.id = reader.string();
+                    break;
                 }
-                message.values[typeof key === "object" ? $util.longToHash(key) : key] = value;
-                break;
-            case 5:
-                if (message.flexValues === $util.emptyObject)
-                    message.flexValues = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = null;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = $root.FlexValue.decode(reader, reader.uint32());
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
-                    }
+            case 2: {
+                    message.status = reader.int32();
+                    break;
                 }
-                message.flexValues[key] = value;
-                break;
+            case 3: {
+                    message.timestamp = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                    break;
+                }
+            case 4: {
+                    if (message.values === $util.emptyObject)
+                        message.values = {};
+                    var end2 = reader.uint32() + reader.pos;
+                    key = 0;
+                    value = 0;
+                    while (reader.pos < end2) {
+                        var tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.uint64();
+                            break;
+                        case 2:
+                            value = reader.uint64();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
+                    }
+                    message.values[typeof key === "object" ? $util.longToHash(key) : key] = value;
+                    break;
+                }
+            case 5: {
+                    if (message.flexValues === $util.emptyObject)
+                        message.flexValues = {};
+                    var end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = null;
+                    while (reader.pos < end2) {
+                        var tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = $root.FlexValue.decode(reader, reader.uint32());
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
+                    }
+                    message.flexValues[key] = value;
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -800,6 +839,12 @@ $root.GDR = (function() {
         if (object.id != null)
             message.id = String(object.id);
         switch (object.status) {
+        default:
+            if (typeof object.status === "number") {
+                message.status = object.status;
+                break;
+            }
+            break;
         case "STATUS_UNKNOWN":
         case 0:
             message.status = 0;
@@ -874,7 +919,7 @@ $root.GDR = (function() {
         if (message.id != null && message.hasOwnProperty("id"))
             object.id = message.id;
         if (message.status != null && message.hasOwnProperty("status"))
-            object.status = options.enums === String ? $root.Status[message.status] : message.status;
+            object.status = options.enums === String ? $root.Status[message.status] === undefined ? message.status : $root.Status[message.status] : message.status;
         if (message.timestamp != null && message.hasOwnProperty("timestamp"))
             object.timestamp = $root.google.protobuf.Timestamp.toObject(message.timestamp, options);
         var keys2;
@@ -903,6 +948,21 @@ $root.GDR = (function() {
      */
     GDR.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for GDR
+     * @function getTypeUrl
+     * @memberof GDR
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    GDR.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/GDR";
     };
 
     return GDR;
@@ -1101,80 +1161,89 @@ $root.GCR = (function() {
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.id = reader.string();
-                break;
-            case 2:
-                message.label = reader.string();
-                break;
-            case 3:
-                message["class"] = reader.int32();
-                break;
-            case 4:
-                if (!(message.sources && message.sources.length))
-                    message.sources = [];
-                message.sources.push(reader.string());
-                break;
-            case 5:
-                if (!(message.codes && message.codes.length))
-                    message.codes = [];
-                if ((tag & 7) === 2) {
-                    var end2 = reader.uint32() + reader.pos;
-                    while (reader.pos < end2)
+            case 1: {
+                    message.id = reader.string();
+                    break;
+                }
+            case 2: {
+                    message.label = reader.string();
+                    break;
+                }
+            case 3: {
+                    message["class"] = reader.int32();
+                    break;
+                }
+            case 4: {
+                    if (!(message.sources && message.sources.length))
+                        message.sources = [];
+                    message.sources.push(reader.string());
+                    break;
+                }
+            case 5: {
+                    if (!(message.codes && message.codes.length))
+                        message.codes = [];
+                    if ((tag & 7) === 2) {
+                        var end2 = reader.uint32() + reader.pos;
+                        while (reader.pos < end2)
+                            message.codes.push(reader.uint64());
+                    } else
                         message.codes.push(reader.uint64());
-                } else
-                    message.codes.push(reader.uint64());
-                break;
-            case 6:
-                message.devicetype = reader.int32();
-                break;
-            case 7:
-                if (message.meta === $util.emptyObject)
-                    message.meta = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = "";
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = reader.string();
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
-                    }
+                    break;
                 }
-                message.meta[key] = value;
-                break;
-            case 8:
-                message.timestamp = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
-                break;
-            case 9:
-                if (message.flexDefinitions === $util.emptyObject)
-                    message.flexDefinitions = {};
-                var end2 = reader.uint32() + reader.pos;
-                key = "";
-                value = null;
-                while (reader.pos < end2) {
-                    var tag2 = reader.uint32();
-                    switch (tag2 >>> 3) {
-                    case 1:
-                        key = reader.string();
-                        break;
-                    case 2:
-                        value = $root.FlexDefinition.decode(reader, reader.uint32());
-                        break;
-                    default:
-                        reader.skipType(tag2 & 7);
-                        break;
-                    }
+            case 6: {
+                    message.devicetype = reader.int32();
+                    break;
                 }
-                message.flexDefinitions[key] = value;
-                break;
+            case 7: {
+                    if (message.meta === $util.emptyObject)
+                        message.meta = {};
+                    var end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = "";
+                    while (reader.pos < end2) {
+                        var tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
+                    }
+                    message.meta[key] = value;
+                    break;
+                }
+            case 8: {
+                    message.timestamp = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                    break;
+                }
+            case 9: {
+                    if (message.flexDefinitions === $util.emptyObject)
+                        message.flexDefinitions = {};
+                    var end2 = reader.uint32() + reader.pos;
+                    key = "";
+                    value = null;
+                    while (reader.pos < end2) {
+                        var tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
+                        case 1:
+                            key = reader.string();
+                            break;
+                        case 2:
+                            value = $root.FlexDefinition.decode(reader, reader.uint32());
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7);
+                            break;
+                        }
+                    }
+                    message.flexDefinitions[key] = value;
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -1347,6 +1416,12 @@ $root.GCR = (function() {
         if (object.label != null)
             message.label = String(object.label);
         switch (object["class"]) {
+        default:
+            if (typeof object["class"] === "number") {
+                message["class"] = object["class"];
+                break;
+            }
+            break;
         case "CLASS_UNKNOWN":
         case 0:
             message["class"] = 0;
@@ -1386,6 +1461,12 @@ $root.GCR = (function() {
                     message.codes[i] = new $util.LongBits(object.codes[i].low >>> 0, object.codes[i].high >>> 0).toNumber(true);
         }
         switch (object.devicetype) {
+        default:
+            if (typeof object.devicetype === "number") {
+                message.devicetype = object.devicetype;
+                break;
+            }
+            break;
         case "DEVICE_TYPE_UNKNOWN":
         case 0:
             message.devicetype = 0;
@@ -1677,7 +1758,7 @@ $root.GCR = (function() {
         if (message.label != null && message.hasOwnProperty("label"))
             object.label = message.label;
         if (message["class"] != null && message.hasOwnProperty("class"))
-            object["class"] = options.enums === String ? $root.Class[message["class"]] : message["class"];
+            object["class"] = options.enums === String ? $root.Class[message["class"]] === undefined ? message["class"] : $root.Class[message["class"]] : message["class"];
         if (message.sources && message.sources.length) {
             object.sources = [];
             for (var j = 0; j < message.sources.length; ++j)
@@ -1692,7 +1773,7 @@ $root.GCR = (function() {
                     object.codes[j] = options.longs === String ? $util.Long.prototype.toString.call(message.codes[j]) : options.longs === Number ? new $util.LongBits(message.codes[j].low >>> 0, message.codes[j].high >>> 0).toNumber(true) : message.codes[j];
         }
         if (message.devicetype != null && message.hasOwnProperty("devicetype"))
-            object.devicetype = options.enums === String ? $root.DeviceType[message.devicetype] : message.devicetype;
+            object.devicetype = options.enums === String ? $root.DeviceType[message.devicetype] === undefined ? message.devicetype : $root.DeviceType[message.devicetype] : message.devicetype;
         var keys2;
         if (message.meta && (keys2 = Object.keys(message.meta)).length) {
             object.meta = {};
@@ -1718,6 +1799,21 @@ $root.GCR = (function() {
      */
     GCR.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for GCR
+     * @function getTypeUrl
+     * @memberof GCR
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    GCR.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/GCR";
     };
 
     return GCR;
@@ -1826,12 +1922,14 @@ $root.FlexValue = (function() {
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.intValue = reader.int64();
-                break;
-            case 2:
-                message.stringValue = reader.string();
-                break;
+            case 1: {
+                    message.intValue = reader.int64();
+                    break;
+                }
+            case 2: {
+                    message.stringValue = reader.string();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -1942,6 +2040,21 @@ $root.FlexValue = (function() {
      */
     FlexValue.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for FlexValue
+     * @function getTypeUrl
+     * @memberof FlexValue
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    FlexValue.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/FlexValue";
     };
 
     return FlexValue;
@@ -2072,18 +2185,22 @@ $root.FlexDefinition = (function() {
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.label = reader.string();
-                break;
-            case 2:
-                message.type = reader.int32();
-                break;
-            case 3:
-                message.unit = reader.int32();
-                break;
-            case 4:
-                message.decimalpower = reader.sint32();
-                break;
+            case 1: {
+                    message.label = reader.string();
+                    break;
+                }
+            case 2: {
+                    message.type = reader.int32();
+                    break;
+                }
+            case 3: {
+                    message.unit = reader.int32();
+                    break;
+                }
+            case 4: {
+                    message.decimalpower = reader.sint32();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -2176,6 +2293,12 @@ $root.FlexDefinition = (function() {
         if (object.label != null)
             message.label = String(object.label);
         switch (object.type) {
+        default:
+            if (typeof object.type === "number") {
+                message.type = object.type;
+                break;
+            }
+            break;
         case "FLEX_VALUE_TYPE_INTEGER":
         case 0:
             message.type = 0;
@@ -2186,6 +2309,12 @@ $root.FlexDefinition = (function() {
             break;
         }
         switch (object.unit) {
+        default:
+            if (typeof object.unit === "number") {
+                message.unit = object.unit;
+                break;
+            }
+            break;
         case "UNIT_UNKNOWN":
         case 0:
             message.unit = 0;
@@ -2290,9 +2419,9 @@ $root.FlexDefinition = (function() {
         if (message.label != null && message.hasOwnProperty("label"))
             object.label = message.label;
         if (message.type != null && message.hasOwnProperty("type"))
-            object.type = options.enums === String ? $root.FlexValueType[message.type] : message.type;
+            object.type = options.enums === String ? $root.FlexValueType[message.type] === undefined ? message.type : $root.FlexValueType[message.type] : message.type;
         if (message.unit != null && message.hasOwnProperty("unit"))
-            object.unit = options.enums === String ? $root.Unit[message.unit] : message.unit;
+            object.unit = options.enums === String ? $root.Unit[message.unit] === undefined ? message.unit : $root.Unit[message.unit] : message.unit;
         if (message.decimalpower != null && message.hasOwnProperty("decimalpower"))
             object.decimalpower = message.decimalpower;
         return object;
@@ -2307,6 +2436,21 @@ $root.FlexDefinition = (function() {
      */
     FlexDefinition.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for FlexDefinition
+     * @function getTypeUrl
+     * @memberof FlexDefinition
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    FlexDefinition.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/FlexDefinition";
     };
 
     return FlexDefinition;
@@ -2657,12 +2801,14 @@ $root.google = (function() {
                 while (reader.pos < end) {
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
-                    case 1:
-                        message.seconds = reader.int64();
-                        break;
-                    case 2:
-                        message.nanos = reader.int32();
-                        break;
+                    case 1: {
+                            message.seconds = reader.int64();
+                            break;
+                        }
+                    case 2: {
+                            message.nanos = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -2773,6 +2919,21 @@ $root.google = (function() {
              */
             Timestamp.prototype.toJSON = function toJSON() {
                 return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the default type url for Timestamp
+             * @function getTypeUrl
+             * @memberof google.protobuf.Timestamp
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            Timestamp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/google.protobuf.Timestamp";
             };
 
             return Timestamp;

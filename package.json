@@ -10,6 +10,7 @@
     "generate": "pbjs -t static-module -w commonjs --force-number -o ./gdr.js ./gdr.proto && pbts -o ./gdr.d.ts ./gdr.js"
   },
   "dependencies": {
-    "protobufjs": "^6.11.2"
+    "protobufjs": "^7.2.2",
+    "protobufjs-cli": "1.1.1"
   }
 }
