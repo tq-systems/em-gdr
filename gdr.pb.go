@@ -130,7 +130,7 @@ func (Unit) EnumDescriptor() ([]byte, []int) {
 }
 
 // Devicetype - declares which Type of Device the Data Source is
-//            - necessary for Sankey-Diagram
+//   - necessary for Sankey-Diagram
 type DeviceType int32
 
 const (
@@ -392,7 +392,7 @@ func (Class) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_f88fa3b9b3f72b96, []int{4}
 }
 
-//GDRs is the message type wich is published to the mqtt Handler for GDR
+// GDRs is the message type wich is published to the mqtt Handler for GDR
 // config_uuid - unique identification of config at time of measurement (same as associated GCR)
 type GDRs struct {
 	GDRs       map[string]*GDR `protobuf:"bytes,1,rep,name=GDRs,proto3" json:"GDRs" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
@@ -446,7 +446,7 @@ func (m *GDRs) GetConfigUuid() string {
 	return ""
 }
 
-//GCRs is the message type wich is published to the mqtt Handler for GCR
+// GCRs is the message type wich is published to the mqtt Handler for GCR
 // config_uuid - unique identification of config in time (i.e. changes on config change)
 type GCRs struct {
 	GCRs       map[string]*GCR `protobuf:"bytes,1,rep,name=GCRs,proto3" json:"GCRs" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
@@ -500,15 +500,17 @@ func (m *GCRs) GetConfigUuid() string {
 	return ""
 }
 
-//GDR = Generic Data Record
+// GDR = Generic Data Record
 // id - unique identification (Same to associated GCR)
 // status - see Status declaration
 // timestamp - last time Data was updated
 // values - Key = Binary ObisCode, Value = Value of ObisCode
-//        - based on ObisCode the basic Data information
-//        - in groups here is the comparison of the childs data information
+//   - based on ObisCode the basic Data information
+//   - in groups here is the comparison of the childs data information
+//
 // flexValues - Key = string
-//              Value = FlexValue
+//
+//	Value = FlexValue
 type GDR struct {
 	Id         string                `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 	Status     Status                `protobuf:"varint,2,opt,name=status,proto3,enum=Status" json:"status"`
@@ -585,15 +587,17 @@ func (m *GDR) GetFlexValues() map[string]*FlexValue {
 	return nil
 }
 
-//GCR = Generic Config Record
+// GCR = Generic Config Record
 // id - unique identification (Same to associated GDR)
 // label - describes the Datasource
 // class - see Class declaration
 // sources - points to the childs of the measuring point
-//           - references on the GDR ids
-//         - structure of groupings
+//   - references on the GDR ids
+//   - structure of groupings
+//
 // codes  - based on Binary ObisCodes
-//        - declares which ObisCodes the associated GDR has
+//   - declares which ObisCodes the associated GDR has
+//
 // devicetype - see DeviceType declaration
 // meta - may include app-dependent meta information
 // timestamp - last time the config was updated

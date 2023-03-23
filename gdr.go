@@ -4,7 +4,9 @@
 package gdr
 
 import (
+	"bytes"
 	"crypto/md5"
+	"encoding/gob"
 	"encoding/json"
 	"fmt"
 	"regexp"
@@ -107,11 +109,27 @@ func TimeToTimestamp(t time.Time) *types.Timestamp {
 
 // CalculateGCRHash calculates the MD5 checksum of a GCR
 // in order for the hash to be the same for equivalent GCRs
-// the timestamp should not be included when applying this function
 func CalculateGCRHash(gcr *GCRs) ([16]byte, error) {
-	bytes, err := json.Marshal(gcr)
+
+	/* make copy to prevent changes in real gcr struct */
+	tmpMap := make(map[string]*GCR)
+	copyMap(gcr.GCRs, &tmpMap)
+
+	// ignore Timestamp
+	for key := range tmpMap {
+		tmpMap[key].Timestamp = nil
+	}
+
+	bytes, err := json.Marshal(tmpMap)
 	if err != nil {
 		return [16]byte{}, err
 	}
 	return md5.Sum(bytes), nil
+}
+
+// using encoder and decoder to avoid problems with references in underlying structures
+func copyMap(in, out interface{}) {
+	buf := new(bytes.Buffer)
+	gob.NewEncoder(buf).Encode(in)
+	gob.NewDecoder(buf).Decode(out)
 }
