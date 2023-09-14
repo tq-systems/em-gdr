@@ -1,18 +1,13 @@
-image: ${CI_REGISTRY}/tq-em/build/toolchain/amd64:latest
+include:
+- project: tq-em/common/ci
+  file: template-ci.yml
+  ref: v4.1.4_tc3.8.0
 
 Lint:
-  script:
-    - golint -set_exit_status $(go list ./...)
-  tags:
-    - tq-em-linux
+  extends: .go-lint
 
 Code Generation:
-  before_script:
-    - yarn install
-  script:
-    - go generate -v ./...
-    - yarn generate
-    - git add :/
-    - git diff --exit-code HEAD
-  tags:
-    - tq-em-linux
+  extends: .go-generate-code
+
+Unit tests:
+  extends: .go-unit-tests
