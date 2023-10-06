@@ -16,9 +16,7 @@ import (
 	"github.com/gogo/protobuf/types"
 )
 
-var (
-	obisCodeMatch = regexp.MustCompile(`^(?:([0-9]+)-)?(?:([0-9]+):)?([0-9]+)\.([0-9]+)(?:\.([0-9]+))?(?:[*&]([0-9]+))?$`)
-)
+var obisCodeMatch = regexp.MustCompile(`^(?:([0-9]+)-)?(?:([0-9]+):)?([0-9]+)\.([0-9]+)(?:\.([0-9]+))?(?:[*&]([0-9]+))?$`)
 
 // String tranforms ObisCode into human-readable string
 func (obisCode OBISCode) String() string {
@@ -32,10 +30,10 @@ func DecodeOBISCodeToString(value uint64) string {
 
 // Encode encodes an OBIS code as a 64bit integer
 func (obisCode OBISCode) Encode() uint64 {
-	//uint64 = 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-	//All ObisCodes max 8 Bits
-	//Shift First ObisCode Value 5 Bytes
-	//Shift Second ObisCode Value 4 Bytes
+	// uint64 = 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+	// All ObisCodes max 8 Bits
+	// Shift First ObisCode Value 5 Bytes
+	// Shift Second ObisCode Value 4 Bytes
 	// ...
 	return shift(obisCode.Media, 5) |
 		shift(obisCode.Channel, 4) |
@@ -90,12 +88,12 @@ func ParseOBISCode(code string) *OBISCode {
 }
 
 func shift(value uint8, shift uint) uint64 {
-	//Shift Value n Bytes
+	// Shift Value n Bytes
 	return uint64(value) << (8 * shift)
 }
 
 func unshift(value uint64, shift uint) uint8 {
-	//Unshift Value n Bytes
+	// Unshift Value n Bytes
 	return uint8(value >> (8 * shift))
 }
 
@@ -110,10 +108,11 @@ func TimeToTimestamp(t time.Time) *types.Timestamp {
 // CalculateGCRHash calculates the MD5 checksum of a GCR
 // in order for the hash to be the same for equivalent GCRs
 func CalculateGCRHash(gcr *GCRs) ([16]byte, error) {
-
 	/* make copy to prevent changes in real gcr struct */
 	tmpMap := make(map[string]*GCR)
-	copyMap(gcr.GCRs, &tmpMap)
+	if err := copyMap(gcr.GCRs, &tmpMap); err != nil {
+		return [16]byte{}, fmt.Errorf("couldn't copy gcr map: %v", err)
+	}
 
 	// ignore Timestamp
 	for key := range tmpMap {
@@ -122,14 +121,19 @@ func CalculateGCRHash(gcr *GCRs) ([16]byte, error) {
 
 	bytes, err := json.Marshal(tmpMap)
 	if err != nil {
-		return [16]byte{}, err
+		return [16]byte{}, fmt.Errorf("couldn't marshal gcr map: %v", err)
 	}
 	return md5.Sum(bytes), nil
 }
 
 // using encoder and decoder to avoid problems with references in underlying structures
-func copyMap(in, out interface{}) {
+func copyMap(in, out interface{}) error {
 	buf := new(bytes.Buffer)
-	gob.NewEncoder(buf).Encode(in)
-	gob.NewDecoder(buf).Decode(out)
+	if err := gob.NewEncoder(buf).Encode(in); err != nil {
+		return fmt.Errorf("cannot encode input: %v", err)
+	}
+	if err := gob.NewDecoder(buf).Decode(out); err != nil {
+		return fmt.Errorf("cannot decode output: %v", err)
+	}
+	return nil
 }
