@@ -1,3 +1,7 @@
+## [1.0.4] - 2023-11-24
+### Changed
+- Updated python gdr protobuf definition
+
 ## [1.0.3] - 2023-10-09
 ### Changed
 - improve error handling
