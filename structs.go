@@ -33,8 +33,12 @@ const (
 	// to the indicators specified above
 	ObisIndicatorPhaseModulo = 20
 
-	// ObisModeMean is the mode used for power
+	// ObisModeMean is the mode used to describe the mean value
 	ObisModeMean = 4
-	// ObisModeIntegral is the mode used for energy
+	// ObisModeMaximum is the mode used to describe the maximum value
+	ObisModeMaximum = 6
+	// ObisModeInstantaneous is the mode used to describe the instantaneous value
+	ObisModeInstantaneous = 7
+	// ObisModeIntegral is the mode used to describe the integral value
 	ObisModeIntegral = 8
 )
