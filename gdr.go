@@ -16,7 +16,7 @@ package gdr
 
 import (
 	"bytes"
-	"crypto/md5"
+	"crypto/md5" // #nosec G501 -- Not used in a security context, but to detect changes of a GCR
 	"encoding/gob"
 	"encoding/json"
 	"fmt"
@@ -134,7 +134,7 @@ func CalculateGCRHash(gcr *GCRs) ([16]byte, error) {
 	if err != nil {
 		return [16]byte{}, fmt.Errorf("couldn't marshal gcr map: %v", err)
 	}
-	return md5.Sum(bytes), nil
+	return md5.Sum(bytes), nil // #nosec G401 -- Not used in a security context, but to detect changes of a GCR
 }
 
 // using encoder and decoder to avoid problems with references in underlying structures
