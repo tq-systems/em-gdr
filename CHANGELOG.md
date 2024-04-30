@@ -1,3 +1,7 @@
+## [1.0.5] - 2024-04-30
+### Added
+- Additional OBIS modes
+
 ## [1.0.4] - 2023-11-24
 ### Changed
 - Updated python gdr protobuf definition
