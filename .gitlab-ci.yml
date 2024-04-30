@@ -1,7 +1,7 @@
 include:
 - project: tq-em/common/ci
-  file: template-ci.yml
-  ref: v4.1.4_tc3.8.0
+  file: apps.yml
+  ref: v4.2.0_tc3.16.1
 
 Lint:
   extends: .go-lint
@@ -11,3 +11,9 @@ Code Generation:
 
 Unit tests:
   extends: .go-unit-tests
+
+Go Sec Linter:
+  extends: .go-sec
+
+Gitleaks:
+  extends: .gitleaks

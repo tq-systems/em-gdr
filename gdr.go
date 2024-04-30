@@ -1,3 +1,14 @@
+/*
+ * Generic Data Record - gdr.go
+ * Copyright (c) 2018 - 2024 TQ-Systems GmbH <license@tq-group.com>, D-82229 Seefeld, Germany. All rights reserved.
+ * Author: Alexander Pögelt and the Energy Manager development team
+ *
+ * This software code contained herein is licensed under the terms and conditions of
+ * the TQ-Systems Product Software License Agreement Version 1.0.1 or any later version.
+ * You will find the corresponding license text in the LICENSE file.
+ * In case of any license issues please contact license@tq-group.com.
+ */
+
 //go:generate protoc --gogofaster_out=Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types:. gdr.proto
 //go:generate omitemptyremover
 
@@ -5,7 +16,7 @@ package gdr
 
 import (
 	"bytes"
-	"crypto/md5"
+	"crypto/md5" // #nosec G501 -- Not used in a security context, but to detect changes of a GCR
 	"encoding/gob"
 	"encoding/json"
 	"fmt"
@@ -123,7 +134,7 @@ func CalculateGCRHash(gcr *GCRs) ([16]byte, error) {
 	if err != nil {
 		return [16]byte{}, fmt.Errorf("couldn't marshal gcr map: %v", err)
 	}
-	return md5.Sum(bytes), nil
+	return md5.Sum(bytes), nil // #nosec G401 -- Not used in a security context, but to detect changes of a GCR
 }
 
 // using encoder and decoder to avoid problems with references in underlying structures
