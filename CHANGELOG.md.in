@@ -1,1 +1,3 @@
 ## [{{ version }}]
+### Added
+- Device types CIRCUIT_PROTECTION and DATA_TRANSCEIVER

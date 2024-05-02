@@ -1371,6 +1371,8 @@ $root.GCR = (function() {
             case 55:
             case 56:
             case 57:
+            case 58:
+            case 59:
                 break;
             }
         if (message.meta != null && message.hasOwnProperty("meta")) {
@@ -1698,6 +1700,14 @@ $root.GCR = (function() {
         case "DEVICE_TYPE_INVERTER_HYBRID":
         case 57:
             message.devicetype = 57;
+            break;
+        case "DEVICE_TYPE_CIRCUIT_PROTECTION":
+        case 58:
+            message.devicetype = 58;
+            break;
+        case "DEVICE_TYPE_DATA_TRANSCEIVER":
+        case 59:
+            message.devicetype = 59;
             break;
         }
         if (object.meta) {
@@ -2580,6 +2590,8 @@ $root.Unit = (function() {
  * @property {number} DEVICE_TYPE_FRIDGE=55 DEVICE_TYPE_FRIDGE value
  * @property {number} DEVICE_TYPE_GRID_CONNECTION_POINT=56 DEVICE_TYPE_GRID_CONNECTION_POINT value
  * @property {number} DEVICE_TYPE_INVERTER_HYBRID=57 DEVICE_TYPE_INVERTER_HYBRID value
+ * @property {number} DEVICE_TYPE_CIRCUIT_PROTECTION=58 DEVICE_TYPE_CIRCUIT_PROTECTION value
+ * @property {number} DEVICE_TYPE_DATA_TRANSCEIVER=59 DEVICE_TYPE_DATA_TRANSCEIVER value
  */
 $root.DeviceType = (function() {
     var valuesById = {}, values = Object.create(valuesById);
@@ -2641,6 +2653,8 @@ $root.DeviceType = (function() {
     values[valuesById[55] = "DEVICE_TYPE_FRIDGE"] = 55;
     values[valuesById[56] = "DEVICE_TYPE_GRID_CONNECTION_POINT"] = 56;
     values[valuesById[57] = "DEVICE_TYPE_INVERTER_HYBRID"] = 57;
+    values[valuesById[58] = "DEVICE_TYPE_CIRCUIT_PROTECTION"] = 58;
+    values[valuesById[59] = "DEVICE_TYPE_DATA_TRANSCEIVER"] = 59;
     return values;
 })();
 
