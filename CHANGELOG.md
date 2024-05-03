@@ -1,3 +1,7 @@
+## [1.0.6] - 2024-05-03
+### Added
+- Device types CIRCUIT_PROTECTION and DATA_TRANSCEIVER
+
 ## [1.0.5] - 2024-04-30
 ### Added
 - Additional OBIS modes
