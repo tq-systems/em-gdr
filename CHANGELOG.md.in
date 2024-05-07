@@ -1,1 +1,6 @@
 ## [{{ version }}]
+### Added
+- OBIS indicator for negative power factor
+
+### Changed
+- Updated python gdr protobuf definition
