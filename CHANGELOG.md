@@ -1,3 +1,10 @@
+## [1.1.0] - 2024-05-13
+### Added
+- OBIS indicator for negative power factor
+
+### Changed
+- Updated python gdr protobuf definition
+
 ## [1.0.6] - 2024-05-03
 ### Added
 - Device types CIRCUIT_PROTECTION and DATA_TRANSCEIVER
