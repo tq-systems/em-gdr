@@ -116,7 +116,7 @@ func TimeToTimestamp(t time.Time) *types.Timestamp {
 	}
 }
 
-// CalculateGCRHash calculates the MD5 checksum of a GCR
+// CalculateGCRHash calculates the MD5 checksum of GCRs
 // in order for the hash to be the same for equivalent GCRs
 func CalculateGCRHash(gcrs *GCRs) ([16]byte, error) {
 	// make copy to prevent changes in real GCRs struct
@@ -125,14 +125,14 @@ func CalculateGCRHash(gcrs *GCRs) ([16]byte, error) {
 		return [16]byte{}, fmt.Errorf("couldn't copy GCRs map: %v", err)
 	}
 
-	// ignore Timestamp
+	// ignore timestamp
 	for key := range tmpMap {
 		tmpMap[key].Timestamp = nil
 	}
 
 	bytes, err := json.Marshal(tmpMap)
 	if err != nil {
-		return [16]byte{}, fmt.Errorf("couldn't marshal gcr map: %v", err)
+		return [16]byte{}, fmt.Errorf("couldn't marshal GCRs map: %v", err)
 	}
 	return md5.Sum(bytes), nil // #nosec G401 -- Not used in a security context, but to detect changes of GCRs
 }
