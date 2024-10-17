@@ -73,7 +73,7 @@ func parseByte(store *uint8, num string) bool {
 	}
 
 	v, err := strconv.ParseUint(num, 10, 8)
-	*store = uint8(v)
+	*store = uint8(v) // #nosec G115 - max value of store is 255
 	return err == nil
 }
 
@@ -105,14 +105,14 @@ func shift(value uint8, shift uint) uint64 {
 
 func unshift(value uint64, shift uint) uint8 {
 	// Unshift Value n Bytes
-	return uint8(value >> (8 * shift))
+	return uint8(value >> (8 * shift)) // #nosec G115 - max value is 255
 }
 
 // TimeToTimestamp converts a golang time to a protobuf timestamp
 func TimeToTimestamp(t time.Time) *types.Timestamp {
 	return &types.Timestamp{
 		Seconds: t.Unix(),
-		Nanos:   int32(t.Nanosecond()),
+		Nanos:   int32(t.Nanosecond()), // #nosec G115 - safe conversion
 	}
 }
 
