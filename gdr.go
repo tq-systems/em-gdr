@@ -118,11 +118,11 @@ func TimeToTimestamp(t time.Time) *types.Timestamp {
 
 // CalculateGCRHash calculates the MD5 checksum of a GCR
 // in order for the hash to be the same for equivalent GCRs
-func CalculateGCRHash(gcr *GCRs) ([16]byte, error) {
-	/* make copy to prevent changes in real gcr struct */
+func CalculateGCRHash(gcrs *GCRs) ([16]byte, error) {
+	// make copy to prevent changes in real GCRs struct
 	tmpMap := make(map[string]*GCR)
-	if err := copyMap(gcr.GCRs, &tmpMap); err != nil {
-		return [16]byte{}, fmt.Errorf("couldn't copy gcr map: %v", err)
+	if err := deepCopy(gcrs.GCRs, &tmpMap); err != nil {
+		return [16]byte{}, fmt.Errorf("couldn't copy GCRs map: %v", err)
 	}
 
 	// ignore Timestamp
@@ -134,11 +134,29 @@ func CalculateGCRHash(gcr *GCRs) ([16]byte, error) {
 	if err != nil {
 		return [16]byte{}, fmt.Errorf("couldn't marshal gcr map: %v", err)
 	}
+	return md5.Sum(bytes), nil // #nosec G401 -- Not used in a security context, but to detect changes of GCRs
+}
+
+// CalculateSingleGCRHash calculates the MD5 checksum of a GCR
+func CalculateSingleGCRHash(gcr *GCR) ([16]byte, error) {
+	// copy to prevent changes in actual GCR
+	var tmpGCR *GCR
+	if err := deepCopy(gcr, &tmpGCR); err != nil {
+		return [16]byte{}, fmt.Errorf("couldn't create deep copy of GCR: %v", err)
+	}
+
+	tmpGCR.Timestamp = nil // ignore timestamp to prevent calculating different hashes on the same configuration
+
+	bytes, err := json.Marshal(tmpGCR)
+	if err != nil {
+		return [16]byte{}, fmt.Errorf("couldn't marshal GCR: %v", err)
+	}
+
 	return md5.Sum(bytes), nil // #nosec G401 -- Not used in a security context, but to detect changes of a GCR
 }
 
 // using encoder and decoder to avoid problems with references in underlying structures
-func copyMap(in, out interface{}) error {
+func deepCopy(in, out interface{}) error {
 	buf := new(bytes.Buffer)
 	if err := gob.NewEncoder(buf).Encode(in); err != nil {
 		return fmt.Errorf("cannot encode input: %v", err)
