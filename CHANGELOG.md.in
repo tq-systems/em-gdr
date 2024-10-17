@@ -1,2 +1,3 @@
 ## [{{ version }}]
-
+### Added
+- function to calculate hash for single GCR
