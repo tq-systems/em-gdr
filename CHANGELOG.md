@@ -1,3 +1,7 @@
+## [1.2.0] - 2024-10-18
+### Added
+- function to calculate hash for single GCR
+
 ## [1.1.0] - 2024-05-13
 ### Added
 - OBIS indicator for negative power factor
