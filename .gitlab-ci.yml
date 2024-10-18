@@ -1,7 +1,7 @@
 include:
-- project: tq-em/common/ci
-  file: apps.yml
-  ref: v4.2.0_tc3.16.1
+  - project: tq-em/common/ci
+    file: apps.yml
+    ref: v5.1.2_tc5.0.6
 
 Lint:
   extends: .go-lint
