@@ -1,3 +1,5 @@
+## [1.2.1] - 2024-12-19
+
 ## [1.2.0] - 2024-10-18
 ### Added
 - function to calculate hash for single GCR
