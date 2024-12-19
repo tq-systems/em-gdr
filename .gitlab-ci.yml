@@ -1,5 +1,5 @@
 include:
-  - project: tq-em/common/ci
+  - project: tq-em/build/docker/toolchain-ci
     file: apps.yml
     ref: v5.1.2_tc5.0.6
 
