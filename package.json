@@ -1,6 +1,6 @@
 {
   "name": "gdr",
-  "version": "0.0.0",
+  "version": "2.2.0",
   "private": true,
   "copyright": "TQ-Systems GmbH 2023",
   "license": "LicenseRef-TQSPSLA-1.0.1",
@@ -10,8 +10,10 @@
     "generate": "pbjs -t static-module -w commonjs --force-number -o ./gdr.js ./gdr.proto && pbts -o ./gdr.d.ts ./gdr.js"
   },
   "dependencies": {
-    "protobufjs": "^7.2.2",
-    "protobufjs-cli": "1.1.1"
+    "protobufjs": "^7.4.0"
+  },
+  "devDependencies": {
+    "protobufjs-cli": "^1.1.1"
   },
   "packageManager": "yarn@4.6.0"
 }
