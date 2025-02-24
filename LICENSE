@@ -1,34 +1,37 @@
-TQ-Systems Product Software License Agreement Version 1.0.1
+TQ-Systems Product Software License Agreement Version 1.0.2
 
-Copyright 2020-2022 TQ-Systems GmbH (TQ), D-82229 Seefeld, Germany.
+Copyright (c) 2020-2024 TQ-Systems GmbH <license@tq-group.com>, D-82229 Seefeld, Germany.
 All rights reserved.
 
 It is permitted to copy and distribute this document true to word.
-The software is classified as product-specific software and bound to
-the use with the product.
-The software is provided in machine-readable form (binary or object code)
-and source code form.
+
+The software is classified as product-specific software and bound
+to the use with the TQ-Systems GmbH product.
+
+The software is, at licensor's full discretion, provided in machine-readable
+form (binary or object code) and/or source code form.
 
 §1 Scope of Use and Usage Period
-  1. The rights to the TQ software - in particular the copyright and
-     additional industrial property rights - shall remain exclusively
-     with TQ even if the software has been modified by you or your company.
+  1. The rights to the TQ-Systems GmbH (TQ) software - in particular the
+     copyright and additional industrial property rights - shall remain
+     exclusively with TQ even if the software has been modified by you or your
+     company.
      You are prohibited from using this Software in any way other than
      as described in the following provisions of this Agreement.
   2. The ordinary, non-exclusive right to use the Software shall only apply in
-     direct connection with the Product. Product means that parts of the
-     software has been developed by TQ or a company affiliated with TQ.
+     direct connection with the product.
+     Product means that parts of the software has been developed by TQ or a
+     company affiliated with TQ.
      You are prohibited from using the software developed by us on any other
      product (e.g. from third parties).
-     Any transfer to third parties is bound by the provisions of this
-     Agreement.
+     Any transfer to third parties is bound by the provisions of this Agreement.
   3. You may not distribute the software or a modified version of the software
      to third parties in source code format.
   4. Any use of the software that goes beyond the scope of the previous
      provisions requires our written consent.
   5. We reserve the right to assert claims for damages.
   6. You are only entitled to sub-license the software in connection with
-     the product.
+     the TQ product.
   7. In the event of sub-licensing, you must also ensure that no
      additional rights to the Software are granted to sublicensees other
      than those granted to you under these License Terms.
@@ -63,12 +66,12 @@ and source code form.
      place - at the latest two (2) weeks after delivery or actual transfer.
   5. We do not warrant or assume any liability beyond the scope of use
      described in paragraph 1 with respect to the proper selection,
-     application and use of the Software. This applies in particular to
-     improper use, in particular the use of incompatible hardware or
-     software, modifications or extensions to the software made
-     independently by or at your instigation, the culpable omission of
-     regular data backup and other cases of incorrect or negligent
-     handling by you.
+     application and use of the Software.
+     This applies in particular to improper use, in particular the use of
+     incompatible hardware or software, modifications or extensions to
+     the software made independently by or at your instigation, the
+     culpable omission of a regular data backup and other cases of
+     incorrect or negligent handling by you.
   6. If you use the software outside these license terms, all warranty
      and liability claims are void. The aforementioned warranty or
      liability limitations shall not apply in cases of injury to life,
@@ -78,9 +81,14 @@ and source code form.
      of intent or gross negligence.
 
 §3. Additional conditions
-  1. Copies of the software must contain a literal copy of this document.
-  2. TQ-Systems may revise this License from time to time.
+  1. A written notice (printed or digitally) has to be provided with the
+     product which contains either a literal copy of this document or an
+     Uniform Resource Locator (URL) to a literal copy of this document or
+     a written EULA approved by TQ.
+  2. TQ may revise this License from time to time.
      Each Revision is identified by a Version number.
      You may either use this Software within the scope of this version
-     or the license or under the conditions of a later Revision of the
+     of the license or under the conditions of a later version of the
      license.
+     If the Software does not specify a version number of this license,
+     you may choose any version of this license ever published by TQ.

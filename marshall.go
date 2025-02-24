@@ -1,10 +1,10 @@
 /*
  * Generic Data Record - marshall.go
- * Copyright (c) 2019 - 2024 TQ-Systems GmbH <license@tq-group.com>, D-82229 Seefeld, Germany. All rights reserved.
- * Author: Alexander Poegelt and the Energy Manager development team
+ * Copyright (c) 2019 - 2025 TQ-Systems GmbH <license@tq-group.com>, D-82229 Seefeld, Germany. All rights reserved.
+ * Author: The Energy Manager development team
  *
  * This software code contained herein is licensed under the terms and conditions of
- * the TQ-Systems Product Software License Agreement Version 1.0.1 or any later version.
+ * the TQ-Systems Product Software License Agreement Version 1.0.2 or any later version.
  * You will find the corresponding license text in the LICENSE file.
  * In case of any license issues please contact license@tq-group.com.
  */
