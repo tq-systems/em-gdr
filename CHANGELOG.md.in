@@ -1,3 +1,2 @@
 ## [{{ version }}]
-### Added
-- test: benchmark for un-/marshalling protobuf messages
+

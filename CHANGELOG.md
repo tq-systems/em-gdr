@@ -1,3 +1,7 @@
+## [1.2.2] - 2025-02-24
+### Added
+- test: benchmark for un-/marshalling protobuf messages
+
 ## [1.2.1] - 2024-12-19
 
 ## [1.2.0] - 2024-10-18
