@@ -1,2 +1,3 @@
 ## [{{ version }}]
-
+### Changed
+- switch protobuf library to google.golang.org/protobuf and use vtproto plugin
