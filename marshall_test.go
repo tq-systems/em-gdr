@@ -13,8 +13,8 @@ package gdr
 import (
 	"testing"
 
-	"github.com/gogo/protobuf/proto"
-	"github.com/gogo/protobuf/types"
+	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 var testGDR = GDRs{
@@ -22,7 +22,7 @@ var testGDR = GDRs{
 		"gdr1": {
 			Id:        "smart-meter",
 			Status:    Status_STATUS_OK,
-			Timestamp: types.TimestampNow(),
+			Timestamp: timestamppb.Now(),
 			Values: map[uint64]uint64{
 				1099528667391: 64400,
 				1099528929535: 40400,
@@ -100,7 +100,7 @@ func BenchmarkProtoUnmarshal(b *testing.B) {
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		if err := proto.Unmarshal(data, &unmarshalledGDR); err != nil {
+		if err := unmarshalledGDR.UnmarshalVT(data); err != nil {
 			b.Fatalf("error unmarshalling data: %v", err)
 		}
 	}
@@ -108,7 +108,7 @@ func BenchmarkProtoUnmarshal(b *testing.B) {
 
 func BenchmarkProtoMarshal(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		if _, err := proto.Marshal(&testGDR); err != nil {
+		if _, err := testGDR.MarshalVT(); err != nil {
 			b.Fatalf("error marshalling data: %v", err)
 		}
 	}
