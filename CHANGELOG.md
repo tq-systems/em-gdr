@@ -1,3 +1,7 @@
+## [2.0.0] - 2025-03-03
+### Changed
+- switch protobuf library to google.golang.org/protobuf and use vtproto plugin
+
 ## [1.2.2] - 2025-02-24
 ### Added
 - test: benchmark for un-/marshalling protobuf messages
