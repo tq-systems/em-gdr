@@ -9,7 +9,7 @@
  * In case of any license issues please contact license@tq-group.com.
  */
 
-//go:generate protoc --gogofaster_out=Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types:. gdr.proto
+//go:generate protoc --go_out=. --go_opt=paths=source_relative --go-vtproto_out=. --go-vtproto_opt=features=unmarshal+marshal+size gdr.proto
 //go:generate omitemptyremover
 
 package gdr
@@ -24,7 +24,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/gogo/protobuf/types"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 var obisCodeMatch = regexp.MustCompile(`^(?:([0-9]+)-)?(?:([0-9]+):)?([0-9]+)\.([0-9]+)(?:\.([0-9]+))?(?:[*&]([0-9]+))?$`)
@@ -109,8 +109,8 @@ func unshift(value uint64, shift uint) uint8 {
 }
 
 // TimeToTimestamp converts a golang time to a protobuf timestamp
-func TimeToTimestamp(t time.Time) *types.Timestamp {
-	return &types.Timestamp{
+func TimeToTimestamp(t time.Time) *timestamppb.Timestamp {
+	return &timestamppb.Timestamp{
 		Seconds: t.Unix(),
 		Nanos:   int32(t.Nanosecond()), // #nosec G115 - safe conversion
 	}
