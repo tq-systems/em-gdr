@@ -1,3 +1,7 @@
+## [2.1.0] - 2025-03-14
+### Added
+- activated clone feature of vtproto plugin, yields CloneVT methods
+
 ## [2.0.0] - 2025-03-03
 ### Changed
 - switch protobuf library to google.golang.org/protobuf and use vtproto plugin
