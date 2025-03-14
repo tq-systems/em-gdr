@@ -1,2 +1,4 @@
 ## [{{ version }}]
+### Added
+- activated clone feature of vtproto plugin, yields CloneVT methods
 

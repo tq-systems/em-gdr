@@ -9,7 +9,7 @@
  * In case of any license issues please contact license@tq-group.com.
  */
 
-//go:generate protoc --go_out=. --go_opt=paths=source_relative --go-vtproto_out=. --go-vtproto_opt=features=unmarshal+marshal+size gdr.proto
+//go:generate protoc --go_out=. --go_opt=paths=source_relative --go-vtproto_out=. --go-vtproto_opt=features=unmarshal+marshal+size+clone gdr.proto
 //go:generate omitemptyremover
 
 package gdr

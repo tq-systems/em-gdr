@@ -7,9 +7,10 @@ package gdr
 import (
 	fmt "fmt"
 	protohelpers "github.com/planetscale/vtprotobuf/protohelpers"
-	timestamppb "github.com/planetscale/vtprotobuf/types/known/timestamppb"
+	timestamppb1 "github.com/planetscale/vtprotobuf/types/known/timestamppb"
+	proto "google.golang.org/protobuf/proto"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	timestamppb1 "google.golang.org/protobuf/types/known/timestamppb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	io "io"
 )
 
@@ -19,6 +20,170 @@ const (
 	// Verify that runtime/protoimpl is sufficiently up-to-date.
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
+
+func (m *GDRs) CloneVT() *GDRs {
+	if m == nil {
+		return (*GDRs)(nil)
+	}
+	r := new(GDRs)
+	r.ConfigUuid = m.ConfigUuid
+	if rhs := m.GDRs; rhs != nil {
+		tmpContainer := make(map[string]*GDR, len(rhs))
+		for k, v := range rhs {
+			tmpContainer[k] = v.CloneVT()
+		}
+		r.GDRs = tmpContainer
+	}
+	if len(m.unknownFields) > 0 {
+		r.unknownFields = make([]byte, len(m.unknownFields))
+		copy(r.unknownFields, m.unknownFields)
+	}
+	return r
+}
+
+func (m *GDRs) CloneMessageVT() proto.Message {
+	return m.CloneVT()
+}
+
+func (m *GCRs) CloneVT() *GCRs {
+	if m == nil {
+		return (*GCRs)(nil)
+	}
+	r := new(GCRs)
+	r.ConfigUuid = m.ConfigUuid
+	if rhs := m.GCRs; rhs != nil {
+		tmpContainer := make(map[string]*GCR, len(rhs))
+		for k, v := range rhs {
+			tmpContainer[k] = v.CloneVT()
+		}
+		r.GCRs = tmpContainer
+	}
+	if len(m.unknownFields) > 0 {
+		r.unknownFields = make([]byte, len(m.unknownFields))
+		copy(r.unknownFields, m.unknownFields)
+	}
+	return r
+}
+
+func (m *GCRs) CloneMessageVT() proto.Message {
+	return m.CloneVT()
+}
+
+func (m *GDR) CloneVT() *GDR {
+	if m == nil {
+		return (*GDR)(nil)
+	}
+	r := new(GDR)
+	r.Id = m.Id
+	r.Status = m.Status
+	r.Timestamp = (*timestamppb.Timestamp)((*timestamppb1.Timestamp)(m.Timestamp).CloneVT())
+	if rhs := m.Values; rhs != nil {
+		tmpContainer := make(map[uint64]uint64, len(rhs))
+		for k, v := range rhs {
+			tmpContainer[k] = v
+		}
+		r.Values = tmpContainer
+	}
+	if rhs := m.FlexValues; rhs != nil {
+		tmpContainer := make(map[string]*FlexValue, len(rhs))
+		for k, v := range rhs {
+			tmpContainer[k] = v.CloneVT()
+		}
+		r.FlexValues = tmpContainer
+	}
+	if len(m.unknownFields) > 0 {
+		r.unknownFields = make([]byte, len(m.unknownFields))
+		copy(r.unknownFields, m.unknownFields)
+	}
+	return r
+}
+
+func (m *GDR) CloneMessageVT() proto.Message {
+	return m.CloneVT()
+}
+
+func (m *GCR) CloneVT() *GCR {
+	if m == nil {
+		return (*GCR)(nil)
+	}
+	r := new(GCR)
+	r.Id = m.Id
+	r.Label = m.Label
+	r.Class = m.Class
+	r.Devicetype = m.Devicetype
+	r.Timestamp = (*timestamppb.Timestamp)((*timestamppb1.Timestamp)(m.Timestamp).CloneVT())
+	if rhs := m.Sources; rhs != nil {
+		tmpContainer := make([]string, len(rhs))
+		copy(tmpContainer, rhs)
+		r.Sources = tmpContainer
+	}
+	if rhs := m.Codes; rhs != nil {
+		tmpContainer := make([]uint64, len(rhs))
+		copy(tmpContainer, rhs)
+		r.Codes = tmpContainer
+	}
+	if rhs := m.Meta; rhs != nil {
+		tmpContainer := make(map[string]string, len(rhs))
+		for k, v := range rhs {
+			tmpContainer[k] = v
+		}
+		r.Meta = tmpContainer
+	}
+	if rhs := m.FlexDefinitions; rhs != nil {
+		tmpContainer := make(map[string]*FlexDefinition, len(rhs))
+		for k, v := range rhs {
+			tmpContainer[k] = v.CloneVT()
+		}
+		r.FlexDefinitions = tmpContainer
+	}
+	if len(m.unknownFields) > 0 {
+		r.unknownFields = make([]byte, len(m.unknownFields))
+		copy(r.unknownFields, m.unknownFields)
+	}
+	return r
+}
+
+func (m *GCR) CloneMessageVT() proto.Message {
+	return m.CloneVT()
+}
+
+func (m *FlexValue) CloneVT() *FlexValue {
+	if m == nil {
+		return (*FlexValue)(nil)
+	}
+	r := new(FlexValue)
+	r.IntValue = m.IntValue
+	r.StringValue = m.StringValue
+	if len(m.unknownFields) > 0 {
+		r.unknownFields = make([]byte, len(m.unknownFields))
+		copy(r.unknownFields, m.unknownFields)
+	}
+	return r
+}
+
+func (m *FlexValue) CloneMessageVT() proto.Message {
+	return m.CloneVT()
+}
+
+func (m *FlexDefinition) CloneVT() *FlexDefinition {
+	if m == nil {
+		return (*FlexDefinition)(nil)
+	}
+	r := new(FlexDefinition)
+	r.Label = m.Label
+	r.Type = m.Type
+	r.Unit = m.Unit
+	r.Decimalpower = m.Decimalpower
+	if len(m.unknownFields) > 0 {
+		r.unknownFields = make([]byte, len(m.unknownFields))
+		copy(r.unknownFields, m.unknownFields)
+	}
+	return r
+}
+
+func (m *FlexDefinition) CloneMessageVT() proto.Message {
+	return m.CloneVT()
+}
 
 func (m *GDRs) MarshalVT() (dAtA []byte, err error) {
 	if m == nil {
@@ -212,7 +377,7 @@ func (m *GDR) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		}
 	}
 	if m.Timestamp != nil {
-		size, err := (*timestamppb.Timestamp)(m.Timestamp).MarshalToSizedBufferVT(dAtA[:i])
+		size, err := (*timestamppb1.Timestamp)(m.Timestamp).MarshalToSizedBufferVT(dAtA[:i])
 		if err != nil {
 			return 0, err
 		}
@@ -289,7 +454,7 @@ func (m *GCR) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		}
 	}
 	if m.Timestamp != nil {
-		size, err := (*timestamppb.Timestamp)(m.Timestamp).MarshalToSizedBufferVT(dAtA[:i])
+		size, err := (*timestamppb1.Timestamp)(m.Timestamp).MarshalToSizedBufferVT(dAtA[:i])
 		if err != nil {
 			return 0, err
 		}
@@ -541,7 +706,7 @@ func (m *GDR) SizeVT() (n int) {
 		n += 1 + protohelpers.SizeOfVarint(uint64(m.Status))
 	}
 	if m.Timestamp != nil {
-		l = (*timestamppb.Timestamp)(m.Timestamp).SizeVT()
+		l = (*timestamppb1.Timestamp)(m.Timestamp).SizeVT()
 		n += 1 + l + protohelpers.SizeOfVarint(uint64(l))
 	}
 	if len(m.Values) > 0 {
@@ -611,7 +776,7 @@ func (m *GCR) SizeVT() (n int) {
 		}
 	}
 	if m.Timestamp != nil {
-		l = (*timestamppb.Timestamp)(m.Timestamp).SizeVT()
+		l = (*timestamppb1.Timestamp)(m.Timestamp).SizeVT()
 		n += 1 + l + protohelpers.SizeOfVarint(uint64(l))
 	}
 	if len(m.FlexDefinitions) > 0 {
@@ -1205,9 +1370,9 @@ func (m *GDR) UnmarshalVT(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if m.Timestamp == nil {
-				m.Timestamp = &timestamppb1.Timestamp{}
+				m.Timestamp = &timestamppb.Timestamp{}
 			}
-			if err := (*timestamppb.Timestamp)(m.Timestamp).UnmarshalVT(dAtA[iNdEx:postIndex]); err != nil {
+			if err := (*timestamppb1.Timestamp)(m.Timestamp).UnmarshalVT(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1857,9 +2022,9 @@ func (m *GCR) UnmarshalVT(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if m.Timestamp == nil {
-				m.Timestamp = &timestamppb1.Timestamp{}
+				m.Timestamp = &timestamppb.Timestamp{}
 			}
-			if err := (*timestamppb.Timestamp)(m.Timestamp).UnmarshalVT(dAtA[iNdEx:postIndex]); err != nil {
+			if err := (*timestamppb1.Timestamp)(m.Timestamp).UnmarshalVT(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
