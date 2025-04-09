@@ -1,2 +1,3 @@
 ## [{{ version }}]
-
+### Changed
+- build with node 22 and yarn 4.6.0
