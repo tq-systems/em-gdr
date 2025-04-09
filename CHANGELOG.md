@@ -1,3 +1,7 @@
+## [2.2.0] - 2025-04-09
+### Changed
+- build with node 22 and yarn 4.6.0
+
 ## [2.1.0] - 2025-03-14
 ### Added
 - activated clone feature of vtproto plugin, yields CloneVT methods
