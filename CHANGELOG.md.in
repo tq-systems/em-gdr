@@ -1,1 +1,3 @@
 ## [{{ version }}]
+### Added
+- new types for "battery" and "PV" inverters (to support all types differentiated by EEBus specification)
