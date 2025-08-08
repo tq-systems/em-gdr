@@ -1,3 +1,7 @@
+## [2.3.0] - 2025-08-08
+### Added
+- new types for "battery" and "PV" inverters (to support all types differentiated by EEBus specification)
+
 ## [2.2.0] - 2025-04-09
 ### Changed
 - build with node 22 and yarn 4.6.0
