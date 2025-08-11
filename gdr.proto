@@ -111,9 +111,9 @@ enum Unit {
 //            - necessary for Sankey-Diagram 
 enum DeviceType {
 	DEVICE_TYPE_UNKNOWN = 0;
-	DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM = 1;
+	DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM = 1; // Use this type for PV inverter
 	DEVICE_TYPE_ELECTRIC_VEHICLE = 2;
-	DEVICE_TYPE_BATTERY = 3;
+	DEVICE_TYPE_BATTERY = 3; // Use this type for battery inverter
 	DEVICE_TYPE_OVEN = 4;
 	DEVICE_TYPE_FLOW_HEATER = 5;
 	DEVICE_TYPE_BOILER = 6;

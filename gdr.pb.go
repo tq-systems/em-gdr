@@ -176,9 +176,9 @@ type DeviceType int32
 
 const (
 	DeviceType_DEVICE_TYPE_UNKNOWN               DeviceType = 0
-	DeviceType_DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM   DeviceType = 1
+	DeviceType_DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM   DeviceType = 1 // Use this type for PV inverter
 	DeviceType_DEVICE_TYPE_ELECTRIC_VEHICLE      DeviceType = 2
-	DeviceType_DEVICE_TYPE_BATTERY               DeviceType = 3
+	DeviceType_DEVICE_TYPE_BATTERY               DeviceType = 3 // Use this type for battery inverter
 	DeviceType_DEVICE_TYPE_OVEN                  DeviceType = 4
 	DeviceType_DEVICE_TYPE_FLOW_HEATER           DeviceType = 5
 	DeviceType_DEVICE_TYPE_BOILER                DeviceType = 6
