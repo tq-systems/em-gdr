@@ -1373,6 +1373,7 @@ $root.GCR = (function() {
             case 57:
             case 58:
             case 59:
+            case 60:
                 break;
             }
         if (message.meta != null && message.hasOwnProperty("meta")) {
@@ -1709,6 +1710,10 @@ $root.GCR = (function() {
         case 59:
             message.devicetype = 59;
             break;
+        case "DEVICE_TYPE_DEVICE_SELF":
+        case 60:
+            message.devicetype = 60;
+            break;
         }
         if (object.meta) {
             if (typeof object.meta !== "object")
@@ -1860,7 +1865,7 @@ $root.FlexValue = (function() {
      * @memberof FlexValue
      * @instance
      */
-    FlexValue.prototype.intValue = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    FlexValue.prototype.intValue = 0;
 
     /**
      * FlexValue stringValue.
@@ -2024,11 +2029,7 @@ $root.FlexValue = (function() {
             options = {};
         var object = {};
         if (options.defaults) {
-            if ($util.Long) {
-                var long = new $util.Long(0, 0, false);
-                object.intValue = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-            } else
-                object.intValue = options.longs === String ? "0" : 0;
+            object.intValue = 0;
             object.stringValue = "";
         }
         if (message.intValue != null && message.hasOwnProperty("intValue"))
@@ -2592,6 +2593,7 @@ $root.Unit = (function() {
  * @property {number} DEVICE_TYPE_INVERTER_HYBRID=57 DEVICE_TYPE_INVERTER_HYBRID value
  * @property {number} DEVICE_TYPE_CIRCUIT_PROTECTION=58 DEVICE_TYPE_CIRCUIT_PROTECTION value
  * @property {number} DEVICE_TYPE_DATA_TRANSCEIVER=59 DEVICE_TYPE_DATA_TRANSCEIVER value
+ * @property {number} DEVICE_TYPE_DEVICE_SELF=60 DEVICE_TYPE_DEVICE_SELF value
  */
 $root.DeviceType = (function() {
     var valuesById = {}, values = Object.create(valuesById);
@@ -2655,6 +2657,7 @@ $root.DeviceType = (function() {
     values[valuesById[57] = "DEVICE_TYPE_INVERTER_HYBRID"] = 57;
     values[valuesById[58] = "DEVICE_TYPE_CIRCUIT_PROTECTION"] = 58;
     values[valuesById[59] = "DEVICE_TYPE_DATA_TRANSCEIVER"] = 59;
+    values[valuesById[60] = "DEVICE_TYPE_DEVICE_SELF"] = 60;
     return values;
 })();
 
@@ -2743,7 +2746,7 @@ $root.google = (function() {
              * @memberof google.protobuf.Timestamp
              * @instance
              */
-            Timestamp.prototype.seconds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+            Timestamp.prototype.seconds = 0;
 
             /**
              * Timestamp nanos.
@@ -2907,11 +2910,7 @@ $root.google = (function() {
                     options = {};
                 var object = {};
                 if (options.defaults) {
-                    if ($util.Long) {
-                        var long = new $util.Long(0, 0, false);
-                        object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                    } else
-                        object.seconds = options.longs === String ? "0" : 0;
+                    object.seconds = 0;
                     object.nanos = 0;
                 }
                 if (message.seconds != null && message.hasOwnProperty("seconds"))

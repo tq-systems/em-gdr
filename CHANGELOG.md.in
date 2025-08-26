@@ -1,5 +1,6 @@
 ## [{{ version }}]
 ### Added
 - notes for using device types
+- new type for "device self"
 ### Removed
 - new types for "battery" and "PV" inverters
