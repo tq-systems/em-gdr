@@ -1,3 +1,14 @@
+## [2.5.0] - 2025-08-27
+### Added
+- new type for "device self"
+
+## [2.4.0] - 2025-08-12
+### Added
+- notes for using device types
+
+## Removed
+- reverted addition of new types for "battery" and "PV" inverters
+
 ## [2.3.0] - 2025-08-08
 ### Added
 - new types for "battery" and "PV" inverters (to support all types differentiated by EEBus specification)
