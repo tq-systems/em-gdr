@@ -1,3 +1,6 @@
 ## [{{ version }}]
 - LICENSE: update to TQSPSLA-1.0.3 and reference in README.md
 - updated toolchain tag
+
+### Added
+- "device self" to typescript types
