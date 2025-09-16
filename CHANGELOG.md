@@ -1,3 +1,11 @@
+## [2.5.1] - 2025-09-16
+### Added
+- "device self" to typescript types
+
+### Changed
+- LICENSE: update to TQSPSLA-1.0.3 and reference in README.md
+- updated toolchain tag
+
 ## [2.5.0] - 2025-08-27
 ### Added
 - new type for "device self"
