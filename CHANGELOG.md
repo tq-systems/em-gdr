@@ -1,3 +1,7 @@
+## [2.6.0] - 2026-01-28
+### Added
+- A constant for the OBIS-Mode "minimum" has been added.
+
 ## [2.5.1] - 2025-09-16
 ### Added
 - "device self" to typescript types
