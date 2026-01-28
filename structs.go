@@ -45,6 +45,8 @@ const (
 	// to the indicators specified above
 	ObisIndicatorPhaseModulo = 20
 
+	// ObisModeMinimum is the mode used to describe the minimum value
+	ObisModeMinimum = 3
 	// ObisModeMean is the mode used to describe the mean value
 	ObisModeMean = 4
 	// ObisModeMaximum is the mode used to describe the maximum value
