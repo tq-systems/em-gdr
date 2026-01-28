@@ -1,1 +1,3 @@
 ## [{{ version }}]
+### Added
+- A constant for the OBIS-Mode "minimum" has been added.
