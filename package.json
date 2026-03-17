@@ -1,9 +1,9 @@
 {
   "name": "gdr",
-  "version": "2.5.1",
+  "version": "2.6.1",
   "private": true,
-  "copyright": "TQ-Systems GmbH 2023",
-  "license": "LicenseRef-TQSPSLA-1.0.1",
+  "copyright": "TQ-Systems GmbH 2023-2026",
+  "license": "LicenseRef-TQSPSLA-1.0.3",
   "main": "./gdr.js",
   "types": "./gdr.d.ts",
   "scripts": {
