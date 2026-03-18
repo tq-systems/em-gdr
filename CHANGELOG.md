@@ -1,3 +1,7 @@
+## [2.7.0] - 2026-03-18
+### Added
+- new device type "DEVICE_TYPE_GRID_CONNECTION_POINT_HUB"
+
 ## [2.6.0] - 2026-01-28
 ### Added
 - A constant for the OBIS-Mode "minimum" has been added.
