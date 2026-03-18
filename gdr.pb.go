@@ -175,67 +175,68 @@ func (Unit) EnumDescriptor() ([]byte, []int) {
 type DeviceType int32
 
 const (
-	DeviceType_DEVICE_TYPE_UNKNOWN               DeviceType = 0
-	DeviceType_DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM   DeviceType = 1 // Use this type for PV inverter
-	DeviceType_DEVICE_TYPE_ELECTRIC_VEHICLE      DeviceType = 2
-	DeviceType_DEVICE_TYPE_BATTERY               DeviceType = 3 // Use this type for battery inverter
-	DeviceType_DEVICE_TYPE_OVEN                  DeviceType = 4
-	DeviceType_DEVICE_TYPE_FLOW_HEATER           DeviceType = 5
-	DeviceType_DEVICE_TYPE_BOILER                DeviceType = 6
-	DeviceType_DEVICE_TYPE_IMMERSION_HEATER      DeviceType = 7
-	DeviceType_DEVICE_TYPE_STOVE                 DeviceType = 8
-	DeviceType_DEVICE_TYPE_COOLER                DeviceType = 9
-	DeviceType_DEVICE_TYPE_VENTILATION           DeviceType = 10
-	DeviceType_DEVICE_TYPE_DISHWASHER            DeviceType = 11
-	DeviceType_DEVICE_TYPE_DRYER                 DeviceType = 12
-	DeviceType_DEVICE_TYPE_HEAT_PUMP             DeviceType = 13
-	DeviceType_DEVICE_TYPE_WASHING_MACHINE       DeviceType = 14
-	DeviceType_DEVICE_TYPE_INVERTER_ONEPHASE     DeviceType = 15
-	DeviceType_DEVICE_TYPE_INVERTER_THREEPHASE   DeviceType = 16
-	DeviceType_DEVICE_TYPE_CHP                   DeviceType = 17 // Combined heat and power
-	DeviceType_DEVICE_TYPE_BUILDING_OFFICE       DeviceType = 18
-	DeviceType_DEVICE_TYPE_BUILDING_COMMERCIAL   DeviceType = 19
-	DeviceType_DEVICE_TYPE_BUILDING_FACTORY      DeviceType = 20
-	DeviceType_DEVICE_TYPE_BUILDING_SINGLE_HOME  DeviceType = 21
-	DeviceType_DEVICE_TYPE_BUILDING_HOTEL        DeviceType = 22
-	DeviceType_DEVICE_TYPE_BUILDING_APARTMENTS   DeviceType = 23
-	DeviceType_DEVICE_TYPE_BUILDING_PARKING      DeviceType = 24
-	DeviceType_DEVICE_TYPE_BUILDING_RESIDENTIAL  DeviceType = 25
-	DeviceType_DEVICE_TYPE_ROOM_BATH             DeviceType = 26
-	DeviceType_DEVICE_TYPE_ROOM_GARAGE           DeviceType = 27
-	DeviceType_DEVICE_TYPE_ROOM_BASEMENT         DeviceType = 28
-	DeviceType_DEVICE_TYPE_ROOM_CHILD            DeviceType = 29
-	DeviceType_DEVICE_TYPE_ROOM_KITCHEN          DeviceType = 30
-	DeviceType_DEVICE_TYPE_ROOM_SAUNA            DeviceType = 31
-	DeviceType_DEVICE_TYPE_ROOM_BED              DeviceType = 32
-	DeviceType_DEVICE_TYPE_ROOM_LIVING           DeviceType = 33
-	DeviceType_DEVICE_TYPE_ROOM_GENERIC          DeviceType = 34
-	DeviceType_DEVICE_TYPE_CONTROLLABLE_LOAD     DeviceType = 35
-	DeviceType_DEVICE_TYPE_LIGHTING              DeviceType = 36
-	DeviceType_DEVICE_TYPE_OFFICES               DeviceType = 37
-	DeviceType_DEVICE_TYPE_DOMESTIC_APPLIANCES   DeviceType = 38
-	DeviceType_DEVICE_TYPE_HEATER_OF_HEAT_PUMP   DeviceType = 39
-	DeviceType_DEVICE_TYPE_INDUSTRIAL_ENGINE     DeviceType = 40
-	DeviceType_DEVICE_TYPE_AIR_CONDITIONING      DeviceType = 41
-	DeviceType_DEVICE_TYPE_COMPRESSOR            DeviceType = 42
-	DeviceType_DEVICE_TYPE_PC_DATA_CENTER        DeviceType = 43
-	DeviceType_DEVICE_TYPE_FUSES_THREE           DeviceType = 44
-	DeviceType_DEVICE_TYPE_FUSES_SIX             DeviceType = 45
-	DeviceType_DEVICE_TYPE_FUSES_NINE            DeviceType = 46
-	DeviceType_DEVICE_TYPE_FUSES_TWELVE          DeviceType = 47
-	DeviceType_DEVICE_TYPE_COMPACTOR             DeviceType = 48
-	DeviceType_DEVICE_TYPE_WHITE_GOODS           DeviceType = 49
-	DeviceType_DEVICE_TYPE_COLD_STORAGE_ROOM     DeviceType = 50
-	DeviceType_DEVICE_TYPE_GARDEN_SHED           DeviceType = 51
-	DeviceType_DEVICE_TYPE_COOLING_COMBINATION   DeviceType = 52
-	DeviceType_DEVICE_TYPE_FACILITIES            DeviceType = 53
-	DeviceType_DEVICE_TYPE_FREEZER               DeviceType = 54
-	DeviceType_DEVICE_TYPE_FRIDGE                DeviceType = 55
-	DeviceType_DEVICE_TYPE_GRID_CONNECTION_POINT DeviceType = 56
-	DeviceType_DEVICE_TYPE_INVERTER_HYBRID       DeviceType = 57
-	DeviceType_DEVICE_TYPE_CIRCUIT_PROTECTION    DeviceType = 58
-	DeviceType_DEVICE_TYPE_DATA_TRANSCEIVER      DeviceType = 59
-	DeviceType_DEVICE_TYPE_DEVICE_SELF           DeviceType = 60 //To be continued
+	DeviceType_DEVICE_TYPE_UNKNOWN                   DeviceType = 0
+	DeviceType_DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM       DeviceType = 1 // Use this type for PV inverter
+	DeviceType_DEVICE_TYPE_ELECTRIC_VEHICLE          DeviceType = 2
+	DeviceType_DEVICE_TYPE_BATTERY                   DeviceType = 3 // Use this type for battery inverter
+	DeviceType_DEVICE_TYPE_OVEN                      DeviceType = 4
+	DeviceType_DEVICE_TYPE_FLOW_HEATER               DeviceType = 5
+	DeviceType_DEVICE_TYPE_BOILER                    DeviceType = 6
+	DeviceType_DEVICE_TYPE_IMMERSION_HEATER          DeviceType = 7
+	DeviceType_DEVICE_TYPE_STOVE                     DeviceType = 8
+	DeviceType_DEVICE_TYPE_COOLER                    DeviceType = 9
+	DeviceType_DEVICE_TYPE_VENTILATION               DeviceType = 10
+	DeviceType_DEVICE_TYPE_DISHWASHER                DeviceType = 11
+	DeviceType_DEVICE_TYPE_DRYER                     DeviceType = 12
+	DeviceType_DEVICE_TYPE_HEAT_PUMP                 DeviceType = 13
+	DeviceType_DEVICE_TYPE_WASHING_MACHINE           DeviceType = 14
+	DeviceType_DEVICE_TYPE_INVERTER_ONEPHASE         DeviceType = 15
+	DeviceType_DEVICE_TYPE_INVERTER_THREEPHASE       DeviceType = 16
+	DeviceType_DEVICE_TYPE_CHP                       DeviceType = 17 // Combined heat and power
+	DeviceType_DEVICE_TYPE_BUILDING_OFFICE           DeviceType = 18
+	DeviceType_DEVICE_TYPE_BUILDING_COMMERCIAL       DeviceType = 19
+	DeviceType_DEVICE_TYPE_BUILDING_FACTORY          DeviceType = 20
+	DeviceType_DEVICE_TYPE_BUILDING_SINGLE_HOME      DeviceType = 21
+	DeviceType_DEVICE_TYPE_BUILDING_HOTEL            DeviceType = 22
+	DeviceType_DEVICE_TYPE_BUILDING_APARTMENTS       DeviceType = 23
+	DeviceType_DEVICE_TYPE_BUILDING_PARKING          DeviceType = 24
+	DeviceType_DEVICE_TYPE_BUILDING_RESIDENTIAL      DeviceType = 25
+	DeviceType_DEVICE_TYPE_ROOM_BATH                 DeviceType = 26
+	DeviceType_DEVICE_TYPE_ROOM_GARAGE               DeviceType = 27
+	DeviceType_DEVICE_TYPE_ROOM_BASEMENT             DeviceType = 28
+	DeviceType_DEVICE_TYPE_ROOM_CHILD                DeviceType = 29
+	DeviceType_DEVICE_TYPE_ROOM_KITCHEN              DeviceType = 30
+	DeviceType_DEVICE_TYPE_ROOM_SAUNA                DeviceType = 31
+	DeviceType_DEVICE_TYPE_ROOM_BED                  DeviceType = 32
+	DeviceType_DEVICE_TYPE_ROOM_LIVING               DeviceType = 33
+	DeviceType_DEVICE_TYPE_ROOM_GENERIC              DeviceType = 34
+	DeviceType_DEVICE_TYPE_CONTROLLABLE_LOAD         DeviceType = 35
+	DeviceType_DEVICE_TYPE_LIGHTING                  DeviceType = 36
+	DeviceType_DEVICE_TYPE_OFFICES                   DeviceType = 37
+	DeviceType_DEVICE_TYPE_DOMESTIC_APPLIANCES       DeviceType = 38
+	DeviceType_DEVICE_TYPE_HEATER_OF_HEAT_PUMP       DeviceType = 39
+	DeviceType_DEVICE_TYPE_INDUSTRIAL_ENGINE         DeviceType = 40
+	DeviceType_DEVICE_TYPE_AIR_CONDITIONING          DeviceType = 41
+	DeviceType_DEVICE_TYPE_COMPRESSOR                DeviceType = 42
+	DeviceType_DEVICE_TYPE_PC_DATA_CENTER            DeviceType = 43
+	DeviceType_DEVICE_TYPE_FUSES_THREE               DeviceType = 44
+	DeviceType_DEVICE_TYPE_FUSES_SIX                 DeviceType = 45
+	DeviceType_DEVICE_TYPE_FUSES_NINE                DeviceType = 46
+	DeviceType_DEVICE_TYPE_FUSES_TWELVE              DeviceType = 47
+	DeviceType_DEVICE_TYPE_COMPACTOR                 DeviceType = 48
+	DeviceType_DEVICE_TYPE_WHITE_GOODS               DeviceType = 49
+	DeviceType_DEVICE_TYPE_COLD_STORAGE_ROOM         DeviceType = 50
+	DeviceType_DEVICE_TYPE_GARDEN_SHED               DeviceType = 51
+	DeviceType_DEVICE_TYPE_COOLING_COMBINATION       DeviceType = 52
+	DeviceType_DEVICE_TYPE_FACILITIES                DeviceType = 53
+	DeviceType_DEVICE_TYPE_FREEZER                   DeviceType = 54
+	DeviceType_DEVICE_TYPE_FRIDGE                    DeviceType = 55
+	DeviceType_DEVICE_TYPE_GRID_CONNECTION_POINT     DeviceType = 56
+	DeviceType_DEVICE_TYPE_INVERTER_HYBRID           DeviceType = 57
+	DeviceType_DEVICE_TYPE_CIRCUIT_PROTECTION        DeviceType = 58
+	DeviceType_DEVICE_TYPE_DATA_TRANSCEIVER          DeviceType = 59
+	DeviceType_DEVICE_TYPE_DEVICE_SELF               DeviceType = 60
+	DeviceType_DEVICE_TYPE_GRID_CONNECTION_POINT_HUB DeviceType = 61 //To be continued
 )
 
 // Enum value maps for DeviceType.
@@ -302,69 +303,71 @@ var (
 		58: "DEVICE_TYPE_CIRCUIT_PROTECTION",
 		59: "DEVICE_TYPE_DATA_TRANSCEIVER",
 		60: "DEVICE_TYPE_DEVICE_SELF",
+		61: "DEVICE_TYPE_GRID_CONNECTION_POINT_HUB",
 	}
 	DeviceType_value = map[string]int32{
-		"DEVICE_TYPE_UNKNOWN":               0,
-		"DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM":   1,
-		"DEVICE_TYPE_ELECTRIC_VEHICLE":      2,
-		"DEVICE_TYPE_BATTERY":               3,
-		"DEVICE_TYPE_OVEN":                  4,
-		"DEVICE_TYPE_FLOW_HEATER":           5,
-		"DEVICE_TYPE_BOILER":                6,
-		"DEVICE_TYPE_IMMERSION_HEATER":      7,
-		"DEVICE_TYPE_STOVE":                 8,
-		"DEVICE_TYPE_COOLER":                9,
-		"DEVICE_TYPE_VENTILATION":           10,
-		"DEVICE_TYPE_DISHWASHER":            11,
-		"DEVICE_TYPE_DRYER":                 12,
-		"DEVICE_TYPE_HEAT_PUMP":             13,
-		"DEVICE_TYPE_WASHING_MACHINE":       14,
-		"DEVICE_TYPE_INVERTER_ONEPHASE":     15,
-		"DEVICE_TYPE_INVERTER_THREEPHASE":   16,
-		"DEVICE_TYPE_CHP":                   17,
-		"DEVICE_TYPE_BUILDING_OFFICE":       18,
-		"DEVICE_TYPE_BUILDING_COMMERCIAL":   19,
-		"DEVICE_TYPE_BUILDING_FACTORY":      20,
-		"DEVICE_TYPE_BUILDING_SINGLE_HOME":  21,
-		"DEVICE_TYPE_BUILDING_HOTEL":        22,
-		"DEVICE_TYPE_BUILDING_APARTMENTS":   23,
-		"DEVICE_TYPE_BUILDING_PARKING":      24,
-		"DEVICE_TYPE_BUILDING_RESIDENTIAL":  25,
-		"DEVICE_TYPE_ROOM_BATH":             26,
-		"DEVICE_TYPE_ROOM_GARAGE":           27,
-		"DEVICE_TYPE_ROOM_BASEMENT":         28,
-		"DEVICE_TYPE_ROOM_CHILD":            29,
-		"DEVICE_TYPE_ROOM_KITCHEN":          30,
-		"DEVICE_TYPE_ROOM_SAUNA":            31,
-		"DEVICE_TYPE_ROOM_BED":              32,
-		"DEVICE_TYPE_ROOM_LIVING":           33,
-		"DEVICE_TYPE_ROOM_GENERIC":          34,
-		"DEVICE_TYPE_CONTROLLABLE_LOAD":     35,
-		"DEVICE_TYPE_LIGHTING":              36,
-		"DEVICE_TYPE_OFFICES":               37,
-		"DEVICE_TYPE_DOMESTIC_APPLIANCES":   38,
-		"DEVICE_TYPE_HEATER_OF_HEAT_PUMP":   39,
-		"DEVICE_TYPE_INDUSTRIAL_ENGINE":     40,
-		"DEVICE_TYPE_AIR_CONDITIONING":      41,
-		"DEVICE_TYPE_COMPRESSOR":            42,
-		"DEVICE_TYPE_PC_DATA_CENTER":        43,
-		"DEVICE_TYPE_FUSES_THREE":           44,
-		"DEVICE_TYPE_FUSES_SIX":             45,
-		"DEVICE_TYPE_FUSES_NINE":            46,
-		"DEVICE_TYPE_FUSES_TWELVE":          47,
-		"DEVICE_TYPE_COMPACTOR":             48,
-		"DEVICE_TYPE_WHITE_GOODS":           49,
-		"DEVICE_TYPE_COLD_STORAGE_ROOM":     50,
-		"DEVICE_TYPE_GARDEN_SHED":           51,
-		"DEVICE_TYPE_COOLING_COMBINATION":   52,
-		"DEVICE_TYPE_FACILITIES":            53,
-		"DEVICE_TYPE_FREEZER":               54,
-		"DEVICE_TYPE_FRIDGE":                55,
-		"DEVICE_TYPE_GRID_CONNECTION_POINT": 56,
-		"DEVICE_TYPE_INVERTER_HYBRID":       57,
-		"DEVICE_TYPE_CIRCUIT_PROTECTION":    58,
-		"DEVICE_TYPE_DATA_TRANSCEIVER":      59,
-		"DEVICE_TYPE_DEVICE_SELF":           60,
+		"DEVICE_TYPE_UNKNOWN":                   0,
+		"DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM":       1,
+		"DEVICE_TYPE_ELECTRIC_VEHICLE":          2,
+		"DEVICE_TYPE_BATTERY":                   3,
+		"DEVICE_TYPE_OVEN":                      4,
+		"DEVICE_TYPE_FLOW_HEATER":               5,
+		"DEVICE_TYPE_BOILER":                    6,
+		"DEVICE_TYPE_IMMERSION_HEATER":          7,
+		"DEVICE_TYPE_STOVE":                     8,
+		"DEVICE_TYPE_COOLER":                    9,
+		"DEVICE_TYPE_VENTILATION":               10,
+		"DEVICE_TYPE_DISHWASHER":                11,
+		"DEVICE_TYPE_DRYER":                     12,
+		"DEVICE_TYPE_HEAT_PUMP":                 13,
+		"DEVICE_TYPE_WASHING_MACHINE":           14,
+		"DEVICE_TYPE_INVERTER_ONEPHASE":         15,
+		"DEVICE_TYPE_INVERTER_THREEPHASE":       16,
+		"DEVICE_TYPE_CHP":                       17,
+		"DEVICE_TYPE_BUILDING_OFFICE":           18,
+		"DEVICE_TYPE_BUILDING_COMMERCIAL":       19,
+		"DEVICE_TYPE_BUILDING_FACTORY":          20,
+		"DEVICE_TYPE_BUILDING_SINGLE_HOME":      21,
+		"DEVICE_TYPE_BUILDING_HOTEL":            22,
+		"DEVICE_TYPE_BUILDING_APARTMENTS":       23,
+		"DEVICE_TYPE_BUILDING_PARKING":          24,
+		"DEVICE_TYPE_BUILDING_RESIDENTIAL":      25,
+		"DEVICE_TYPE_ROOM_BATH":                 26,
+		"DEVICE_TYPE_ROOM_GARAGE":               27,
+		"DEVICE_TYPE_ROOM_BASEMENT":             28,
+		"DEVICE_TYPE_ROOM_CHILD":                29,
+		"DEVICE_TYPE_ROOM_KITCHEN":              30,
+		"DEVICE_TYPE_ROOM_SAUNA":                31,
+		"DEVICE_TYPE_ROOM_BED":                  32,
+		"DEVICE_TYPE_ROOM_LIVING":               33,
+		"DEVICE_TYPE_ROOM_GENERIC":              34,
+		"DEVICE_TYPE_CONTROLLABLE_LOAD":         35,
+		"DEVICE_TYPE_LIGHTING":                  36,
+		"DEVICE_TYPE_OFFICES":                   37,
+		"DEVICE_TYPE_DOMESTIC_APPLIANCES":       38,
+		"DEVICE_TYPE_HEATER_OF_HEAT_PUMP":       39,
+		"DEVICE_TYPE_INDUSTRIAL_ENGINE":         40,
+		"DEVICE_TYPE_AIR_CONDITIONING":          41,
+		"DEVICE_TYPE_COMPRESSOR":                42,
+		"DEVICE_TYPE_PC_DATA_CENTER":            43,
+		"DEVICE_TYPE_FUSES_THREE":               44,
+		"DEVICE_TYPE_FUSES_SIX":                 45,
+		"DEVICE_TYPE_FUSES_NINE":                46,
+		"DEVICE_TYPE_FUSES_TWELVE":              47,
+		"DEVICE_TYPE_COMPACTOR":                 48,
+		"DEVICE_TYPE_WHITE_GOODS":               49,
+		"DEVICE_TYPE_COLD_STORAGE_ROOM":         50,
+		"DEVICE_TYPE_GARDEN_SHED":               51,
+		"DEVICE_TYPE_COOLING_COMBINATION":       52,
+		"DEVICE_TYPE_FACILITIES":                53,
+		"DEVICE_TYPE_FREEZER":                   54,
+		"DEVICE_TYPE_FRIDGE":                    55,
+		"DEVICE_TYPE_GRID_CONNECTION_POINT":     56,
+		"DEVICE_TYPE_INVERTER_HYBRID":           57,
+		"DEVICE_TYPE_CIRCUIT_PROTECTION":        58,
+		"DEVICE_TYPE_DATA_TRANSCEIVER":          59,
+		"DEVICE_TYPE_DEVICE_SELF":               60,
+		"DEVICE_TYPE_GRID_CONNECTION_POINT_HUB": 61,
 	}
 )
 
@@ -1060,7 +1063,7 @@ var file_gdr_proto_rawDesc = string([]byte{
 	0x44, 0x45, 0x47, 0x52, 0x45, 0x45, 0x5f, 0x43, 0x45, 0x4c, 0x53, 0x49, 0x55, 0x53, 0x10, 0x10,
 	0x12, 0x0f, 0x0a, 0x0b, 0x55, 0x4e, 0x49, 0x54, 0x5f, 0x4b, 0x45, 0x4c, 0x56, 0x49, 0x4e, 0x10,
 	0x11, 0x12, 0x1a, 0x0a, 0x16, 0x55, 0x4e, 0x49, 0x54, 0x5f, 0x44, 0x45, 0x47, 0x52, 0x45, 0x45,
-	0x5f, 0x46, 0x41, 0x48, 0x52, 0x45, 0x4e, 0x48, 0x45, 0x49, 0x54, 0x10, 0x12, 0x2a, 0xcf, 0x0e,
+	0x5f, 0x46, 0x41, 0x48, 0x52, 0x45, 0x4e, 0x48, 0x45, 0x49, 0x54, 0x10, 0x12, 0x2a, 0xfa, 0x0e,
 	0x0a, 0x0a, 0x44, 0x65, 0x76, 0x69, 0x63, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12, 0x17, 0x0a, 0x13,
 	0x44, 0x45, 0x56, 0x49, 0x43, 0x45, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x55, 0x4e, 0x4b, 0x4e,
 	0x4f, 0x57, 0x4e, 0x10, 0x00, 0x12, 0x23, 0x0a, 0x1f, 0x44, 0x45, 0x56, 0x49, 0x43, 0x45, 0x5f,
@@ -1177,19 +1180,22 @@ var file_gdr_proto_rawDesc = string([]byte{
 	0x12, 0x20, 0x0a, 0x1c, 0x44, 0x45, 0x56, 0x49, 0x43, 0x45, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f,
 	0x44, 0x41, 0x54, 0x41, 0x5f, 0x54, 0x52, 0x41, 0x4e, 0x53, 0x43, 0x45, 0x49, 0x56, 0x45, 0x52,
 	0x10, 0x3b, 0x12, 0x1b, 0x0a, 0x17, 0x44, 0x45, 0x56, 0x49, 0x43, 0x45, 0x5f, 0x54, 0x59, 0x50,
-	0x45, 0x5f, 0x44, 0x45, 0x56, 0x49, 0x43, 0x45, 0x5f, 0x53, 0x45, 0x4c, 0x46, 0x10, 0x3c, 0x2a,
-	0x51, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x12, 0x0a, 0x0e, 0x53, 0x54, 0x41,
-	0x54, 0x55, 0x53, 0x5f, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x10, 0x00, 0x12, 0x0d, 0x0a,
-	0x09, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x4f, 0x4b, 0x10, 0x01, 0x12, 0x12, 0x0a, 0x0e,
-	0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x57, 0x41, 0x52, 0x4e, 0x49, 0x4e, 0x47, 0x10, 0x02,
-	0x12, 0x10, 0x0a, 0x0c, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x45, 0x52, 0x52, 0x4f, 0x52,
-	0x10, 0x03, 0x2a, 0x54, 0x0a, 0x05, 0x43, 0x6c, 0x61, 0x73, 0x73, 0x12, 0x11, 0x0a, 0x0d, 0x43,
-	0x4c, 0x41, 0x53, 0x53, 0x5f, 0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x10, 0x00, 0x12, 0x12,
-	0x0a, 0x0e, 0x43, 0x4c, 0x41, 0x53, 0x53, 0x5f, 0x43, 0x4f, 0x4e, 0x53, 0x55, 0x4d, 0x45, 0x52,
-	0x10, 0x01, 0x12, 0x12, 0x0a, 0x0e, 0x43, 0x4c, 0x41, 0x53, 0x53, 0x5f, 0x50, 0x52, 0x4f, 0x44,
-	0x55, 0x43, 0x45, 0x52, 0x10, 0x02, 0x12, 0x10, 0x0a, 0x0c, 0x43, 0x4c, 0x41, 0x53, 0x53, 0x5f,
-	0x48, 0x59, 0x42, 0x52, 0x49, 0x44, 0x10, 0x03, 0x42, 0x08, 0x5a, 0x06, 0x2e, 0x2f, 0x3b, 0x67,
-	0x64, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x45, 0x5f, 0x44, 0x45, 0x56, 0x49, 0x43, 0x45, 0x5f, 0x53, 0x45, 0x4c, 0x46, 0x10, 0x3c, 0x12,
+	0x29, 0x0a, 0x25, 0x44, 0x45, 0x56, 0x49, 0x43, 0x45, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x47,
+	0x52, 0x49, 0x44, 0x5f, 0x43, 0x4f, 0x4e, 0x4e, 0x45, 0x43, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x50,
+	0x4f, 0x49, 0x4e, 0x54, 0x5f, 0x48, 0x55, 0x42, 0x10, 0x3d, 0x2a, 0x51, 0x0a, 0x06, 0x53, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x12, 0x12, 0x0a, 0x0e, 0x53, 0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x55,
+	0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x53, 0x54, 0x41, 0x54,
+	0x55, 0x53, 0x5f, 0x4f, 0x4b, 0x10, 0x01, 0x12, 0x12, 0x0a, 0x0e, 0x53, 0x54, 0x41, 0x54, 0x55,
+	0x53, 0x5f, 0x57, 0x41, 0x52, 0x4e, 0x49, 0x4e, 0x47, 0x10, 0x02, 0x12, 0x10, 0x0a, 0x0c, 0x53,
+	0x54, 0x41, 0x54, 0x55, 0x53, 0x5f, 0x45, 0x52, 0x52, 0x4f, 0x52, 0x10, 0x03, 0x2a, 0x54, 0x0a,
+	0x05, 0x43, 0x6c, 0x61, 0x73, 0x73, 0x12, 0x11, 0x0a, 0x0d, 0x43, 0x4c, 0x41, 0x53, 0x53, 0x5f,
+	0x55, 0x4e, 0x4b, 0x4e, 0x4f, 0x57, 0x4e, 0x10, 0x00, 0x12, 0x12, 0x0a, 0x0e, 0x43, 0x4c, 0x41,
+	0x53, 0x53, 0x5f, 0x43, 0x4f, 0x4e, 0x53, 0x55, 0x4d, 0x45, 0x52, 0x10, 0x01, 0x12, 0x12, 0x0a,
+	0x0e, 0x43, 0x4c, 0x41, 0x53, 0x53, 0x5f, 0x50, 0x52, 0x4f, 0x44, 0x55, 0x43, 0x45, 0x52, 0x10,
+	0x02, 0x12, 0x10, 0x0a, 0x0c, 0x43, 0x4c, 0x41, 0x53, 0x53, 0x5f, 0x48, 0x59, 0x42, 0x52, 0x49,
+	0x44, 0x10, 0x03, 0x42, 0x08, 0x5a, 0x06, 0x2e, 0x2f, 0x3b, 0x67, 0x64, 0x72, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 })
 
 var (

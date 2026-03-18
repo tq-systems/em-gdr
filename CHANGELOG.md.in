@@ -1,2 +1,3 @@
 ## [{{ version }}]
-
+### Added
+- new device type "DEVICE_TYPE_GRID_CONNECTION_POINT_HUB"
