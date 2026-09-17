@@ -1,3 +1,7 @@
+## [2.8.0] - 2026-09-17
+### Added
+- new device type "DEVICE_TYPE_CHARGING_GROUP"
+
 ## [2.7.0] - 2026-03-18
 ### Added
 - new device type "DEVICE_TYPE_GRID_CONNECTION_POINT_HUB"
