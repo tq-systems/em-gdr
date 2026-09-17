@@ -1375,6 +1375,7 @@ $root.GCR = (function() {
             case 59:
             case 60:
             case 61:
+            case 62:
                 break;
             }
         if (message.meta != null && message.hasOwnProperty("meta")) {
@@ -1718,6 +1719,10 @@ $root.GCR = (function() {
         case "DEVICE_TYPE_GRID_CONNECTION_POINT_HUB":
         case 61:
             message.devicetype = 61;
+            break;
+        case "DEVICE_TYPE_CHARGING_GROUP":
+        case 62:
+            message.devicetype = 62;
             break;
         }
         if (object.meta) {
@@ -2600,6 +2605,7 @@ $root.Unit = (function() {
  * @property {number} DEVICE_TYPE_DATA_TRANSCEIVER=59 DEVICE_TYPE_DATA_TRANSCEIVER value
  * @property {number} DEVICE_TYPE_DEVICE_SELF=60 DEVICE_TYPE_DEVICE_SELF value
  * @property {number} DEVICE_TYPE_GRID_CONNECTION_POINT_HUB=61 DEVICE_TYPE_GRID_CONNECTION_POINT_HUB value
+ * @property {number} DEVICE_TYPE_CHARGING_GROUP=62 DEVICE_TYPE_CHARGING_GROUP value
  */
 $root.DeviceType = (function() {
     var valuesById = {}, values = Object.create(valuesById);
@@ -2665,6 +2671,7 @@ $root.DeviceType = (function() {
     values[valuesById[59] = "DEVICE_TYPE_DATA_TRANSCEIVER"] = 59;
     values[valuesById[60] = "DEVICE_TYPE_DEVICE_SELF"] = 60;
     values[valuesById[61] = "DEVICE_TYPE_GRID_CONNECTION_POINT_HUB"] = 61;
+    values[valuesById[62] = "DEVICE_TYPE_CHARGING_GROUP"] = 62;
     return values;
 })();
 
