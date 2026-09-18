@@ -1,3 +1,7 @@
+## [2.9.0] - 2026-09-18
+### Added
+- new device type "DEVICE_TYPE_ENERGY_MANAGEMENT_SYSTEM"
+
 ## [2.8.0] - 2026-09-17
 ### Added
 - new device type "DEVICE_TYPE_CHARGING_GROUP"
