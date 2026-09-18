@@ -1,1 +1,3 @@
 ## [{{ version }}]
+### Added
+- new device type "DEVICE_TYPE_ENERGY_MANAGEMENT_SYSTEM"
