@@ -1,11 +1,10 @@
-/*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-mixed-operators, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars, default-case, jsdoc/require-param*/
+/*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 "use strict";
 
 var $protobuf = require("protobufjs/minimal");
 
 // Common aliases
 var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
-var $Object = $util.global.Object, $undefined = $util.global.undefined, $Error = $util.global.Error, $RangeError = $util.global.RangeError, $TypeError = $util.global.TypeError, $String = $util.global.String, $parseInt = $util.global.parseInt, $BigInt = $util.global.BigInt, $Number = $util.global.Number, $Array = $util.global.Array;
 
 // Exported root namespace
 var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
@@ -14,44 +13,31 @@ $root.GDRs = (function() {
 
     /**
      * Properties of a GDRs.
-     * @typedef {Object} GDRs.$Properties
-     * @property {Object.<string,GDR.$Properties>|null} [GDRs] GDRs GDRs
-     * @property {string|null} [configUuid] GDRs configUuid
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a GDRs.
      * @exports IGDRs
      * @interface IGDRs
-     * @augments GDRs.$Properties
-     * @deprecated Use GDRs.$Properties instead.
-     */
-
-    /**
-     * Shape of a GDRs.
-     * @typedef {GDRs.$Properties} GDRs.$Shape
+     * @property {Object.<string,IGDR>|null} [GDRs] GDRs GDRs
+     * @property {string|null} [configUuid] GDRs configUuid
      */
 
     /**
      * Constructs a new GDRs.
      * @exports GDRs
      * @classdesc Represents a GDRs.
+     * @implements IGDRs
      * @constructor
-     * @param {GDRs.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     * @param {IGDRs=} [properties] Properties to set
      */
-    var GDRs = function (properties) {
+    function GDRs(properties) {
         this.GDRs = {};
         if (properties)
-            for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
-    };
+    }
 
     /**
      * GDRs GDRs.
-     * @member {Object.<string,GDR.$Properties>} GDRs
+     * @member {Object.<string,IGDR>} GDRs
      * @memberof GDRs
      * @instance
      */
@@ -70,14 +56,10 @@ $root.GDRs = (function() {
      * @function create
      * @memberof GDRs
      * @static
-     * @param {GDRs.$Properties=} [properties] Properties to set
+     * @param {IGDRs=} [properties] Properties to set
      * @returns {GDRs} GDRs instance
-     * @type {{
-     *   (properties: GDRs.$Shape): GDRs & GDRs.$Shape;
-     *   (properties?: GDRs.$Properties): GDRs;
-     * }}
      */
-    GDRs.create = function(properties) {
+    GDRs.create = function create(properties) {
         return new GDRs(properties);
     };
 
@@ -86,27 +68,24 @@ $root.GDRs = (function() {
      * @function encode
      * @memberof GDRs
      * @static
-     * @param {GDRs.$Properties} message GDRs message or plain object to encode
+     * @param {IGDRs} message GDRs message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    GDRs.encode = function (message, writer, _depth) {
+    GDRs.encode = function encode(message, writer, q) {
         if (!writer)
             writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.GDRs != null && $Object.hasOwnProperty.call(message, "GDRs"))
-            for (var keys = $Object.keys(message.GDRs), i = 0; i < keys.length; ++i) {
+        if (q === undefined)
+            q = 0;
+        if (q > $util.recursionLimit)
+            throw Error("max depth exceeded");
+        if (message.GDRs != null && Object.hasOwnProperty.call(message, "GDRs"))
+            for (var keys = Object.keys(message.GDRs), i = 0; i < keys.length; ++i) {
                 writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
-                $root.GDR.encode(message.GDRs[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
+                $root.GDR.encode(message.GDRs[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim().ldelim();
             }
-        if (message.configUuid != null && $Object.hasOwnProperty.call(message, "configUuid") && message.configUuid !== "")
+        if (message.configUuid != null && Object.hasOwnProperty.call(message, "configUuid"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.configUuid);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (var i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
         return writer;
     };
 
@@ -115,12 +94,12 @@ $root.GDRs = (function() {
      * @function encodeDelimited
      * @memberof GDRs
      * @static
-     * @param {GDRs.$Properties} message GDRs message or plain object to encode
+     * @param {IGDRs} message GDRs message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    GDRs.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    GDRs.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
     };
 
     /**
@@ -130,96 +109,78 @@ $root.GDRs = (function() {
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {GDRs & GDRs.$Shape} GDRs
+     * @returns {GDRs} GDRs
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    GDRs.decode = function (reader, length, _end, _depth, _target) {
+    GDRs.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end, message, key, value;
-        if (length === $undefined)
+        if (length === undefined)
             end = reader.len;
         else {
             end = reader.pos + length;
             if (end > reader.len)
-                throw $RangeError("index out of range");
+                throw RangeError("index out of range");
             length = reader.len;
             reader.len = end;
         }
-        message = _target || new $root.GDRs();
+        message = new $root.GDRs();
         while (reader.pos < end) {
-            var start = reader.pos;
-            var tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
+            var tag = reader.uint32();
+            if (tag === error)
                 break;
-            }
-            var wireType = tag & 7;
-            switch (tag >>>= 3) {
+            switch (tag >>> 3) {
             case 1: {
-                    if (wireType !== 2)
-                        break;
                     if (message.GDRs === $util.emptyObject)
                         message.GDRs = {};
                     var end2 = reader.uint32() + reader.pos;
                     if (end2 > reader.len)
-                        throw $RangeError("index out of range");
+                        throw RangeError("index out of range");
                     reader.len = end2;
                     key = "";
                     value = null;
                     while (reader.pos < end2) {
-                        var tag2 = reader.tag();
-                        wireType = tag2 & 7;
-                        switch (tag2 >>>= 3) {
+                        var tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
                         case 1:
-                            if (wireType !== 2)
-                                break;
-                            key = reader.stringVerify();
-                            continue;
+                            key = reader.string();
+                            break;
                         case 2:
-                            if (wireType !== 2)
-                                break;
-                            value = $root.GDR.decode(reader, reader.uint32(), $undefined, _depth + 1, value);
-                            continue;
+                            value = $root.GDR.decode(reader, reader.uint32(), undefined, long + 1);
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7, long);
+                            break;
                         }
-                        reader.skipType(wireType, _depth, tag2);
                     }
                     if (reader.pos !== end2)
-                        throw $RangeError("index out of range");
+                        throw RangeError("index out of range");
                     reader.len = end;
                     if (key === "__proto__")
                         $util.makeProp(message.GDRs, key);
-                    message.GDRs[key] = value || new $root.GDR();
-                    continue;
+                    message.GDRs[key] = value;
+                    break;
                 }
             case 2: {
-                    if (wireType !== 2)
-                        break;
-                    if ((value = reader.stringVerify()).length)
-                        message.configUuid = value;
-                    else
-                        delete message.configUuid;
-                    continue;
+                    message.configUuid = reader.string();
+                    break;
                 }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            default:
+                reader.skipType(tag & 7, long);
+                break;
             }
         }
-        if (length !== $undefined) {
+        if (length !== undefined) {
             if (reader.pos !== end)
-                throw $RangeError("index out of range");
+                throw RangeError("index out of range");
             reader.len = length;
         }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
         return message;
     };
 
@@ -229,11 +190,11 @@ $root.GDRs = (function() {
      * @memberof GDRs
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {GDRs & GDRs.$Shape} GDRs
+     * @returns {GDRs} GDRs
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    GDRs.decodeDelimited = function(reader) {
+    GDRs.decodeDelimited = function decodeDelimited(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
@@ -247,24 +208,24 @@ $root.GDRs = (function() {
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    GDRs.verify = function (message, _depth) {
+    GDRs.verify = function verify(message, long) {
         if (typeof message !== "object" || message === null)
             return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        if (message.GDRs != null && $Object.hasOwnProperty.call(message, "GDRs")) {
+        if (long === undefined)
+            long = 0;
+        if (long > $util.recursionLimit)
+            return "maximum nesting depth exceeded";
+        if (message.GDRs != null && Object.hasOwnProperty.call(message, "GDRs")) {
             if (!$util.isObject(message.GDRs))
                 return "GDRs: object expected";
-            var key = $Object.keys(message.GDRs);
+            var key = Object.keys(message.GDRs);
             for (var i = 0; i < key.length; ++i) {
-                var error = $root.GDR.verify(message.GDRs[key[i]], _depth + 1);
+                var error = $root.GDR.verify(message.GDRs[key[i]], long + 1);
                 if (error)
                     return "GDRs." + error;
             }
         }
-        if (message.configUuid != null && $Object.hasOwnProperty.call(message, "configUuid"))
+        if (message.configUuid != null && Object.hasOwnProperty.call(message, "configUuid"))
             if (!$util.isString(message.configUuid))
                 return "configUuid: string expected";
         return null;
@@ -278,31 +239,30 @@ $root.GDRs = (function() {
      * @param {Object.<string,*>} object Plain object
      * @returns {GDRs} GDRs
      */
-    GDRs.fromObject = function (object, _depth) {
+    GDRs.fromObject = function fromObject(object, long) {
         if (object instanceof $root.GDRs)
             return object;
         if (!$util.isObject(object))
-            throw $TypeError(".GDRs: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
+            throw TypeError(".GDRs: object expected");
+        if (long === undefined)
+            long = 0;
+        if (long > $util.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var message = new $root.GDRs();
         if (object.GDRs) {
             if (!$util.isObject(object.GDRs))
-                throw $TypeError(".GDRs.GDRs: object expected");
+                throw TypeError(".GDRs.GDRs: object expected");
             message.GDRs = {};
-            for (var keys = $Object.keys(object.GDRs), i = 0; i < keys.length; ++i) {
+            for (var keys = Object.keys(object.GDRs), i = 0; i < keys.length; ++i) {
                 if (keys[i] === "__proto__")
                     $util.makeProp(message.GDRs, keys[i]);
                 if (!$util.isObject(object.GDRs[keys[i]]))
-                    throw $TypeError(".GDRs.GDRs: object expected");
-                message.GDRs[keys[i]] = $root.GDR.fromObject(object.GDRs[keys[i]], _depth + 1);
+                    throw TypeError(".GDRs.GDRs: object expected");
+                message.GDRs[keys[i]] = $root.GDR.fromObject(object.GDRs[keys[i]], long + 1);
             }
         }
         if (object.configUuid != null)
-            if (typeof object.configUuid !== "string" || object.configUuid.length)
-                message.configUuid = $String(object.configUuid);
+            message.configUuid = String(object.configUuid);
         return message;
     };
 
@@ -315,28 +275,28 @@ $root.GDRs = (function() {
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    GDRs.toObject = function (message, options, _depth) {
+    GDRs.toObject = function toObject(message, options, q) {
         if (!options)
             options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
+        if (q === undefined)
+            q = 0;
+        if (q > $util.recursionLimit)
+            throw Error("max depth exceeded");
         var object = {};
         if (options.objects || options.defaults)
             object.GDRs = {};
         if (options.defaults)
             object.configUuid = "";
         var keys2;
-        if (message.GDRs && (keys2 = $Object.keys(message.GDRs)).length) {
+        if (message.GDRs && (keys2 = Object.keys(message.GDRs)).length) {
             object.GDRs = {};
             for (var j = 0; j < keys2.length; ++j) {
                 if (keys2[j] === "__proto__")
                     $util.makeProp(object.GDRs, keys2[j]);
-                object.GDRs[keys2[j]] = $root.GDR.toObject(message.GDRs[keys2[j]], options, _depth + 1);
+                object.GDRs[keys2[j]] = $root.GDR.toObject(message.GDRs[keys2[j]], options, q + 1);
             }
         }
-        if (message.configUuid != null && $Object.hasOwnProperty.call(message, "configUuid"))
+        if (message.configUuid != null && Object.hasOwnProperty.call(message, "configUuid"))
             object.configUuid = message.configUuid;
         return object;
     };
@@ -348,22 +308,23 @@ $root.GDRs = (function() {
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    GDRs.prototype.toJSON = function() {
-        return GDRs.toObject(this, $protobuf.util.toJSONOptions);
+    GDRs.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
     };
 
     /**
-     * Gets the type url for GDRs
+     * Gets the default type url for GDRs
      * @function getTypeUrl
      * @memberof GDRs
      * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
      */
-    GDRs.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/GDRs";
+    GDRs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/GDRs";
     };
 
     return GDRs;
@@ -373,44 +334,31 @@ $root.GCRs = (function() {
 
     /**
      * Properties of a GCRs.
-     * @typedef {Object} GCRs.$Properties
-     * @property {Object.<string,GCR.$Properties>|null} [GCRs] GCRs GCRs
-     * @property {string|null} [configUuid] GCRs configUuid
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a GCRs.
      * @exports IGCRs
      * @interface IGCRs
-     * @augments GCRs.$Properties
-     * @deprecated Use GCRs.$Properties instead.
-     */
-
-    /**
-     * Shape of a GCRs.
-     * @typedef {GCRs.$Properties} GCRs.$Shape
+     * @property {Object.<string,IGCR>|null} [GCRs] GCRs GCRs
+     * @property {string|null} [configUuid] GCRs configUuid
      */
 
     /**
      * Constructs a new GCRs.
      * @exports GCRs
      * @classdesc Represents a GCRs.
+     * @implements IGCRs
      * @constructor
-     * @param {GCRs.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     * @param {IGCRs=} [properties] Properties to set
      */
-    var GCRs = function (properties) {
+    function GCRs(properties) {
         this.GCRs = {};
         if (properties)
-            for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
-    };
+    }
 
     /**
      * GCRs GCRs.
-     * @member {Object.<string,GCR.$Properties>} GCRs
+     * @member {Object.<string,IGCR>} GCRs
      * @memberof GCRs
      * @instance
      */
@@ -429,14 +377,10 @@ $root.GCRs = (function() {
      * @function create
      * @memberof GCRs
      * @static
-     * @param {GCRs.$Properties=} [properties] Properties to set
+     * @param {IGCRs=} [properties] Properties to set
      * @returns {GCRs} GCRs instance
-     * @type {{
-     *   (properties: GCRs.$Shape): GCRs & GCRs.$Shape;
-     *   (properties?: GCRs.$Properties): GCRs;
-     * }}
      */
-    GCRs.create = function(properties) {
+    GCRs.create = function create(properties) {
         return new GCRs(properties);
     };
 
@@ -445,27 +389,24 @@ $root.GCRs = (function() {
      * @function encode
      * @memberof GCRs
      * @static
-     * @param {GCRs.$Properties} message GCRs message or plain object to encode
+     * @param {IGCRs} message GCRs message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    GCRs.encode = function (message, writer, _depth) {
+    GCRs.encode = function encode(message, writer, q) {
         if (!writer)
             writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.GCRs != null && $Object.hasOwnProperty.call(message, "GCRs"))
-            for (var keys = $Object.keys(message.GCRs), i = 0; i < keys.length; ++i) {
+        if (q === undefined)
+            q = 0;
+        if (q > $util.recursionLimit)
+            throw Error("max depth exceeded");
+        if (message.GCRs != null && Object.hasOwnProperty.call(message, "GCRs"))
+            for (var keys = Object.keys(message.GCRs), i = 0; i < keys.length; ++i) {
                 writer.uint32(/* id 1, wireType 2 =*/10).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
-                $root.GCR.encode(message.GCRs[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
+                $root.GCR.encode(message.GCRs[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim().ldelim();
             }
-        if (message.configUuid != null && $Object.hasOwnProperty.call(message, "configUuid") && message.configUuid !== "")
+        if (message.configUuid != null && Object.hasOwnProperty.call(message, "configUuid"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.configUuid);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (var i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
         return writer;
     };
 
@@ -474,12 +415,12 @@ $root.GCRs = (function() {
      * @function encodeDelimited
      * @memberof GCRs
      * @static
-     * @param {GCRs.$Properties} message GCRs message or plain object to encode
+     * @param {IGCRs} message GCRs message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    GCRs.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    GCRs.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
     };
 
     /**
@@ -489,96 +430,78 @@ $root.GCRs = (function() {
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {GCRs & GCRs.$Shape} GCRs
+     * @returns {GCRs} GCRs
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    GCRs.decode = function (reader, length, _end, _depth, _target) {
+    GCRs.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end, message, key, value;
-        if (length === $undefined)
+        if (length === undefined)
             end = reader.len;
         else {
             end = reader.pos + length;
             if (end > reader.len)
-                throw $RangeError("index out of range");
+                throw RangeError("index out of range");
             length = reader.len;
             reader.len = end;
         }
-        message = _target || new $root.GCRs();
+        message = new $root.GCRs();
         while (reader.pos < end) {
-            var start = reader.pos;
-            var tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
+            var tag = reader.uint32();
+            if (tag === error)
                 break;
-            }
-            var wireType = tag & 7;
-            switch (tag >>>= 3) {
+            switch (tag >>> 3) {
             case 1: {
-                    if (wireType !== 2)
-                        break;
                     if (message.GCRs === $util.emptyObject)
                         message.GCRs = {};
                     var end2 = reader.uint32() + reader.pos;
                     if (end2 > reader.len)
-                        throw $RangeError("index out of range");
+                        throw RangeError("index out of range");
                     reader.len = end2;
                     key = "";
                     value = null;
                     while (reader.pos < end2) {
-                        var tag2 = reader.tag();
-                        wireType = tag2 & 7;
-                        switch (tag2 >>>= 3) {
+                        var tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
                         case 1:
-                            if (wireType !== 2)
-                                break;
-                            key = reader.stringVerify();
-                            continue;
+                            key = reader.string();
+                            break;
                         case 2:
-                            if (wireType !== 2)
-                                break;
-                            value = $root.GCR.decode(reader, reader.uint32(), $undefined, _depth + 1, value);
-                            continue;
+                            value = $root.GCR.decode(reader, reader.uint32(), undefined, long + 1);
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7, long);
+                            break;
                         }
-                        reader.skipType(wireType, _depth, tag2);
                     }
                     if (reader.pos !== end2)
-                        throw $RangeError("index out of range");
+                        throw RangeError("index out of range");
                     reader.len = end;
                     if (key === "__proto__")
                         $util.makeProp(message.GCRs, key);
-                    message.GCRs[key] = value || new $root.GCR();
-                    continue;
+                    message.GCRs[key] = value;
+                    break;
                 }
             case 2: {
-                    if (wireType !== 2)
-                        break;
-                    if ((value = reader.stringVerify()).length)
-                        message.configUuid = value;
-                    else
-                        delete message.configUuid;
-                    continue;
+                    message.configUuid = reader.string();
+                    break;
                 }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            default:
+                reader.skipType(tag & 7, long);
+                break;
             }
         }
-        if (length !== $undefined) {
+        if (length !== undefined) {
             if (reader.pos !== end)
-                throw $RangeError("index out of range");
+                throw RangeError("index out of range");
             reader.len = length;
         }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
         return message;
     };
 
@@ -588,11 +511,11 @@ $root.GCRs = (function() {
      * @memberof GCRs
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {GCRs & GCRs.$Shape} GCRs
+     * @returns {GCRs} GCRs
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    GCRs.decodeDelimited = function(reader) {
+    GCRs.decodeDelimited = function decodeDelimited(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
@@ -606,24 +529,24 @@ $root.GCRs = (function() {
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    GCRs.verify = function (message, _depth) {
+    GCRs.verify = function verify(message, long) {
         if (typeof message !== "object" || message === null)
             return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        if (message.GCRs != null && $Object.hasOwnProperty.call(message, "GCRs")) {
+        if (long === undefined)
+            long = 0;
+        if (long > $util.recursionLimit)
+            return "maximum nesting depth exceeded";
+        if (message.GCRs != null && Object.hasOwnProperty.call(message, "GCRs")) {
             if (!$util.isObject(message.GCRs))
                 return "GCRs: object expected";
-            var key = $Object.keys(message.GCRs);
+            var key = Object.keys(message.GCRs);
             for (var i = 0; i < key.length; ++i) {
-                var error = $root.GCR.verify(message.GCRs[key[i]], _depth + 1);
+                var error = $root.GCR.verify(message.GCRs[key[i]], long + 1);
                 if (error)
                     return "GCRs." + error;
             }
         }
-        if (message.configUuid != null && $Object.hasOwnProperty.call(message, "configUuid"))
+        if (message.configUuid != null && Object.hasOwnProperty.call(message, "configUuid"))
             if (!$util.isString(message.configUuid))
                 return "configUuid: string expected";
         return null;
@@ -637,31 +560,30 @@ $root.GCRs = (function() {
      * @param {Object.<string,*>} object Plain object
      * @returns {GCRs} GCRs
      */
-    GCRs.fromObject = function (object, _depth) {
+    GCRs.fromObject = function fromObject(object, long) {
         if (object instanceof $root.GCRs)
             return object;
         if (!$util.isObject(object))
-            throw $TypeError(".GCRs: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
+            throw TypeError(".GCRs: object expected");
+        if (long === undefined)
+            long = 0;
+        if (long > $util.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var message = new $root.GCRs();
         if (object.GCRs) {
             if (!$util.isObject(object.GCRs))
-                throw $TypeError(".GCRs.GCRs: object expected");
+                throw TypeError(".GCRs.GCRs: object expected");
             message.GCRs = {};
-            for (var keys = $Object.keys(object.GCRs), i = 0; i < keys.length; ++i) {
+            for (var keys = Object.keys(object.GCRs), i = 0; i < keys.length; ++i) {
                 if (keys[i] === "__proto__")
                     $util.makeProp(message.GCRs, keys[i]);
                 if (!$util.isObject(object.GCRs[keys[i]]))
-                    throw $TypeError(".GCRs.GCRs: object expected");
-                message.GCRs[keys[i]] = $root.GCR.fromObject(object.GCRs[keys[i]], _depth + 1);
+                    throw TypeError(".GCRs.GCRs: object expected");
+                message.GCRs[keys[i]] = $root.GCR.fromObject(object.GCRs[keys[i]], long + 1);
             }
         }
         if (object.configUuid != null)
-            if (typeof object.configUuid !== "string" || object.configUuid.length)
-                message.configUuid = $String(object.configUuid);
+            message.configUuid = String(object.configUuid);
         return message;
     };
 
@@ -674,28 +596,28 @@ $root.GCRs = (function() {
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    GCRs.toObject = function (message, options, _depth) {
+    GCRs.toObject = function toObject(message, options, q) {
         if (!options)
             options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
+        if (q === undefined)
+            q = 0;
+        if (q > $util.recursionLimit)
+            throw Error("max depth exceeded");
         var object = {};
         if (options.objects || options.defaults)
             object.GCRs = {};
         if (options.defaults)
             object.configUuid = "";
         var keys2;
-        if (message.GCRs && (keys2 = $Object.keys(message.GCRs)).length) {
+        if (message.GCRs && (keys2 = Object.keys(message.GCRs)).length) {
             object.GCRs = {};
             for (var j = 0; j < keys2.length; ++j) {
                 if (keys2[j] === "__proto__")
                     $util.makeProp(object.GCRs, keys2[j]);
-                object.GCRs[keys2[j]] = $root.GCR.toObject(message.GCRs[keys2[j]], options, _depth + 1);
+                object.GCRs[keys2[j]] = $root.GCR.toObject(message.GCRs[keys2[j]], options, q + 1);
             }
         }
-        if (message.configUuid != null && $Object.hasOwnProperty.call(message, "configUuid"))
+        if (message.configUuid != null && Object.hasOwnProperty.call(message, "configUuid"))
             object.configUuid = message.configUuid;
         return object;
     };
@@ -707,22 +629,23 @@ $root.GCRs = (function() {
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    GCRs.prototype.toJSON = function() {
-        return GCRs.toObject(this, $protobuf.util.toJSONOptions);
+    GCRs.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
     };
 
     /**
-     * Gets the type url for GCRs
+     * Gets the default type url for GCRs
      * @function getTypeUrl
      * @memberof GCRs
      * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
      */
-    GCRs.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/GCRs";
+    GCRs.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/GCRs";
     };
 
     return GCRs;
@@ -732,44 +655,31 @@ $root.GDR = (function() {
 
     /**
      * Properties of a GDR.
-     * @typedef {Object} GDR.$Properties
-     * @property {string|null} [id] GDR id
-     * @property {Status|null} [status] GDR status
-     * @property {google.protobuf.Timestamp.$Properties|null} [timestamp] GDR timestamp
-     * @property {Object.<string,number>|null} [values] GDR values
-     * @property {Object.<string,FlexValue.$Properties>|null} [flexValues] GDR flexValues
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a GDR.
      * @exports IGDR
      * @interface IGDR
-     * @augments GDR.$Properties
-     * @deprecated Use GDR.$Properties instead.
-     */
-
-    /**
-     * Shape of a GDR.
-     * @typedef {GDR.$Properties} GDR.$Shape
+     * @property {string|null} [id] GDR id
+     * @property {Status|null} [status] GDR status
+     * @property {google.protobuf.ITimestamp|null} [timestamp] GDR timestamp
+     * @property {Object.<string,number>|null} [values] GDR values
+     * @property {Object.<string,IFlexValue>|null} [flexValues] GDR flexValues
      */
 
     /**
      * Constructs a new GDR.
      * @exports GDR
      * @classdesc Represents a GDR.
+     * @implements IGDR
      * @constructor
-     * @param {GDR.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     * @param {IGDR=} [properties] Properties to set
      */
-    var GDR = function (properties) {
+    function GDR(properties) {
         this.values = {};
         this.flexValues = {};
         if (properties)
-            for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
-    };
+    }
 
     /**
      * GDR id.
@@ -789,7 +699,7 @@ $root.GDR = (function() {
 
     /**
      * GDR timestamp.
-     * @member {google.protobuf.Timestamp.$Properties|null|undefined} timestamp
+     * @member {google.protobuf.ITimestamp|null|undefined} timestamp
      * @memberof GDR
      * @instance
      */
@@ -805,7 +715,7 @@ $root.GDR = (function() {
 
     /**
      * GDR flexValues.
-     * @member {Object.<string,FlexValue.$Properties>} flexValues
+     * @member {Object.<string,IFlexValue>} flexValues
      * @memberof GDR
      * @instance
      */
@@ -816,14 +726,10 @@ $root.GDR = (function() {
      * @function create
      * @memberof GDR
      * @static
-     * @param {GDR.$Properties=} [properties] Properties to set
+     * @param {IGDR=} [properties] Properties to set
      * @returns {GDR} GDR instance
-     * @type {{
-     *   (properties: GDR.$Shape): GDR & GDR.$Shape;
-     *   (properties?: GDR.$Properties): GDR;
-     * }}
      */
-    GDR.create = function(properties) {
+    GDR.create = function create(properties) {
         return new GDR(properties);
     };
 
@@ -832,34 +738,31 @@ $root.GDR = (function() {
      * @function encode
      * @memberof GDR
      * @static
-     * @param {GDR.$Properties} message GDR message or plain object to encode
+     * @param {IGDR} message GDR message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    GDR.encode = function (message, writer, _depth) {
+    GDR.encode = function encode(message, writer, q) {
         if (!writer)
             writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id") && message.id !== "")
+        if (q === undefined)
+            q = 0;
+        if (q > $util.recursionLimit)
+            throw Error("max depth exceeded");
+        if (message.id != null && Object.hasOwnProperty.call(message, "id"))
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-        if (message.status != null && $Object.hasOwnProperty.call(message, "status") && message.status !== 0)
+        if (message.status != null && Object.hasOwnProperty.call(message, "status"))
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.status);
-        if (message.timestamp != null && $Object.hasOwnProperty.call(message, "timestamp"))
-            $root.google.protobuf.Timestamp.encode(message.timestamp, writer.uint32(/* id 3, wireType 2 =*/26).fork(), _depth + 1).ldelim();
-        if (message.values != null && $Object.hasOwnProperty.call(message, "values"))
-            for (var keys = $Object.keys(message.values), i = 0; i < keys.length; ++i)
-                writer.uint32(/* id 4, wireType 2 =*/34).fork().uint32(/* id 1, wireType 0 =*/8).uint64($util.longFromKey(keys[i], true)).uint32(/* id 2, wireType 0 =*/16).uint64(message.values[keys[i]]).ldelim();
-        if (message.flexValues != null && $Object.hasOwnProperty.call(message, "flexValues"))
-            for (var keys = $Object.keys(message.flexValues), i = 0; i < keys.length; ++i) {
+        if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
+            $root.google.protobuf.Timestamp.encode(message.timestamp, writer.uint32(/* id 3, wireType 2 =*/26).fork(), q + 1).ldelim();
+        if (message.values != null && Object.hasOwnProperty.call(message, "values"))
+            for (var keys = Object.keys(message.values), i = 0; i < keys.length; ++i)
+                writer.uint32(/* id 4, wireType 2 =*/34).fork().uint32(/* id 1, wireType 0 =*/8).uint64(keys[i]).uint32(/* id 2, wireType 0 =*/16).uint64(message.values[keys[i]]).ldelim();
+        if (message.flexValues != null && Object.hasOwnProperty.call(message, "flexValues"))
+            for (var keys = Object.keys(message.flexValues), i = 0; i < keys.length; ++i) {
                 writer.uint32(/* id 5, wireType 2 =*/42).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
-                $root.FlexValue.encode(message.flexValues[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
+                $root.FlexValue.encode(message.flexValues[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim().ldelim();
             }
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (var i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
         return writer;
     };
 
@@ -868,12 +771,12 @@ $root.GDR = (function() {
      * @function encodeDelimited
      * @memberof GDR
      * @static
-     * @param {GDR.$Properties} message GDR message or plain object to encode
+     * @param {IGDR} message GDR message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    GDR.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    GDR.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
     };
 
     /**
@@ -883,145 +786,115 @@ $root.GDR = (function() {
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {GDR & GDR.$Shape} GDR
+     * @returns {GDR} GDR
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    GDR.decode = function (reader, length, _end, _depth, _target) {
+    GDR.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end, message, key, value;
-        if (length === $undefined)
+        if (length === undefined)
             end = reader.len;
         else {
             end = reader.pos + length;
             if (end > reader.len)
-                throw $RangeError("index out of range");
+                throw RangeError("index out of range");
             length = reader.len;
             reader.len = end;
         }
-        message = _target || new $root.GDR();
+        message = new $root.GDR();
         while (reader.pos < end) {
-            var start = reader.pos;
-            var tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
+            var tag = reader.uint32();
+            if (tag === error)
                 break;
-            }
-            var wireType = tag & 7;
-            switch (tag >>>= 3) {
+            switch (tag >>> 3) {
             case 1: {
-                    if (wireType !== 2)
-                        break;
-                    if ((value = reader.stringVerify()).length)
-                        message.id = value;
-                    else
-                        delete message.id;
-                    continue;
+                    message.id = reader.string();
+                    break;
                 }
             case 2: {
-                    if (wireType !== 0)
-                        break;
-                    if (value = reader.int32())
-                        message.status = value;
-                    else
-                        delete message.status;
-                    continue;
+                    message.status = reader.int32();
+                    break;
                 }
             case 3: {
-                    if (wireType !== 2)
-                        break;
-                    message.timestamp = $root.google.protobuf.Timestamp.decode(reader, reader.uint32(), $undefined, _depth + 1, message.timestamp);
-                    continue;
+                    message.timestamp = $root.google.protobuf.Timestamp.decode(reader, reader.uint32(), undefined, long + 1);
+                    break;
                 }
             case 4: {
-                    if (wireType !== 2)
-                        break;
                     if (message.values === $util.emptyObject)
                         message.values = {};
                     var end2 = reader.uint32() + reader.pos;
                     if (end2 > reader.len)
-                        throw $RangeError("index out of range");
+                        throw RangeError("index out of range");
                     reader.len = end2;
                     key = 0;
-                    value = $util.Long ? $util.Long.fromNumber(0, true) : 0;
+                    value = 0;
                     while (reader.pos < end2) {
-                        var tag2 = reader.tag();
-                        wireType = tag2 & 7;
-                        switch (tag2 >>>= 3) {
+                        var tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
                         case 1:
-                            if (wireType !== 0)
-                                break;
                             key = reader.uint64();
-                            continue;
+                            break;
                         case 2:
-                            if (wireType !== 0)
-                                break;
                             value = reader.uint64();
-                            continue;
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7, long);
+                            break;
                         }
-                        reader.skipType(wireType, _depth, tag2);
                     }
                     if (reader.pos !== end2)
-                        throw $RangeError("index out of range");
+                        throw RangeError("index out of range");
                     reader.len = end;
                     message.values[typeof key === "object" ? $util.longToHash(key) : key] = value;
-                    continue;
+                    break;
                 }
             case 5: {
-                    if (wireType !== 2)
-                        break;
                     if (message.flexValues === $util.emptyObject)
                         message.flexValues = {};
                     var end2 = reader.uint32() + reader.pos;
                     if (end2 > reader.len)
-                        throw $RangeError("index out of range");
+                        throw RangeError("index out of range");
                     reader.len = end2;
                     key = "";
                     value = null;
                     while (reader.pos < end2) {
-                        var tag2 = reader.tag();
-                        wireType = tag2 & 7;
-                        switch (tag2 >>>= 3) {
+                        var tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
                         case 1:
-                            if (wireType !== 2)
-                                break;
-                            key = reader.stringVerify();
-                            continue;
+                            key = reader.string();
+                            break;
                         case 2:
-                            if (wireType !== 2)
-                                break;
-                            value = $root.FlexValue.decode(reader, reader.uint32(), $undefined, _depth + 1, value);
-                            continue;
+                            value = $root.FlexValue.decode(reader, reader.uint32(), undefined, long + 1);
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7, long);
+                            break;
                         }
-                        reader.skipType(wireType, _depth, tag2);
                     }
                     if (reader.pos !== end2)
-                        throw $RangeError("index out of range");
+                        throw RangeError("index out of range");
                     reader.len = end;
                     if (key === "__proto__")
                         $util.makeProp(message.flexValues, key);
-                    message.flexValues[key] = value || new $root.FlexValue();
-                    continue;
+                    message.flexValues[key] = value;
+                    break;
                 }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            default:
+                reader.skipType(tag & 7, long);
+                break;
             }
         }
-        if (length !== $undefined) {
+        if (length !== undefined) {
             if (reader.pos !== end)
-                throw $RangeError("index out of range");
+                throw RangeError("index out of range");
             reader.len = length;
         }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
         return message;
     };
 
@@ -1031,11 +904,11 @@ $root.GDR = (function() {
      * @memberof GDR
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {GDR & GDR.$Shape} GDR
+     * @returns {GDR} GDR
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    GDR.decodeDelimited = function(reader) {
+    GDR.decodeDelimited = function decodeDelimited(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
@@ -1049,28 +922,35 @@ $root.GDR = (function() {
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    GDR.verify = function (message, _depth) {
+    GDR.verify = function verify(message, long) {
         if (typeof message !== "object" || message === null)
             return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+        if (long === undefined)
+            long = 0;
+        if (long > $util.recursionLimit)
+            return "maximum nesting depth exceeded";
+        if (message.id != null && Object.hasOwnProperty.call(message, "id"))
             if (!$util.isString(message.id))
                 return "id: string expected";
-        if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
-            if (typeof message.status !== "number" || (message.status | 0) !== message.status)
+        if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+            switch (message.status) {
+            default:
                 return "status: enum value expected";
-        if (message.timestamp != null && $Object.hasOwnProperty.call(message, "timestamp")) {
-            var error = $root.google.protobuf.Timestamp.verify(message.timestamp, _depth + 1);
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                break;
+            }
+        if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp")) {
+            var error = $root.google.protobuf.Timestamp.verify(message.timestamp, long + 1);
             if (error)
                 return "timestamp." + error;
         }
-        if (message.values != null && $Object.hasOwnProperty.call(message, "values")) {
+        if (message.values != null && Object.hasOwnProperty.call(message, "values")) {
             if (!$util.isObject(message.values))
                 return "values: object expected";
-            var key = $Object.keys(message.values);
+            var key = Object.keys(message.values);
             for (var i = 0; i < key.length; ++i) {
                 if (!$util.key64Re.test(key[i]))
                     return "values: integer|Long key{k:uint64} expected";
@@ -1078,12 +958,12 @@ $root.GDR = (function() {
                     return "values: integer|Long{k:uint64} expected";
             }
         }
-        if (message.flexValues != null && $Object.hasOwnProperty.call(message, "flexValues")) {
+        if (message.flexValues != null && Object.hasOwnProperty.call(message, "flexValues")) {
             if (!$util.isObject(message.flexValues))
                 return "flexValues: object expected";
-            var key = $Object.keys(message.flexValues);
+            var key = Object.keys(message.flexValues);
             for (var i = 0; i < key.length; ++i) {
-                var error = $root.FlexValue.verify(message.flexValues[key[i]], _depth + 1);
+                var error = $root.FlexValue.verify(message.flexValues[key[i]], long + 1);
                 if (error)
                     return "flexValues." + error;
             }
@@ -1099,57 +979,58 @@ $root.GDR = (function() {
      * @param {Object.<string,*>} object Plain object
      * @returns {GDR} GDR
      */
-    GDR.fromObject = function (object, _depth) {
+    GDR.fromObject = function fromObject(object, long) {
         if (object instanceof $root.GDR)
             return object;
         if (!$util.isObject(object))
-            throw $TypeError(".GDR: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
+            throw TypeError(".GDR: object expected");
+        if (long === undefined)
+            long = 0;
+        if (long > $util.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var message = new $root.GDR();
         if (object.id != null)
-            if (typeof object.id !== "string" || object.id.length)
-                message.id = $String(object.id);
-        if (object.status !== 0 && (typeof object.status !== "string" || $root.Status[object.status] !== 0))
-            switch (object.status) {
-            case "STATUS_UNKNOWN":
-            case 0:
-                message.status = 0;
+            message.id = String(object.id);
+        switch (object.status) {
+        default:
+            if (typeof object.status === "number") {
+                message.status = object.status;
                 break;
-            case "STATUS_OK":
-            case 1:
-                message.status = 1;
-                break;
-            case "STATUS_WARNING":
-            case 2:
-                message.status = 2;
-                break;
-            case "STATUS_ERROR":
-            case 3:
-                message.status = 3;
-                break;
-            default:
-                if (typeof object.status === "number" && (object.status | 0) === object.status)
-                    message.status = object.status;
             }
+            break;
+        case "STATUS_UNKNOWN":
+        case 0:
+            message.status = 0;
+            break;
+        case "STATUS_OK":
+        case 1:
+            message.status = 1;
+            break;
+        case "STATUS_WARNING":
+        case 2:
+            message.status = 2;
+            break;
+        case "STATUS_ERROR":
+        case 3:
+            message.status = 3;
+            break;
+        }
         if (object.timestamp != null) {
             if (!$util.isObject(object.timestamp))
-                throw $TypeError(".GDR.timestamp: object expected");
-            message.timestamp = $root.google.protobuf.Timestamp.fromObject(object.timestamp, _depth + 1);
+                throw TypeError(".GDR.timestamp: object expected");
+            message.timestamp = $root.google.protobuf.Timestamp.fromObject(object.timestamp, long + 1);
         }
         if (object.values) {
             if (!$util.isObject(object.values))
-                throw $TypeError(".GDR.values: object expected");
+                throw TypeError(".GDR.values: object expected");
             message.values = {};
-            for (var keys = $Object.keys(object.values), i = 0; i < keys.length; ++i) {
+            for (var keys = Object.keys(object.values), i = 0; i < keys.length; ++i) {
                 if (keys[i] === "__proto__")
                     $util.makeProp(message.values, keys[i]);
                 if ($util.Long)
                     message.values[keys[i]] = $util.Long.fromValue(object.values[keys[i]], true);
                 else if (typeof object.values[keys[i]] === "string")
-                    message.values[keys[i]] = $parseInt(object.values[keys[i]], 10);
+                    message.values[keys[i]] = parseInt(object.values[keys[i]], 10);
                 else if (typeof object.values[keys[i]] === "number")
                     message.values[keys[i]] = object.values[keys[i]];
                 else if (typeof object.values[keys[i]] === "object")
@@ -1158,14 +1039,14 @@ $root.GDR = (function() {
         }
         if (object.flexValues) {
             if (!$util.isObject(object.flexValues))
-                throw $TypeError(".GDR.flexValues: object expected");
+                throw TypeError(".GDR.flexValues: object expected");
             message.flexValues = {};
-            for (var keys = $Object.keys(object.flexValues), i = 0; i < keys.length; ++i) {
+            for (var keys = Object.keys(object.flexValues), i = 0; i < keys.length; ++i) {
                 if (keys[i] === "__proto__")
                     $util.makeProp(message.flexValues, keys[i]);
                 if (!$util.isObject(object.flexValues[keys[i]]))
-                    throw $TypeError(".GDR.flexValues: object expected");
-                message.flexValues[keys[i]] = $root.FlexValue.fromObject(object.flexValues[keys[i]], _depth + 1);
+                    throw TypeError(".GDR.flexValues: object expected");
+                message.flexValues[keys[i]] = $root.FlexValue.fromObject(object.flexValues[keys[i]], long + 1);
             }
         }
         return message;
@@ -1180,13 +1061,13 @@ $root.GDR = (function() {
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    GDR.toObject = function (message, options, _depth) {
+    GDR.toObject = function toObject(message, options, q) {
         if (!options)
             options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
+        if (q === undefined)
+            q = 0;
+        if (q > $util.recursionLimit)
+            throw Error("max depth exceeded");
         var object = {};
         if (options.objects || options.defaults) {
             object.values = {};
@@ -1194,36 +1075,35 @@ $root.GDR = (function() {
         }
         if (options.defaults) {
             object.id = "";
-            object.status = options.enums === $String ? "STATUS_UNKNOWN" : 0;
+            object.status = options.enums === String ? "STATUS_UNKNOWN" : 0;
             object.timestamp = null;
         }
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+        if (message.id != null && Object.hasOwnProperty.call(message, "id"))
             object.id = message.id;
-        if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
-            object.status = options.enums === $String ? $root.Status[message.status] === $undefined ? message.status : $root.Status[message.status] : message.status;
-        if (message.timestamp != null && $Object.hasOwnProperty.call(message, "timestamp"))
-            object.timestamp = $root.google.protobuf.Timestamp.toObject(message.timestamp, options, _depth + 1);
+        if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+            object.status = options.enums === String ? $root.Status[message.status] === undefined ? message.status : $root.Status[message.status] : message.status;
+        if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
+            object.timestamp = $root.google.protobuf.Timestamp.toObject(message.timestamp, options, q + 1);
         var keys2;
-        if (message.values && (keys2 = $Object.keys(message.values)).length) {
+        if (message.values && (keys2 = Object.keys(message.values)).length) {
             object.values = {};
             for (var j = 0; j < keys2.length; ++j) {
-                var k2 = $util.longFromKey(keys2[j], true).toString();
                 if (keys2[j] === "__proto__")
                     $util.makeProp(object.values, keys2[j]);
-                if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                    object.values[k2] = typeof message.values[keys2[j]] === "number" ? $BigInt(message.values[keys2[j]]) : $util.Long.fromBits(message.values[keys2[j]].low >>> 0, message.values[keys2[j]].high >>> 0, true).toBigInt();
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.values[keys2[j]] = typeof message.values[keys2[j]] === "number" ? BigInt(message.values[keys2[j]]) : $util.Long.fromBits(message.values[keys2[j]].low >>> 0, message.values[keys2[j]].high >>> 0, true).toBigInt();
                 else if (typeof message.values[keys2[j]] === "number")
-                    object.values[k2] = options.longs === $String ? $String(message.values[keys2[j]]) : message.values[keys2[j]];
+                    object.values[keys2[j]] = options.longs === String ? String(message.values[keys2[j]]) : message.values[keys2[j]];
                 else
-                    object.values[k2] = options.longs === $String ? $util.Long.prototype.toString.call(message.values[keys2[j]]) : options.longs === $Number ? new $util.LongBits(message.values[keys2[j]].low >>> 0, message.values[keys2[j]].high >>> 0).toNumber(true) : message.values[keys2[j]];
+                    object.values[keys2[j]] = options.longs === String ? $util.Long.prototype.toString.call(message.values[keys2[j]]) : options.longs === Number ? new $util.LongBits(message.values[keys2[j]].low >>> 0, message.values[keys2[j]].high >>> 0).toNumber(true) : message.values[keys2[j]];
             }
         }
-        if (message.flexValues && (keys2 = $Object.keys(message.flexValues)).length) {
+        if (message.flexValues && (keys2 = Object.keys(message.flexValues)).length) {
             object.flexValues = {};
             for (var j = 0; j < keys2.length; ++j) {
                 if (keys2[j] === "__proto__")
                     $util.makeProp(object.flexValues, keys2[j]);
-                object.flexValues[keys2[j]] = $root.FlexValue.toObject(message.flexValues[keys2[j]], options, _depth + 1);
+                object.flexValues[keys2[j]] = $root.FlexValue.toObject(message.flexValues[keys2[j]], options, q + 1);
             }
         }
         return object;
@@ -1236,22 +1116,23 @@ $root.GDR = (function() {
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    GDR.prototype.toJSON = function() {
-        return GDR.toObject(this, $protobuf.util.toJSONOptions);
+    GDR.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
     };
 
     /**
-     * Gets the type url for GDR
+     * Gets the default type url for GDR
      * @function getTypeUrl
      * @memberof GDR
      * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
      */
-    GDR.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/GDR";
+    GDR.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/GDR";
     };
 
     return GDR;
@@ -1261,7 +1142,8 @@ $root.GCR = (function() {
 
     /**
      * Properties of a GCR.
-     * @typedef {Object} GCR.$Properties
+     * @exports IGCR
+     * @interface IGCR
      * @property {string|null} [id] GCR id
      * @property {string|null} [label] GCR label
      * @property {Class|null} ["class"] GCR class
@@ -1269,42 +1151,28 @@ $root.GCR = (function() {
      * @property {Array.<number>|null} [codes] GCR codes
      * @property {DeviceType|null} [devicetype] GCR devicetype
      * @property {Object.<string,string>|null} [meta] GCR meta
-     * @property {google.protobuf.Timestamp.$Properties|null} [timestamp] GCR timestamp
-     * @property {Object.<string,FlexDefinition.$Properties>|null} [flexDefinitions] GCR flexDefinitions
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a GCR.
-     * @exports IGCR
-     * @interface IGCR
-     * @augments GCR.$Properties
-     * @deprecated Use GCR.$Properties instead.
-     */
-
-    /**
-     * Shape of a GCR.
-     * @typedef {GCR.$Properties} GCR.$Shape
+     * @property {google.protobuf.ITimestamp|null} [timestamp] GCR timestamp
+     * @property {Object.<string,IFlexDefinition>|null} [flexDefinitions] GCR flexDefinitions
      */
 
     /**
      * Constructs a new GCR.
      * @exports GCR
      * @classdesc Represents a GCR.
+     * @implements IGCR
      * @constructor
-     * @param {GCR.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     * @param {IGCR=} [properties] Properties to set
      */
-    var GCR = function (properties) {
+    function GCR(properties) {
         this.sources = [];
         this.codes = [];
         this.meta = {};
         this.flexDefinitions = {};
         if (properties)
-            for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
-    };
+    }
 
     /**
      * GCR id.
@@ -1364,7 +1232,7 @@ $root.GCR = (function() {
 
     /**
      * GCR timestamp.
-     * @member {google.protobuf.Timestamp.$Properties|null|undefined} timestamp
+     * @member {google.protobuf.ITimestamp|null|undefined} timestamp
      * @memberof GCR
      * @instance
      */
@@ -1372,7 +1240,7 @@ $root.GCR = (function() {
 
     /**
      * GCR flexDefinitions.
-     * @member {Object.<string,FlexDefinition.$Properties>} flexDefinitions
+     * @member {Object.<string,IFlexDefinition>} flexDefinitions
      * @memberof GCR
      * @instance
      */
@@ -1383,14 +1251,10 @@ $root.GCR = (function() {
      * @function create
      * @memberof GCR
      * @static
-     * @param {GCR.$Properties=} [properties] Properties to set
+     * @param {IGCR=} [properties] Properties to set
      * @returns {GCR} GCR instance
-     * @type {{
-     *   (properties: GCR.$Shape): GCR & GCR.$Shape;
-     *   (properties?: GCR.$Properties): GCR;
-     * }}
      */
-    GCR.create = function(properties) {
+    GCR.create = function create(properties) {
         return new GCR(properties);
     };
 
@@ -1399,43 +1263,44 @@ $root.GCR = (function() {
      * @function encode
      * @memberof GCR
      * @static
-     * @param {GCR.$Properties} message GCR message or plain object to encode
+     * @param {IGCR} message GCR message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    GCR.encode = function (message, writer, _depth) {
+    GCR.encode = function encode(message, writer, q) {
         if (!writer)
             writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id") && message.id !== "")
+        if (q === undefined)
+            q = 0;
+        if (q > $util.recursionLimit)
+            throw Error("max depth exceeded");
+        if (message.id != null && Object.hasOwnProperty.call(message, "id"))
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.id);
-        if (message.label != null && $Object.hasOwnProperty.call(message, "label") && message.label !== "")
+        if (message.label != null && Object.hasOwnProperty.call(message, "label"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.label);
-        if (message["class"] != null && $Object.hasOwnProperty.call(message, "class") && message["class"] !== 0)
+        if (message["class"] != null && Object.hasOwnProperty.call(message, "class"))
             writer.uint32(/* id 3, wireType 0 =*/24).int32(message["class"]);
         if (message.sources != null && message.sources.length)
             for (var i = 0; i < message.sources.length; ++i)
                 writer.uint32(/* id 4, wireType 2 =*/34).string(message.sources[i]);
-        if (message.codes != null && message.codes.length)
-            writer.uint32(/* id 5, wireType 2 =*/42).uint64s(message.codes);
-        if (message.devicetype != null && $Object.hasOwnProperty.call(message, "devicetype") && message.devicetype !== 0)
+        if (message.codes != null && message.codes.length) {
+            writer.uint32(/* id 5, wireType 2 =*/42).fork();
+            for (var i = 0; i < message.codes.length; ++i)
+                writer.uint64(message.codes[i]);
+            writer.ldelim();
+        }
+        if (message.devicetype != null && Object.hasOwnProperty.call(message, "devicetype"))
             writer.uint32(/* id 6, wireType 0 =*/48).int32(message.devicetype);
-        if (message.meta != null && $Object.hasOwnProperty.call(message, "meta"))
-            for (var keys = $Object.keys(message.meta), i = 0; i < keys.length; ++i)
+        if (message.meta != null && Object.hasOwnProperty.call(message, "meta"))
+            for (var keys = Object.keys(message.meta), i = 0; i < keys.length; ++i)
                 writer.uint32(/* id 7, wireType 2 =*/58).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]).uint32(/* id 2, wireType 2 =*/18).string(message.meta[keys[i]]).ldelim();
-        if (message.timestamp != null && $Object.hasOwnProperty.call(message, "timestamp"))
-            $root.google.protobuf.Timestamp.encode(message.timestamp, writer.uint32(/* id 8, wireType 2 =*/66).fork(), _depth + 1).ldelim();
-        if (message.flexDefinitions != null && $Object.hasOwnProperty.call(message, "flexDefinitions"))
-            for (var keys = $Object.keys(message.flexDefinitions), i = 0; i < keys.length; ++i) {
+        if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
+            $root.google.protobuf.Timestamp.encode(message.timestamp, writer.uint32(/* id 8, wireType 2 =*/66).fork(), q + 1).ldelim();
+        if (message.flexDefinitions != null && Object.hasOwnProperty.call(message, "flexDefinitions"))
+            for (var keys = Object.keys(message.flexDefinitions), i = 0; i < keys.length; ++i) {
                 writer.uint32(/* id 9, wireType 2 =*/74).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
-                $root.FlexDefinition.encode(message.flexDefinitions[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim().ldelim();
+                $root.FlexDefinition.encode(message.flexDefinitions[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork(), q + 1).ldelim().ldelim();
             }
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (var i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
         return writer;
     };
 
@@ -1444,12 +1309,12 @@ $root.GCR = (function() {
      * @function encodeDelimited
      * @memberof GCR
      * @static
-     * @param {GCR.$Properties} message GCR message or plain object to encode
+     * @param {IGCR} message GCR message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    GCR.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    GCR.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
     };
 
     /**
@@ -1459,187 +1324,148 @@ $root.GCR = (function() {
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {GCR & GCR.$Shape} GCR
+     * @returns {GCR} GCR
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    GCR.decode = function (reader, length, _end, _depth, _target) {
+    GCR.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var end, message, key, value;
-        if (length === $undefined)
+        if (length === undefined)
             end = reader.len;
         else {
             end = reader.pos + length;
             if (end > reader.len)
-                throw $RangeError("index out of range");
+                throw RangeError("index out of range");
             length = reader.len;
             reader.len = end;
         }
-        message = _target || new $root.GCR();
+        message = new $root.GCR();
         while (reader.pos < end) {
-            var start = reader.pos;
-            var tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
+            var tag = reader.uint32();
+            if (tag === error)
                 break;
-            }
-            var wireType = tag & 7;
-            switch (tag >>>= 3) {
+            switch (tag >>> 3) {
             case 1: {
-                    if (wireType !== 2)
-                        break;
-                    if ((value = reader.stringVerify()).length)
-                        message.id = value;
-                    else
-                        delete message.id;
-                    continue;
+                    message.id = reader.string();
+                    break;
                 }
             case 2: {
-                    if (wireType !== 2)
-                        break;
-                    if ((value = reader.stringVerify()).length)
-                        message.label = value;
-                    else
-                        delete message.label;
-                    continue;
+                    message.label = reader.string();
+                    break;
                 }
             case 3: {
-                    if (wireType !== 0)
-                        break;
-                    if (value = reader.int32())
-                        message["class"] = value;
-                    else
-                        delete message["class"];
-                    continue;
+                    message["class"] = reader.int32();
+                    break;
                 }
             case 4: {
-                    if (wireType !== 2)
-                        break;
                     if (!(message.sources && message.sources.length))
                         message.sources = [];
-                    message.sources.push(reader.stringVerify());
-                    continue;
+                    message.sources.push(reader.string());
+                    break;
                 }
             case 5: {
-                    if (wireType === 2) {
-                        if (!(message.codes && message.codes.length))
-                            message.codes = [];
-                        reader.uint64s(message.codes);
-                        continue;
-                    }
-                    if (wireType !== 0)
-                        break;
                     if (!(message.codes && message.codes.length))
                         message.codes = [];
-                    message.codes.push(reader.uint64());
-                    continue;
+                    if ((tag & 7) === 2) {
+                        var end2 = reader.uint32() + reader.pos;
+                        if (end2 > reader.len)
+                            throw RangeError("index out of range");
+                        reader.len = end2;
+                        while (reader.pos < end2)
+                            message.codes.push(reader.uint64());
+                        if (reader.pos !== end2)
+                            throw RangeError("index out of range");
+                        reader.len = end;
+                    } else
+                        message.codes.push(reader.uint64());
+                    break;
                 }
             case 6: {
-                    if (wireType !== 0)
-                        break;
-                    if (value = reader.int32())
-                        message.devicetype = value;
-                    else
-                        delete message.devicetype;
-                    continue;
+                    message.devicetype = reader.int32();
+                    break;
                 }
             case 7: {
-                    if (wireType !== 2)
-                        break;
                     if (message.meta === $util.emptyObject)
                         message.meta = {};
                     var end2 = reader.uint32() + reader.pos;
                     if (end2 > reader.len)
-                        throw $RangeError("index out of range");
+                        throw RangeError("index out of range");
                     reader.len = end2;
                     key = "";
                     value = "";
                     while (reader.pos < end2) {
-                        var tag2 = reader.tag();
-                        wireType = tag2 & 7;
-                        switch (tag2 >>>= 3) {
+                        var tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
                         case 1:
-                            if (wireType !== 2)
-                                break;
-                            key = reader.stringVerify();
-                            continue;
+                            key = reader.string();
+                            break;
                         case 2:
-                            if (wireType !== 2)
-                                break;
-                            value = reader.stringVerify();
-                            continue;
+                            value = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7, long);
+                            break;
                         }
-                        reader.skipType(wireType, _depth, tag2);
                     }
                     if (reader.pos !== end2)
-                        throw $RangeError("index out of range");
+                        throw RangeError("index out of range");
                     reader.len = end;
                     if (key === "__proto__")
                         $util.makeProp(message.meta, key);
                     message.meta[key] = value;
-                    continue;
+                    break;
                 }
             case 8: {
-                    if (wireType !== 2)
-                        break;
-                    message.timestamp = $root.google.protobuf.Timestamp.decode(reader, reader.uint32(), $undefined, _depth + 1, message.timestamp);
-                    continue;
+                    message.timestamp = $root.google.protobuf.Timestamp.decode(reader, reader.uint32(), undefined, long + 1);
+                    break;
                 }
             case 9: {
-                    if (wireType !== 2)
-                        break;
                     if (message.flexDefinitions === $util.emptyObject)
                         message.flexDefinitions = {};
                     var end2 = reader.uint32() + reader.pos;
                     if (end2 > reader.len)
-                        throw $RangeError("index out of range");
+                        throw RangeError("index out of range");
                     reader.len = end2;
                     key = "";
                     value = null;
                     while (reader.pos < end2) {
-                        var tag2 = reader.tag();
-                        wireType = tag2 & 7;
-                        switch (tag2 >>>= 3) {
+                        var tag2 = reader.uint32();
+                        switch (tag2 >>> 3) {
                         case 1:
-                            if (wireType !== 2)
-                                break;
-                            key = reader.stringVerify();
-                            continue;
+                            key = reader.string();
+                            break;
                         case 2:
-                            if (wireType !== 2)
-                                break;
-                            value = $root.FlexDefinition.decode(reader, reader.uint32(), $undefined, _depth + 1, value);
-                            continue;
+                            value = $root.FlexDefinition.decode(reader, reader.uint32(), undefined, long + 1);
+                            break;
+                        default:
+                            reader.skipType(tag2 & 7, long);
+                            break;
                         }
-                        reader.skipType(wireType, _depth, tag2);
                     }
                     if (reader.pos !== end2)
-                        throw $RangeError("index out of range");
+                        throw RangeError("index out of range");
                     reader.len = end;
                     if (key === "__proto__")
                         $util.makeProp(message.flexDefinitions, key);
-                    message.flexDefinitions[key] = value || new $root.FlexDefinition();
-                    continue;
+                    message.flexDefinitions[key] = value;
+                    break;
                 }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            default:
+                reader.skipType(tag & 7, long);
+                break;
             }
         }
-        if (length !== $undefined) {
+        if (length !== undefined) {
             if (reader.pos !== end)
-                throw $RangeError("index out of range");
+                throw RangeError("index out of range");
             reader.len = length;
         }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
         return message;
     };
 
@@ -1649,11 +1475,11 @@ $root.GCR = (function() {
      * @memberof GCR
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {GCR & GCR.$Shape} GCR
+     * @returns {GCR} GCR
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    GCR.decodeDelimited = function(reader) {
+    GCR.decodeDelimited = function decodeDelimited(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
@@ -1667,58 +1493,132 @@ $root.GCR = (function() {
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    GCR.verify = function (message, _depth) {
+    GCR.verify = function verify(message, long) {
         if (typeof message !== "object" || message === null)
             return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+        if (long === undefined)
+            long = 0;
+        if (long > $util.recursionLimit)
+            return "maximum nesting depth exceeded";
+        if (message.id != null && Object.hasOwnProperty.call(message, "id"))
             if (!$util.isString(message.id))
                 return "id: string expected";
-        if (message.label != null && $Object.hasOwnProperty.call(message, "label"))
+        if (message.label != null && Object.hasOwnProperty.call(message, "label"))
             if (!$util.isString(message.label))
                 return "label: string expected";
-        if (message["class"] != null && $Object.hasOwnProperty.call(message, "class"))
-            if (typeof message["class"] !== "number" || (message["class"] | 0) !== message["class"])
+        if (message["class"] != null && Object.hasOwnProperty.call(message, "class"))
+            switch (message["class"]) {
+            default:
                 return "class: enum value expected";
-        if (message.sources != null && $Object.hasOwnProperty.call(message, "sources")) {
-            if (!$Array.isArray(message.sources))
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                break;
+            }
+        if (message.sources != null && Object.hasOwnProperty.call(message, "sources")) {
+            if (!Array.isArray(message.sources))
                 return "sources: array expected";
             for (var i = 0; i < message.sources.length; ++i)
                 if (!$util.isString(message.sources[i]))
                     return "sources: string[] expected";
         }
-        if (message.codes != null && $Object.hasOwnProperty.call(message, "codes")) {
-            if (!$Array.isArray(message.codes))
+        if (message.codes != null && Object.hasOwnProperty.call(message, "codes")) {
+            if (!Array.isArray(message.codes))
                 return "codes: array expected";
             for (var i = 0; i < message.codes.length; ++i)
                 if (!$util.isInteger(message.codes[i]) && !(message.codes[i] && $util.isInteger(message.codes[i].low) && $util.isInteger(message.codes[i].high)))
                     return "codes: integer|Long[] expected";
         }
-        if (message.devicetype != null && $Object.hasOwnProperty.call(message, "devicetype"))
-            if (typeof message.devicetype !== "number" || (message.devicetype | 0) !== message.devicetype)
+        if (message.devicetype != null && Object.hasOwnProperty.call(message, "devicetype"))
+            switch (message.devicetype) {
+            default:
                 return "devicetype: enum value expected";
-        if (message.meta != null && $Object.hasOwnProperty.call(message, "meta")) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            case 24:
+            case 25:
+            case 26:
+            case 27:
+            case 28:
+            case 29:
+            case 30:
+            case 31:
+            case 32:
+            case 33:
+            case 34:
+            case 35:
+            case 36:
+            case 37:
+            case 38:
+            case 39:
+            case 40:
+            case 41:
+            case 42:
+            case 43:
+            case 44:
+            case 45:
+            case 46:
+            case 47:
+            case 48:
+            case 49:
+            case 50:
+            case 51:
+            case 52:
+            case 53:
+            case 54:
+            case 55:
+            case 56:
+            case 57:
+            case 58:
+            case 59:
+            case 60:
+            case 61:
+            case 62:
+            case 63:
+                break;
+            }
+        if (message.meta != null && Object.hasOwnProperty.call(message, "meta")) {
             if (!$util.isObject(message.meta))
                 return "meta: object expected";
-            var key = $Object.keys(message.meta);
+            var key = Object.keys(message.meta);
             for (var i = 0; i < key.length; ++i)
                 if (!$util.isString(message.meta[key[i]]))
                     return "meta: string{k:string} expected";
         }
-        if (message.timestamp != null && $Object.hasOwnProperty.call(message, "timestamp")) {
-            var error = $root.google.protobuf.Timestamp.verify(message.timestamp, _depth + 1);
+        if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp")) {
+            var error = $root.google.protobuf.Timestamp.verify(message.timestamp, long + 1);
             if (error)
                 return "timestamp." + error;
         }
-        if (message.flexDefinitions != null && $Object.hasOwnProperty.call(message, "flexDefinitions")) {
+        if (message.flexDefinitions != null && Object.hasOwnProperty.call(message, "flexDefinitions")) {
             if (!$util.isObject(message.flexDefinitions))
                 return "flexDefinitions: object expected";
-            var key = $Object.keys(message.flexDefinitions);
+            var key = Object.keys(message.flexDefinitions);
             for (var i = 0; i < key.length; ++i) {
-                var error = $root.FlexDefinition.verify(message.flexDefinitions[key[i]], _depth + 1);
+                var error = $root.FlexDefinition.verify(message.flexDefinitions[key[i]], long + 1);
                 if (error)
                     return "flexDefinitions." + error;
             }
@@ -1734,352 +1634,354 @@ $root.GCR = (function() {
      * @param {Object.<string,*>} object Plain object
      * @returns {GCR} GCR
      */
-    GCR.fromObject = function (object, _depth) {
+    GCR.fromObject = function fromObject(object, long) {
         if (object instanceof $root.GCR)
             return object;
         if (!$util.isObject(object))
-            throw $TypeError(".GCR: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
+            throw TypeError(".GCR: object expected");
+        if (long === undefined)
+            long = 0;
+        if (long > $util.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var message = new $root.GCR();
         if (object.id != null)
-            if (typeof object.id !== "string" || object.id.length)
-                message.id = $String(object.id);
+            message.id = String(object.id);
         if (object.label != null)
-            if (typeof object.label !== "string" || object.label.length)
-                message.label = $String(object.label);
-        if (object["class"] !== 0 && (typeof object["class"] !== "string" || $root.Class[object["class"]] !== 0))
-            switch (object["class"]) {
-            case "CLASS_UNKNOWN":
-            case 0:
-                message["class"] = 0;
+            message.label = String(object.label);
+        switch (object["class"]) {
+        default:
+            if (typeof object["class"] === "number") {
+                message["class"] = object["class"];
                 break;
-            case "CLASS_CONSUMER":
-            case 1:
-                message["class"] = 1;
-                break;
-            case "CLASS_PRODUCER":
-            case 2:
-                message["class"] = 2;
-                break;
-            case "CLASS_HYBRID":
-            case 3:
-                message["class"] = 3;
-                break;
-            default:
-                if (typeof object["class"] === "number" && (object["class"] | 0) === object["class"])
-                    message["class"] = object["class"];
             }
+            break;
+        case "CLASS_UNKNOWN":
+        case 0:
+            message["class"] = 0;
+            break;
+        case "CLASS_CONSUMER":
+        case 1:
+            message["class"] = 1;
+            break;
+        case "CLASS_PRODUCER":
+        case 2:
+            message["class"] = 2;
+            break;
+        case "CLASS_HYBRID":
+        case 3:
+            message["class"] = 3;
+            break;
+        }
         if (object.sources) {
-            if (!$Array.isArray(object.sources))
-                throw $TypeError(".GCR.sources: array expected");
-            message.sources = $Array(object.sources.length);
+            if (!Array.isArray(object.sources))
+                throw TypeError(".GCR.sources: array expected");
+            message.sources = [];
             for (var i = 0; i < object.sources.length; ++i)
-                message.sources[i] = $String(object.sources[i]);
+                message.sources[i] = String(object.sources[i]);
         }
         if (object.codes) {
-            if (!$Array.isArray(object.codes))
-                throw $TypeError(".GCR.codes: array expected");
-            message.codes = $Array(object.codes.length);
+            if (!Array.isArray(object.codes))
+                throw TypeError(".GCR.codes: array expected");
+            message.codes = [];
             for (var i = 0; i < object.codes.length; ++i)
                 if ($util.Long)
                     message.codes[i] = $util.Long.fromValue(object.codes[i], true);
                 else if (typeof object.codes[i] === "string")
-                    message.codes[i] = $parseInt(object.codes[i], 10);
+                    message.codes[i] = parseInt(object.codes[i], 10);
                 else if (typeof object.codes[i] === "number")
                     message.codes[i] = object.codes[i];
                 else if (typeof object.codes[i] === "object")
                     message.codes[i] = new $util.LongBits(object.codes[i].low >>> 0, object.codes[i].high >>> 0).toNumber(true);
         }
-        if (object.devicetype !== 0 && (typeof object.devicetype !== "string" || $root.DeviceType[object.devicetype] !== 0))
-            switch (object.devicetype) {
-            case "DEVICE_TYPE_UNKNOWN":
-            case 0:
-                message.devicetype = 0;
+        switch (object.devicetype) {
+        default:
+            if (typeof object.devicetype === "number") {
+                message.devicetype = object.devicetype;
                 break;
-            case "DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM":
-            case 1:
-                message.devicetype = 1;
-                break;
-            case "DEVICE_TYPE_ELECTRIC_VEHICLE":
-            case 2:
-                message.devicetype = 2;
-                break;
-            case "DEVICE_TYPE_BATTERY":
-            case 3:
-                message.devicetype = 3;
-                break;
-            case "DEVICE_TYPE_OVEN":
-            case 4:
-                message.devicetype = 4;
-                break;
-            case "DEVICE_TYPE_FLOW_HEATER":
-            case 5:
-                message.devicetype = 5;
-                break;
-            case "DEVICE_TYPE_BOILER":
-            case 6:
-                message.devicetype = 6;
-                break;
-            case "DEVICE_TYPE_IMMERSION_HEATER":
-            case 7:
-                message.devicetype = 7;
-                break;
-            case "DEVICE_TYPE_STOVE":
-            case 8:
-                message.devicetype = 8;
-                break;
-            case "DEVICE_TYPE_COOLER":
-            case 9:
-                message.devicetype = 9;
-                break;
-            case "DEVICE_TYPE_VENTILATION":
-            case 10:
-                message.devicetype = 10;
-                break;
-            case "DEVICE_TYPE_DISHWASHER":
-            case 11:
-                message.devicetype = 11;
-                break;
-            case "DEVICE_TYPE_DRYER":
-            case 12:
-                message.devicetype = 12;
-                break;
-            case "DEVICE_TYPE_HEAT_PUMP":
-            case 13:
-                message.devicetype = 13;
-                break;
-            case "DEVICE_TYPE_WASHING_MACHINE":
-            case 14:
-                message.devicetype = 14;
-                break;
-            case "DEVICE_TYPE_INVERTER_ONEPHASE":
-            case 15:
-                message.devicetype = 15;
-                break;
-            case "DEVICE_TYPE_INVERTER_THREEPHASE":
-            case 16:
-                message.devicetype = 16;
-                break;
-            case "DEVICE_TYPE_CHP":
-            case 17:
-                message.devicetype = 17;
-                break;
-            case "DEVICE_TYPE_BUILDING_OFFICE":
-            case 18:
-                message.devicetype = 18;
-                break;
-            case "DEVICE_TYPE_BUILDING_COMMERCIAL":
-            case 19:
-                message.devicetype = 19;
-                break;
-            case "DEVICE_TYPE_BUILDING_FACTORY":
-            case 20:
-                message.devicetype = 20;
-                break;
-            case "DEVICE_TYPE_BUILDING_SINGLE_HOME":
-            case 21:
-                message.devicetype = 21;
-                break;
-            case "DEVICE_TYPE_BUILDING_HOTEL":
-            case 22:
-                message.devicetype = 22;
-                break;
-            case "DEVICE_TYPE_BUILDING_APARTMENTS":
-            case 23:
-                message.devicetype = 23;
-                break;
-            case "DEVICE_TYPE_BUILDING_PARKING":
-            case 24:
-                message.devicetype = 24;
-                break;
-            case "DEVICE_TYPE_BUILDING_RESIDENTIAL":
-            case 25:
-                message.devicetype = 25;
-                break;
-            case "DEVICE_TYPE_ROOM_BATH":
-            case 26:
-                message.devicetype = 26;
-                break;
-            case "DEVICE_TYPE_ROOM_GARAGE":
-            case 27:
-                message.devicetype = 27;
-                break;
-            case "DEVICE_TYPE_ROOM_BASEMENT":
-            case 28:
-                message.devicetype = 28;
-                break;
-            case "DEVICE_TYPE_ROOM_CHILD":
-            case 29:
-                message.devicetype = 29;
-                break;
-            case "DEVICE_TYPE_ROOM_KITCHEN":
-            case 30:
-                message.devicetype = 30;
-                break;
-            case "DEVICE_TYPE_ROOM_SAUNA":
-            case 31:
-                message.devicetype = 31;
-                break;
-            case "DEVICE_TYPE_ROOM_BED":
-            case 32:
-                message.devicetype = 32;
-                break;
-            case "DEVICE_TYPE_ROOM_LIVING":
-            case 33:
-                message.devicetype = 33;
-                break;
-            case "DEVICE_TYPE_ROOM_GENERIC":
-            case 34:
-                message.devicetype = 34;
-                break;
-            case "DEVICE_TYPE_CONTROLLABLE_LOAD":
-            case 35:
-                message.devicetype = 35;
-                break;
-            case "DEVICE_TYPE_LIGHTING":
-            case 36:
-                message.devicetype = 36;
-                break;
-            case "DEVICE_TYPE_OFFICES":
-            case 37:
-                message.devicetype = 37;
-                break;
-            case "DEVICE_TYPE_DOMESTIC_APPLIANCES":
-            case 38:
-                message.devicetype = 38;
-                break;
-            case "DEVICE_TYPE_HEATER_OF_HEAT_PUMP":
-            case 39:
-                message.devicetype = 39;
-                break;
-            case "DEVICE_TYPE_INDUSTRIAL_ENGINE":
-            case 40:
-                message.devicetype = 40;
-                break;
-            case "DEVICE_TYPE_AIR_CONDITIONING":
-            case 41:
-                message.devicetype = 41;
-                break;
-            case "DEVICE_TYPE_COMPRESSOR":
-            case 42:
-                message.devicetype = 42;
-                break;
-            case "DEVICE_TYPE_PC_DATA_CENTER":
-            case 43:
-                message.devicetype = 43;
-                break;
-            case "DEVICE_TYPE_FUSES_THREE":
-            case 44:
-                message.devicetype = 44;
-                break;
-            case "DEVICE_TYPE_FUSES_SIX":
-            case 45:
-                message.devicetype = 45;
-                break;
-            case "DEVICE_TYPE_FUSES_NINE":
-            case 46:
-                message.devicetype = 46;
-                break;
-            case "DEVICE_TYPE_FUSES_TWELVE":
-            case 47:
-                message.devicetype = 47;
-                break;
-            case "DEVICE_TYPE_COMPACTOR":
-            case 48:
-                message.devicetype = 48;
-                break;
-            case "DEVICE_TYPE_WHITE_GOODS":
-            case 49:
-                message.devicetype = 49;
-                break;
-            case "DEVICE_TYPE_COLD_STORAGE_ROOM":
-            case 50:
-                message.devicetype = 50;
-                break;
-            case "DEVICE_TYPE_GARDEN_SHED":
-            case 51:
-                message.devicetype = 51;
-                break;
-            case "DEVICE_TYPE_COOLING_COMBINATION":
-            case 52:
-                message.devicetype = 52;
-                break;
-            case "DEVICE_TYPE_FACILITIES":
-            case 53:
-                message.devicetype = 53;
-                break;
-            case "DEVICE_TYPE_FREEZER":
-            case 54:
-                message.devicetype = 54;
-                break;
-            case "DEVICE_TYPE_FRIDGE":
-            case 55:
-                message.devicetype = 55;
-                break;
-            case "DEVICE_TYPE_GRID_CONNECTION_POINT":
-            case 56:
-                message.devicetype = 56;
-                break;
-            case "DEVICE_TYPE_INVERTER_HYBRID":
-            case 57:
-                message.devicetype = 57;
-                break;
-            case "DEVICE_TYPE_CIRCUIT_PROTECTION":
-            case 58:
-                message.devicetype = 58;
-                break;
-            case "DEVICE_TYPE_DATA_TRANSCEIVER":
-            case 59:
-                message.devicetype = 59;
-                break;
-            case "DEVICE_TYPE_DEVICE_SELF":
-            case 60:
-                message.devicetype = 60;
-                break;
-            case "DEVICE_TYPE_GRID_CONNECTION_POINT_HUB":
-            case 61:
-                message.devicetype = 61;
-                break;
-            case "DEVICE_TYPE_CHARGING_GROUP":
-            case 62:
-                message.devicetype = 62;
-                break;
-            case "DEVICE_TYPE_ENERGY_MANAGEMENT_SYSTEM":
-            case 63:
-                message.devicetype = 63;
-                break;
-            default:
-                if (typeof object.devicetype === "number" && (object.devicetype | 0) === object.devicetype)
-                    message.devicetype = object.devicetype;
             }
+            break;
+        case "DEVICE_TYPE_UNKNOWN":
+        case 0:
+            message.devicetype = 0;
+            break;
+        case "DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM":
+        case 1:
+            message.devicetype = 1;
+            break;
+        case "DEVICE_TYPE_ELECTRIC_VEHICLE":
+        case 2:
+            message.devicetype = 2;
+            break;
+        case "DEVICE_TYPE_BATTERY":
+        case 3:
+            message.devicetype = 3;
+            break;
+        case "DEVICE_TYPE_OVEN":
+        case 4:
+            message.devicetype = 4;
+            break;
+        case "DEVICE_TYPE_FLOW_HEATER":
+        case 5:
+            message.devicetype = 5;
+            break;
+        case "DEVICE_TYPE_BOILER":
+        case 6:
+            message.devicetype = 6;
+            break;
+        case "DEVICE_TYPE_IMMERSION_HEATER":
+        case 7:
+            message.devicetype = 7;
+            break;
+        case "DEVICE_TYPE_STOVE":
+        case 8:
+            message.devicetype = 8;
+            break;
+        case "DEVICE_TYPE_COOLER":
+        case 9:
+            message.devicetype = 9;
+            break;
+        case "DEVICE_TYPE_VENTILATION":
+        case 10:
+            message.devicetype = 10;
+            break;
+        case "DEVICE_TYPE_DISHWASHER":
+        case 11:
+            message.devicetype = 11;
+            break;
+        case "DEVICE_TYPE_DRYER":
+        case 12:
+            message.devicetype = 12;
+            break;
+        case "DEVICE_TYPE_HEAT_PUMP":
+        case 13:
+            message.devicetype = 13;
+            break;
+        case "DEVICE_TYPE_WASHING_MACHINE":
+        case 14:
+            message.devicetype = 14;
+            break;
+        case "DEVICE_TYPE_INVERTER_ONEPHASE":
+        case 15:
+            message.devicetype = 15;
+            break;
+        case "DEVICE_TYPE_INVERTER_THREEPHASE":
+        case 16:
+            message.devicetype = 16;
+            break;
+        case "DEVICE_TYPE_CHP":
+        case 17:
+            message.devicetype = 17;
+            break;
+        case "DEVICE_TYPE_BUILDING_OFFICE":
+        case 18:
+            message.devicetype = 18;
+            break;
+        case "DEVICE_TYPE_BUILDING_COMMERCIAL":
+        case 19:
+            message.devicetype = 19;
+            break;
+        case "DEVICE_TYPE_BUILDING_FACTORY":
+        case 20:
+            message.devicetype = 20;
+            break;
+        case "DEVICE_TYPE_BUILDING_SINGLE_HOME":
+        case 21:
+            message.devicetype = 21;
+            break;
+        case "DEVICE_TYPE_BUILDING_HOTEL":
+        case 22:
+            message.devicetype = 22;
+            break;
+        case "DEVICE_TYPE_BUILDING_APARTMENTS":
+        case 23:
+            message.devicetype = 23;
+            break;
+        case "DEVICE_TYPE_BUILDING_PARKING":
+        case 24:
+            message.devicetype = 24;
+            break;
+        case "DEVICE_TYPE_BUILDING_RESIDENTIAL":
+        case 25:
+            message.devicetype = 25;
+            break;
+        case "DEVICE_TYPE_ROOM_BATH":
+        case 26:
+            message.devicetype = 26;
+            break;
+        case "DEVICE_TYPE_ROOM_GARAGE":
+        case 27:
+            message.devicetype = 27;
+            break;
+        case "DEVICE_TYPE_ROOM_BASEMENT":
+        case 28:
+            message.devicetype = 28;
+            break;
+        case "DEVICE_TYPE_ROOM_CHILD":
+        case 29:
+            message.devicetype = 29;
+            break;
+        case "DEVICE_TYPE_ROOM_KITCHEN":
+        case 30:
+            message.devicetype = 30;
+            break;
+        case "DEVICE_TYPE_ROOM_SAUNA":
+        case 31:
+            message.devicetype = 31;
+            break;
+        case "DEVICE_TYPE_ROOM_BED":
+        case 32:
+            message.devicetype = 32;
+            break;
+        case "DEVICE_TYPE_ROOM_LIVING":
+        case 33:
+            message.devicetype = 33;
+            break;
+        case "DEVICE_TYPE_ROOM_GENERIC":
+        case 34:
+            message.devicetype = 34;
+            break;
+        case "DEVICE_TYPE_CONTROLLABLE_LOAD":
+        case 35:
+            message.devicetype = 35;
+            break;
+        case "DEVICE_TYPE_LIGHTING":
+        case 36:
+            message.devicetype = 36;
+            break;
+        case "DEVICE_TYPE_OFFICES":
+        case 37:
+            message.devicetype = 37;
+            break;
+        case "DEVICE_TYPE_DOMESTIC_APPLIANCES":
+        case 38:
+            message.devicetype = 38;
+            break;
+        case "DEVICE_TYPE_HEATER_OF_HEAT_PUMP":
+        case 39:
+            message.devicetype = 39;
+            break;
+        case "DEVICE_TYPE_INDUSTRIAL_ENGINE":
+        case 40:
+            message.devicetype = 40;
+            break;
+        case "DEVICE_TYPE_AIR_CONDITIONING":
+        case 41:
+            message.devicetype = 41;
+            break;
+        case "DEVICE_TYPE_COMPRESSOR":
+        case 42:
+            message.devicetype = 42;
+            break;
+        case "DEVICE_TYPE_PC_DATA_CENTER":
+        case 43:
+            message.devicetype = 43;
+            break;
+        case "DEVICE_TYPE_FUSES_THREE":
+        case 44:
+            message.devicetype = 44;
+            break;
+        case "DEVICE_TYPE_FUSES_SIX":
+        case 45:
+            message.devicetype = 45;
+            break;
+        case "DEVICE_TYPE_FUSES_NINE":
+        case 46:
+            message.devicetype = 46;
+            break;
+        case "DEVICE_TYPE_FUSES_TWELVE":
+        case 47:
+            message.devicetype = 47;
+            break;
+        case "DEVICE_TYPE_COMPACTOR":
+        case 48:
+            message.devicetype = 48;
+            break;
+        case "DEVICE_TYPE_WHITE_GOODS":
+        case 49:
+            message.devicetype = 49;
+            break;
+        case "DEVICE_TYPE_COLD_STORAGE_ROOM":
+        case 50:
+            message.devicetype = 50;
+            break;
+        case "DEVICE_TYPE_GARDEN_SHED":
+        case 51:
+            message.devicetype = 51;
+            break;
+        case "DEVICE_TYPE_COOLING_COMBINATION":
+        case 52:
+            message.devicetype = 52;
+            break;
+        case "DEVICE_TYPE_FACILITIES":
+        case 53:
+            message.devicetype = 53;
+            break;
+        case "DEVICE_TYPE_FREEZER":
+        case 54:
+            message.devicetype = 54;
+            break;
+        case "DEVICE_TYPE_FRIDGE":
+        case 55:
+            message.devicetype = 55;
+            break;
+        case "DEVICE_TYPE_GRID_CONNECTION_POINT":
+        case 56:
+            message.devicetype = 56;
+            break;
+        case "DEVICE_TYPE_INVERTER_HYBRID":
+        case 57:
+            message.devicetype = 57;
+            break;
+        case "DEVICE_TYPE_CIRCUIT_PROTECTION":
+        case 58:
+            message.devicetype = 58;
+            break;
+        case "DEVICE_TYPE_DATA_TRANSCEIVER":
+        case 59:
+            message.devicetype = 59;
+            break;
+        case "DEVICE_TYPE_DEVICE_SELF":
+        case 60:
+            message.devicetype = 60;
+            break;
+        case "DEVICE_TYPE_GRID_CONNECTION_POINT_HUB":
+        case 61:
+            message.devicetype = 61;
+            break;
+        case "DEVICE_TYPE_CHARGING_GROUP":
+        case 62:
+            message.devicetype = 62;
+            break;
+        case "DEVICE_TYPE_ENERGY_MANAGEMENT_SYSTEM":
+        case 63:
+            message.devicetype = 63;
+            break;
+        }
         if (object.meta) {
             if (!$util.isObject(object.meta))
-                throw $TypeError(".GCR.meta: object expected");
+                throw TypeError(".GCR.meta: object expected");
             message.meta = {};
-            for (var keys = $Object.keys(object.meta), i = 0; i < keys.length; ++i) {
+            for (var keys = Object.keys(object.meta), i = 0; i < keys.length; ++i) {
                 if (keys[i] === "__proto__")
                     $util.makeProp(message.meta, keys[i]);
-                message.meta[keys[i]] = $String(object.meta[keys[i]]);
+                message.meta[keys[i]] = String(object.meta[keys[i]]);
             }
         }
         if (object.timestamp != null) {
             if (!$util.isObject(object.timestamp))
-                throw $TypeError(".GCR.timestamp: object expected");
-            message.timestamp = $root.google.protobuf.Timestamp.fromObject(object.timestamp, _depth + 1);
+                throw TypeError(".GCR.timestamp: object expected");
+            message.timestamp = $root.google.protobuf.Timestamp.fromObject(object.timestamp, long + 1);
         }
         if (object.flexDefinitions) {
             if (!$util.isObject(object.flexDefinitions))
-                throw $TypeError(".GCR.flexDefinitions: object expected");
+                throw TypeError(".GCR.flexDefinitions: object expected");
             message.flexDefinitions = {};
-            for (var keys = $Object.keys(object.flexDefinitions), i = 0; i < keys.length; ++i) {
+            for (var keys = Object.keys(object.flexDefinitions), i = 0; i < keys.length; ++i) {
                 if (keys[i] === "__proto__")
                     $util.makeProp(message.flexDefinitions, keys[i]);
                 if (!$util.isObject(object.flexDefinitions[keys[i]]))
-                    throw $TypeError(".GCR.flexDefinitions: object expected");
-                message.flexDefinitions[keys[i]] = $root.FlexDefinition.fromObject(object.flexDefinitions[keys[i]], _depth + 1);
+                    throw TypeError(".GCR.flexDefinitions: object expected");
+                message.flexDefinitions[keys[i]] = $root.FlexDefinition.fromObject(object.flexDefinitions[keys[i]], long + 1);
             }
         }
         return message;
@@ -2094,13 +1996,13 @@ $root.GCR = (function() {
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    GCR.toObject = function (message, options, _depth) {
+    GCR.toObject = function toObject(message, options, q) {
         if (!options)
             options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
+        if (q === undefined)
+            q = 0;
+        if (q > $util.recursionLimit)
+            throw Error("max depth exceeded");
         var object = {};
         if (options.arrays || options.defaults) {
             object.sources = [];
@@ -2113,35 +2015,35 @@ $root.GCR = (function() {
         if (options.defaults) {
             object.id = "";
             object.label = "";
-            object["class"] = options.enums === $String ? "CLASS_UNKNOWN" : 0;
-            object.devicetype = options.enums === $String ? "DEVICE_TYPE_UNKNOWN" : 0;
+            object["class"] = options.enums === String ? "CLASS_UNKNOWN" : 0;
+            object.devicetype = options.enums === String ? "DEVICE_TYPE_UNKNOWN" : 0;
             object.timestamp = null;
         }
-        if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+        if (message.id != null && Object.hasOwnProperty.call(message, "id"))
             object.id = message.id;
-        if (message.label != null && $Object.hasOwnProperty.call(message, "label"))
+        if (message.label != null && Object.hasOwnProperty.call(message, "label"))
             object.label = message.label;
-        if (message["class"] != null && $Object.hasOwnProperty.call(message, "class"))
-            object["class"] = options.enums === $String ? $root.Class[message["class"]] === $undefined ? message["class"] : $root.Class[message["class"]] : message["class"];
+        if (message["class"] != null && Object.hasOwnProperty.call(message, "class"))
+            object["class"] = options.enums === String ? $root.Class[message["class"]] === undefined ? message["class"] : $root.Class[message["class"]] : message["class"];
         if (message.sources && message.sources.length) {
-            object.sources = $Array(message.sources.length);
+            object.sources = [];
             for (var j = 0; j < message.sources.length; ++j)
                 object.sources[j] = message.sources[j];
         }
         if (message.codes && message.codes.length) {
-            object.codes = $Array(message.codes.length);
+            object.codes = [];
             for (var j = 0; j < message.codes.length; ++j)
-                if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                    object.codes[j] = typeof message.codes[j] === "number" ? $BigInt(message.codes[j]) : $util.Long.fromBits(message.codes[j].low >>> 0, message.codes[j].high >>> 0, true).toBigInt();
+                if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                    object.codes[j] = typeof message.codes[j] === "number" ? BigInt(message.codes[j]) : $util.Long.fromBits(message.codes[j].low >>> 0, message.codes[j].high >>> 0, true).toBigInt();
                 else if (typeof message.codes[j] === "number")
-                    object.codes[j] = options.longs === $String ? $String(message.codes[j]) : message.codes[j];
+                    object.codes[j] = options.longs === String ? String(message.codes[j]) : message.codes[j];
                 else
-                    object.codes[j] = options.longs === $String ? $util.Long.prototype.toString.call(message.codes[j]) : options.longs === $Number ? new $util.LongBits(message.codes[j].low >>> 0, message.codes[j].high >>> 0).toNumber(true) : message.codes[j];
+                    object.codes[j] = options.longs === String ? $util.Long.prototype.toString.call(message.codes[j]) : options.longs === Number ? new $util.LongBits(message.codes[j].low >>> 0, message.codes[j].high >>> 0).toNumber(true) : message.codes[j];
         }
-        if (message.devicetype != null && $Object.hasOwnProperty.call(message, "devicetype"))
-            object.devicetype = options.enums === $String ? $root.DeviceType[message.devicetype] === $undefined ? message.devicetype : $root.DeviceType[message.devicetype] : message.devicetype;
+        if (message.devicetype != null && Object.hasOwnProperty.call(message, "devicetype"))
+            object.devicetype = options.enums === String ? $root.DeviceType[message.devicetype] === undefined ? message.devicetype : $root.DeviceType[message.devicetype] : message.devicetype;
         var keys2;
-        if (message.meta && (keys2 = $Object.keys(message.meta)).length) {
+        if (message.meta && (keys2 = Object.keys(message.meta)).length) {
             object.meta = {};
             for (var j = 0; j < keys2.length; ++j) {
                 if (keys2[j] === "__proto__")
@@ -2149,14 +2051,14 @@ $root.GCR = (function() {
                 object.meta[keys2[j]] = message.meta[keys2[j]];
             }
         }
-        if (message.timestamp != null && $Object.hasOwnProperty.call(message, "timestamp"))
-            object.timestamp = $root.google.protobuf.Timestamp.toObject(message.timestamp, options, _depth + 1);
-        if (message.flexDefinitions && (keys2 = $Object.keys(message.flexDefinitions)).length) {
+        if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
+            object.timestamp = $root.google.protobuf.Timestamp.toObject(message.timestamp, options, q + 1);
+        if (message.flexDefinitions && (keys2 = Object.keys(message.flexDefinitions)).length) {
             object.flexDefinitions = {};
             for (var j = 0; j < keys2.length; ++j) {
                 if (keys2[j] === "__proto__")
                     $util.makeProp(object.flexDefinitions, keys2[j]);
-                object.flexDefinitions[keys2[j]] = $root.FlexDefinition.toObject(message.flexDefinitions[keys2[j]], options, _depth + 1);
+                object.flexDefinitions[keys2[j]] = $root.FlexDefinition.toObject(message.flexDefinitions[keys2[j]], options, q + 1);
             }
         }
         return object;
@@ -2169,22 +2071,23 @@ $root.GCR = (function() {
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    GCR.prototype.toJSON = function() {
-        return GCR.toObject(this, $protobuf.util.toJSONOptions);
+    GCR.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
     };
 
     /**
-     * Gets the type url for GCR
+     * Gets the default type url for GCR
      * @function getTypeUrl
      * @memberof GCR
      * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
      */
-    GCR.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/GCR";
+    GCR.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/GCR";
     };
 
     return GCR;
@@ -2194,39 +2097,26 @@ $root.FlexValue = (function() {
 
     /**
      * Properties of a FlexValue.
-     * @typedef {Object} FlexValue.$Properties
-     * @property {number|null} [intValue] FlexValue intValue
-     * @property {string|null} [stringValue] FlexValue stringValue
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a FlexValue.
      * @exports IFlexValue
      * @interface IFlexValue
-     * @augments FlexValue.$Properties
-     * @deprecated Use FlexValue.$Properties instead.
-     */
-
-    /**
-     * Shape of a FlexValue.
-     * @typedef {FlexValue.$Properties} FlexValue.$Shape
+     * @property {number|null} [intValue] FlexValue intValue
+     * @property {string|null} [stringValue] FlexValue stringValue
      */
 
     /**
      * Constructs a new FlexValue.
      * @exports FlexValue
      * @classdesc Represents a FlexValue.
+     * @implements IFlexValue
      * @constructor
-     * @param {FlexValue.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     * @param {IFlexValue=} [properties] Properties to set
      */
-    var FlexValue = function (properties) {
+    function FlexValue(properties) {
         if (properties)
-            for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
-    };
+    }
 
     /**
      * FlexValue intValue.
@@ -2249,14 +2139,10 @@ $root.FlexValue = (function() {
      * @function create
      * @memberof FlexValue
      * @static
-     * @param {FlexValue.$Properties=} [properties] Properties to set
+     * @param {IFlexValue=} [properties] Properties to set
      * @returns {FlexValue} FlexValue instance
-     * @type {{
-     *   (properties: FlexValue.$Shape): FlexValue & FlexValue.$Shape;
-     *   (properties?: FlexValue.$Properties): FlexValue;
-     * }}
      */
-    FlexValue.create = function(properties) {
+    FlexValue.create = function create(properties) {
         return new FlexValue(properties);
     };
 
@@ -2265,24 +2151,21 @@ $root.FlexValue = (function() {
      * @function encode
      * @memberof FlexValue
      * @static
-     * @param {FlexValue.$Properties} message FlexValue message or plain object to encode
+     * @param {IFlexValue} message FlexValue message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    FlexValue.encode = function (message, writer, _depth) {
+    FlexValue.encode = function encode(message, writer, q) {
         if (!writer)
             writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.intValue != null && $Object.hasOwnProperty.call(message, "intValue") && (typeof message.intValue === "object" ? message.intValue.low || message.intValue.high : message.intValue !== 0))
+        if (q === undefined)
+            q = 0;
+        if (q > $util.recursionLimit)
+            throw Error("max depth exceeded");
+        if (message.intValue != null && Object.hasOwnProperty.call(message, "intValue"))
             writer.uint32(/* id 1, wireType 0 =*/8).int64(message.intValue);
-        if (message.stringValue != null && $Object.hasOwnProperty.call(message, "stringValue") && message.stringValue !== "")
+        if (message.stringValue != null && Object.hasOwnProperty.call(message, "stringValue"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.stringValue);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (var i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
         return writer;
     };
 
@@ -2291,12 +2174,12 @@ $root.FlexValue = (function() {
      * @function encodeDelimited
      * @memberof FlexValue
      * @static
-     * @param {FlexValue.$Properties} message FlexValue message or plain object to encode
+     * @param {IFlexValue} message FlexValue message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    FlexValue.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    FlexValue.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
     };
 
     /**
@@ -2306,69 +2189,51 @@ $root.FlexValue = (function() {
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {FlexValue & FlexValue.$Shape} FlexValue
+     * @returns {FlexValue} FlexValue
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    FlexValue.decode = function (reader, length, _end, _depth, _target) {
+    FlexValue.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        var end, message, value;
-        if (length === $undefined)
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
+        var end, message;
+        if (length === undefined)
             end = reader.len;
         else {
             end = reader.pos + length;
             if (end > reader.len)
-                throw $RangeError("index out of range");
+                throw RangeError("index out of range");
             length = reader.len;
             reader.len = end;
         }
-        message = _target || new $root.FlexValue();
+        message = new $root.FlexValue();
         while (reader.pos < end) {
-            var start = reader.pos;
-            var tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
+            var tag = reader.uint32();
+            if (tag === error)
                 break;
-            }
-            var wireType = tag & 7;
-            switch (tag >>>= 3) {
+            switch (tag >>> 3) {
             case 1: {
-                    if (wireType !== 0)
-                        break;
-                    if (typeof (value = reader.int64()) === "object" ? value.low || value.high : value !== 0)
-                        message.intValue = value;
-                    else
-                        delete message.intValue;
-                    continue;
+                    message.intValue = reader.int64();
+                    break;
                 }
             case 2: {
-                    if (wireType !== 2)
-                        break;
-                    if ((value = reader.stringVerify()).length)
-                        message.stringValue = value;
-                    else
-                        delete message.stringValue;
-                    continue;
+                    message.stringValue = reader.string();
+                    break;
                 }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            default:
+                reader.skipType(tag & 7, long);
+                break;
             }
         }
-        if (length !== $undefined) {
+        if (length !== undefined) {
             if (reader.pos !== end)
-                throw $RangeError("index out of range");
+                throw RangeError("index out of range");
             reader.len = length;
         }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
         return message;
     };
 
@@ -2378,11 +2243,11 @@ $root.FlexValue = (function() {
      * @memberof FlexValue
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {FlexValue & FlexValue.$Shape} FlexValue
+     * @returns {FlexValue} FlexValue
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    FlexValue.decodeDelimited = function(reader) {
+    FlexValue.decodeDelimited = function decodeDelimited(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
@@ -2396,17 +2261,17 @@ $root.FlexValue = (function() {
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    FlexValue.verify = function (message, _depth) {
+    FlexValue.verify = function verify(message, long) {
         if (typeof message !== "object" || message === null)
             return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        if (message.intValue != null && $Object.hasOwnProperty.call(message, "intValue"))
+        if (long === undefined)
+            long = 0;
+        if (long > $util.recursionLimit)
+            return "maximum nesting depth exceeded";
+        if (message.intValue != null && Object.hasOwnProperty.call(message, "intValue"))
             if (!$util.isInteger(message.intValue) && !(message.intValue && $util.isInteger(message.intValue.low) && $util.isInteger(message.intValue.high)))
                 return "intValue: integer|Long expected";
-        if (message.stringValue != null && $Object.hasOwnProperty.call(message, "stringValue"))
+        if (message.stringValue != null && Object.hasOwnProperty.call(message, "stringValue"))
             if (!$util.isString(message.stringValue))
                 return "stringValue: string expected";
         return null;
@@ -2420,29 +2285,27 @@ $root.FlexValue = (function() {
      * @param {Object.<string,*>} object Plain object
      * @returns {FlexValue} FlexValue
      */
-    FlexValue.fromObject = function (object, _depth) {
+    FlexValue.fromObject = function fromObject(object, long) {
         if (object instanceof $root.FlexValue)
             return object;
         if (!$util.isObject(object))
-            throw $TypeError(".FlexValue: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
+            throw TypeError(".FlexValue: object expected");
+        if (long === undefined)
+            long = 0;
+        if (long > $util.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var message = new $root.FlexValue();
         if (object.intValue != null)
-            if (typeof object.intValue === "object" ? object.intValue.low || object.intValue.high : $Number(object.intValue) !== 0)
-                if ($util.Long)
-                    message.intValue = $util.Long.fromValue(object.intValue, false);
-                else if (typeof object.intValue === "string")
-                    message.intValue = $parseInt(object.intValue, 10);
-                else if (typeof object.intValue === "number")
-                    message.intValue = object.intValue;
-                else if (typeof object.intValue === "object")
-                    message.intValue = new $util.LongBits(object.intValue.low >>> 0, object.intValue.high >>> 0).toNumber();
+            if ($util.Long)
+                message.intValue = $util.Long.fromValue(object.intValue, false);
+            else if (typeof object.intValue === "string")
+                message.intValue = parseInt(object.intValue, 10);
+            else if (typeof object.intValue === "number")
+                message.intValue = object.intValue;
+            else if (typeof object.intValue === "object")
+                message.intValue = new $util.LongBits(object.intValue.low >>> 0, object.intValue.high >>> 0).toNumber();
         if (object.stringValue != null)
-            if (typeof object.stringValue !== "string" || object.stringValue.length)
-                message.stringValue = $String(object.stringValue);
+            message.stringValue = String(object.stringValue);
         return message;
     };
 
@@ -2455,30 +2318,30 @@ $root.FlexValue = (function() {
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    FlexValue.toObject = function (message, options, _depth) {
+    FlexValue.toObject = function toObject(message, options, q) {
         if (!options)
             options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
+        if (q === undefined)
+            q = 0;
+        if (q > $util.recursionLimit)
+            throw Error("max depth exceeded");
         var object = {};
         if (options.defaults) {
             if ($util.Long) {
                 var long = new $util.Long(0, 0, false);
-                object.intValue = options.longs === $String ? long.toString() : options.longs === $Number ? long.toNumber() : typeof $BigInt !== "undefined" && options.longs === $BigInt ? long.toBigInt() : long;
+                object.intValue = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
             } else
-                object.intValue = options.longs === $String ? "0" : typeof $BigInt !== "undefined" && options.longs === $BigInt ? $BigInt("0") : 0;
+                object.intValue = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
             object.stringValue = "";
         }
-        if (message.intValue != null && $Object.hasOwnProperty.call(message, "intValue"))
-            if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                object.intValue = typeof message.intValue === "number" ? $BigInt(message.intValue) : $util.Long.fromBits(message.intValue.low >>> 0, message.intValue.high >>> 0, false).toBigInt();
+        if (message.intValue != null && Object.hasOwnProperty.call(message, "intValue"))
+            if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                object.intValue = typeof message.intValue === "number" ? BigInt(message.intValue) : $util.Long.fromBits(message.intValue.low >>> 0, message.intValue.high >>> 0, false).toBigInt();
             else if (typeof message.intValue === "number")
-                object.intValue = options.longs === $String ? $String(message.intValue) : message.intValue;
+                object.intValue = options.longs === String ? String(message.intValue) : message.intValue;
             else
-                object.intValue = options.longs === $String ? $util.Long.prototype.toString.call(message.intValue) : options.longs === $Number ? new $util.LongBits(message.intValue.low >>> 0, message.intValue.high >>> 0).toNumber() : message.intValue;
-        if (message.stringValue != null && $Object.hasOwnProperty.call(message, "stringValue"))
+                object.intValue = options.longs === String ? $util.Long.prototype.toString.call(message.intValue) : options.longs === Number ? new $util.LongBits(message.intValue.low >>> 0, message.intValue.high >>> 0).toNumber() : message.intValue;
+        if (message.stringValue != null && Object.hasOwnProperty.call(message, "stringValue"))
             object.stringValue = message.stringValue;
         return object;
     };
@@ -2490,22 +2353,23 @@ $root.FlexValue = (function() {
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    FlexValue.prototype.toJSON = function() {
-        return FlexValue.toObject(this, $protobuf.util.toJSONOptions);
+    FlexValue.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
     };
 
     /**
-     * Gets the type url for FlexValue
+     * Gets the default type url for FlexValue
      * @function getTypeUrl
      * @memberof FlexValue
      * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
      */
-    FlexValue.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/FlexValue";
+    FlexValue.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/FlexValue";
     };
 
     return FlexValue;
@@ -2515,41 +2379,28 @@ $root.FlexDefinition = (function() {
 
     /**
      * Properties of a FlexDefinition.
-     * @typedef {Object} FlexDefinition.$Properties
+     * @exports IFlexDefinition
+     * @interface IFlexDefinition
      * @property {string|null} [label] FlexDefinition label
      * @property {FlexValueType|null} [type] FlexDefinition type
      * @property {Unit|null} [unit] FlexDefinition unit
      * @property {number|null} [decimalpower] FlexDefinition decimalpower
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-     */
-
-    /**
-     * Properties of a FlexDefinition.
-     * @exports IFlexDefinition
-     * @interface IFlexDefinition
-     * @augments FlexDefinition.$Properties
-     * @deprecated Use FlexDefinition.$Properties instead.
-     */
-
-    /**
-     * Shape of a FlexDefinition.
-     * @typedef {FlexDefinition.$Properties} FlexDefinition.$Shape
      */
 
     /**
      * Constructs a new FlexDefinition.
      * @exports FlexDefinition
      * @classdesc Represents a FlexDefinition.
+     * @implements IFlexDefinition
      * @constructor
-     * @param {FlexDefinition.$Properties=} [properties] Properties to set
-     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     * @param {IFlexDefinition=} [properties] Properties to set
      */
-    var FlexDefinition = function (properties) {
+    function FlexDefinition(properties) {
         if (properties)
-            for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null && keys[i] !== "__proto__")
                     this[keys[i]] = properties[keys[i]];
-    };
+    }
 
     /**
      * FlexDefinition label.
@@ -2588,14 +2439,10 @@ $root.FlexDefinition = (function() {
      * @function create
      * @memberof FlexDefinition
      * @static
-     * @param {FlexDefinition.$Properties=} [properties] Properties to set
+     * @param {IFlexDefinition=} [properties] Properties to set
      * @returns {FlexDefinition} FlexDefinition instance
-     * @type {{
-     *   (properties: FlexDefinition.$Shape): FlexDefinition & FlexDefinition.$Shape;
-     *   (properties?: FlexDefinition.$Properties): FlexDefinition;
-     * }}
      */
-    FlexDefinition.create = function(properties) {
+    FlexDefinition.create = function create(properties) {
         return new FlexDefinition(properties);
     };
 
@@ -2604,28 +2451,25 @@ $root.FlexDefinition = (function() {
      * @function encode
      * @memberof FlexDefinition
      * @static
-     * @param {FlexDefinition.$Properties} message FlexDefinition message or plain object to encode
+     * @param {IFlexDefinition} message FlexDefinition message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    FlexDefinition.encode = function (message, writer, _depth) {
+    FlexDefinition.encode = function encode(message, writer, q) {
         if (!writer)
             writer = $Writer.create();
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
-        if (message.label != null && $Object.hasOwnProperty.call(message, "label") && message.label !== "")
+        if (q === undefined)
+            q = 0;
+        if (q > $util.recursionLimit)
+            throw Error("max depth exceeded");
+        if (message.label != null && Object.hasOwnProperty.call(message, "label"))
             writer.uint32(/* id 1, wireType 2 =*/10).string(message.label);
-        if (message.type != null && $Object.hasOwnProperty.call(message, "type") && message.type !== 0)
+        if (message.type != null && Object.hasOwnProperty.call(message, "type"))
             writer.uint32(/* id 2, wireType 0 =*/16).int32(message.type);
-        if (message.unit != null && $Object.hasOwnProperty.call(message, "unit") && message.unit !== 0)
+        if (message.unit != null && Object.hasOwnProperty.call(message, "unit"))
             writer.uint32(/* id 3, wireType 0 =*/24).int32(message.unit);
-        if (message.decimalpower != null && $Object.hasOwnProperty.call(message, "decimalpower") && message.decimalpower !== 0)
+        if (message.decimalpower != null && Object.hasOwnProperty.call(message, "decimalpower"))
             writer.uint32(/* id 4, wireType 0 =*/32).sint32(message.decimalpower);
-        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-            for (var i = 0; i < message.$unknowns.length; ++i)
-                writer.raw(message.$unknowns[i]);
         return writer;
     };
 
@@ -2634,12 +2478,12 @@ $root.FlexDefinition = (function() {
      * @function encodeDelimited
      * @memberof FlexDefinition
      * @static
-     * @param {FlexDefinition.$Properties} message FlexDefinition message or plain object to encode
+     * @param {IFlexDefinition} message FlexDefinition message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    FlexDefinition.encodeDelimited = function(message, writer) {
-        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    FlexDefinition.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
     };
 
     /**
@@ -2649,87 +2493,59 @@ $root.FlexDefinition = (function() {
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {FlexDefinition & FlexDefinition.$Shape} FlexDefinition
+     * @returns {FlexDefinition} FlexDefinition
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    FlexDefinition.decode = function (reader, length, _end, _depth, _target) {
+    FlexDefinition.decode = function decode(reader, length, error, long) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $Reader.recursionLimit)
-            throw $Error("max depth exceeded");
-        var end, message, value;
-        if (length === $undefined)
+        if (long === undefined)
+            long = 0;
+        if (long > $Reader.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
+        var end, message;
+        if (length === undefined)
             end = reader.len;
         else {
             end = reader.pos + length;
             if (end > reader.len)
-                throw $RangeError("index out of range");
+                throw RangeError("index out of range");
             length = reader.len;
             reader.len = end;
         }
-        message = _target || new $root.FlexDefinition();
+        message = new $root.FlexDefinition();
         while (reader.pos < end) {
-            var start = reader.pos;
-            var tag = reader.tag();
-            if (tag === _end) {
-                _end = $undefined;
+            var tag = reader.uint32();
+            if (tag === error)
                 break;
-            }
-            var wireType = tag & 7;
-            switch (tag >>>= 3) {
+            switch (tag >>> 3) {
             case 1: {
-                    if (wireType !== 2)
-                        break;
-                    if ((value = reader.stringVerify()).length)
-                        message.label = value;
-                    else
-                        delete message.label;
-                    continue;
+                    message.label = reader.string();
+                    break;
                 }
             case 2: {
-                    if (wireType !== 0)
-                        break;
-                    if (value = reader.int32())
-                        message.type = value;
-                    else
-                        delete message.type;
-                    continue;
+                    message.type = reader.int32();
+                    break;
                 }
             case 3: {
-                    if (wireType !== 0)
-                        break;
-                    if (value = reader.int32())
-                        message.unit = value;
-                    else
-                        delete message.unit;
-                    continue;
+                    message.unit = reader.int32();
+                    break;
                 }
             case 4: {
-                    if (wireType !== 0)
-                        break;
-                    if (value = reader.sint32())
-                        message.decimalpower = value;
-                    else
-                        delete message.decimalpower;
-                    continue;
+                    message.decimalpower = reader.sint32();
+                    break;
                 }
-            }
-            reader.skipType(wireType, _depth, tag);
-            if (!reader.discardUnknown) {
-                $util.makeProp(message, "$unknowns", false);
-                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            default:
+                reader.skipType(tag & 7, long);
+                break;
             }
         }
-        if (length !== $undefined) {
+        if (length !== undefined) {
             if (reader.pos !== end)
-                throw $RangeError("index out of range");
+                throw RangeError("index out of range");
             reader.len = length;
         }
-        if (_end !== $undefined)
-            throw $Error("missing end group");
         return message;
     };
 
@@ -2739,11 +2555,11 @@ $root.FlexDefinition = (function() {
      * @memberof FlexDefinition
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {FlexDefinition & FlexDefinition.$Shape} FlexDefinition
+     * @returns {FlexDefinition} FlexDefinition
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    FlexDefinition.decodeDelimited = function(reader) {
+    FlexDefinition.decodeDelimited = function decodeDelimited(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
@@ -2757,23 +2573,50 @@ $root.FlexDefinition = (function() {
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    FlexDefinition.verify = function (message, _depth) {
+    FlexDefinition.verify = function verify(message, long) {
         if (typeof message !== "object" || message === null)
             return "object expected";
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            return "max depth exceeded";
-        if (message.label != null && $Object.hasOwnProperty.call(message, "label"))
+        if (long === undefined)
+            long = 0;
+        if (long > $util.recursionLimit)
+            return "maximum nesting depth exceeded";
+        if (message.label != null && Object.hasOwnProperty.call(message, "label"))
             if (!$util.isString(message.label))
                 return "label: string expected";
-        if (message.type != null && $Object.hasOwnProperty.call(message, "type"))
-            if (typeof message.type !== "number" || (message.type | 0) !== message.type)
+        if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+            switch (message.type) {
+            default:
                 return "type: enum value expected";
-        if (message.unit != null && $Object.hasOwnProperty.call(message, "unit"))
-            if (typeof message.unit !== "number" || (message.unit | 0) !== message.unit)
+            case 0:
+            case 1:
+                break;
+            }
+        if (message.unit != null && Object.hasOwnProperty.call(message, "unit"))
+            switch (message.unit) {
+            default:
                 return "unit: enum value expected";
-        if (message.decimalpower != null && $Object.hasOwnProperty.call(message, "decimalpower"))
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+                break;
+            }
+        if (message.decimalpower != null && Object.hasOwnProperty.call(message, "decimalpower"))
             if (!$util.isInteger(message.decimalpower))
                 return "decimalpower: integer expected";
         return null;
@@ -2787,118 +2630,120 @@ $root.FlexDefinition = (function() {
      * @param {Object.<string,*>} object Plain object
      * @returns {FlexDefinition} FlexDefinition
      */
-    FlexDefinition.fromObject = function (object, _depth) {
+    FlexDefinition.fromObject = function fromObject(object, long) {
         if (object instanceof $root.FlexDefinition)
             return object;
         if (!$util.isObject(object))
-            throw $TypeError(".FlexDefinition: object expected");
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
+            throw TypeError(".FlexDefinition: object expected");
+        if (long === undefined)
+            long = 0;
+        if (long > $util.recursionLimit)
+            throw Error("maximum nesting depth exceeded");
         var message = new $root.FlexDefinition();
         if (object.label != null)
-            if (typeof object.label !== "string" || object.label.length)
-                message.label = $String(object.label);
-        if (object.type !== 0 && (typeof object.type !== "string" || $root.FlexValueType[object.type] !== 0))
-            switch (object.type) {
-            case "FLEX_VALUE_TYPE_INTEGER":
-            case 0:
-                message.type = 0;
+            message.label = String(object.label);
+        switch (object.type) {
+        default:
+            if (typeof object.type === "number") {
+                message.type = object.type;
                 break;
-            case "FLEX_VALUE_TYPE_STRING":
-            case 1:
-                message.type = 1;
-                break;
-            default:
-                if (typeof object.type === "number" && (object.type | 0) === object.type)
-                    message.type = object.type;
             }
-        if (object.unit !== 0 && (typeof object.unit !== "string" || $root.Unit[object.unit] !== 0))
-            switch (object.unit) {
-            case "UNIT_UNKNOWN":
-            case 0:
-                message.unit = 0;
+            break;
+        case "FLEX_VALUE_TYPE_INTEGER":
+        case 0:
+            message.type = 0;
+            break;
+        case "FLEX_VALUE_TYPE_STRING":
+        case 1:
+            message.type = 1;
+            break;
+        }
+        switch (object.unit) {
+        default:
+            if (typeof object.unit === "number") {
+                message.unit = object.unit;
                 break;
-            case "UNIT_AMPERE":
-            case 1:
-                message.unit = 1;
-                break;
-            case "UNIT_VOLT":
-            case 2:
-                message.unit = 2;
-                break;
-            case "UNIT_WATT":
-            case 3:
-                message.unit = 3;
-                break;
-            case "UNIT_HERTZ":
-            case 4:
-                message.unit = 4;
-                break;
-            case "UNIT_VOLT_AMPERE":
-            case 5:
-                message.unit = 5;
-                break;
-            case "UNIT_VOLT_AMPERE_REACTIVE":
-            case 6:
-                message.unit = 6;
-                break;
-            case "UNIT_WATT_HOUR":
-            case 7:
-                message.unit = 7;
-                break;
-            case "UNIT_KILO_WATT_HOUR":
-            case 8:
-                message.unit = 8;
-                break;
-            case "UNIT_SECOND":
-            case 9:
-                message.unit = 9;
-                break;
-            case "UNIT_MINUTE":
-            case 10:
-                message.unit = 10;
-                break;
-            case "UNIT_HOUR":
-            case 11:
-                message.unit = 11;
-                break;
-            case "UNIT_DAY":
-            case 12:
-                message.unit = 12;
-                break;
-            case "UNIT_WEEK":
-            case 13:
-                message.unit = 13;
-                break;
-            case "UNIT_MONTH":
-            case 14:
-                message.unit = 14;
-                break;
-            case "UNIT_YEAR":
-            case 15:
-                message.unit = 15;
-                break;
-            case "UNIT_DEGREE_CELSIUS":
-            case 16:
-                message.unit = 16;
-                break;
-            case "UNIT_KELVIN":
-            case 17:
-                message.unit = 17;
-                break;
-            case "UNIT_DEGREE_FAHRENHEIT":
-            case 18:
-                message.unit = 18;
-                break;
-            default:
-                if (typeof object.unit === "number" && (object.unit | 0) === object.unit)
-                    message.unit = object.unit;
             }
+            break;
+        case "UNIT_UNKNOWN":
+        case 0:
+            message.unit = 0;
+            break;
+        case "UNIT_AMPERE":
+        case 1:
+            message.unit = 1;
+            break;
+        case "UNIT_VOLT":
+        case 2:
+            message.unit = 2;
+            break;
+        case "UNIT_WATT":
+        case 3:
+            message.unit = 3;
+            break;
+        case "UNIT_HERTZ":
+        case 4:
+            message.unit = 4;
+            break;
+        case "UNIT_VOLT_AMPERE":
+        case 5:
+            message.unit = 5;
+            break;
+        case "UNIT_VOLT_AMPERE_REACTIVE":
+        case 6:
+            message.unit = 6;
+            break;
+        case "UNIT_WATT_HOUR":
+        case 7:
+            message.unit = 7;
+            break;
+        case "UNIT_KILO_WATT_HOUR":
+        case 8:
+            message.unit = 8;
+            break;
+        case "UNIT_SECOND":
+        case 9:
+            message.unit = 9;
+            break;
+        case "UNIT_MINUTE":
+        case 10:
+            message.unit = 10;
+            break;
+        case "UNIT_HOUR":
+        case 11:
+            message.unit = 11;
+            break;
+        case "UNIT_DAY":
+        case 12:
+            message.unit = 12;
+            break;
+        case "UNIT_WEEK":
+        case 13:
+            message.unit = 13;
+            break;
+        case "UNIT_MONTH":
+        case 14:
+            message.unit = 14;
+            break;
+        case "UNIT_YEAR":
+        case 15:
+            message.unit = 15;
+            break;
+        case "UNIT_DEGREE_CELSIUS":
+        case 16:
+            message.unit = 16;
+            break;
+        case "UNIT_KELVIN":
+        case 17:
+            message.unit = 17;
+            break;
+        case "UNIT_DEGREE_FAHRENHEIT":
+        case 18:
+            message.unit = 18;
+            break;
+        }
         if (object.decimalpower != null)
-            if ($Number(object.decimalpower) !== 0)
-                message.decimalpower = object.decimalpower | 0;
+            message.decimalpower = object.decimalpower | 0;
         return message;
     };
 
@@ -2911,27 +2756,27 @@ $root.FlexDefinition = (function() {
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    FlexDefinition.toObject = function (message, options, _depth) {
+    FlexDefinition.toObject = function toObject(message, options, q) {
         if (!options)
             options = {};
-        if (_depth === $undefined)
-            _depth = 0;
-        if (_depth > $util.recursionLimit)
-            throw $Error("max depth exceeded");
+        if (q === undefined)
+            q = 0;
+        if (q > $util.recursionLimit)
+            throw Error("max depth exceeded");
         var object = {};
         if (options.defaults) {
             object.label = "";
-            object.type = options.enums === $String ? "FLEX_VALUE_TYPE_INTEGER" : 0;
-            object.unit = options.enums === $String ? "UNIT_UNKNOWN" : 0;
+            object.type = options.enums === String ? "FLEX_VALUE_TYPE_INTEGER" : 0;
+            object.unit = options.enums === String ? "UNIT_UNKNOWN" : 0;
             object.decimalpower = 0;
         }
-        if (message.label != null && $Object.hasOwnProperty.call(message, "label"))
+        if (message.label != null && Object.hasOwnProperty.call(message, "label"))
             object.label = message.label;
-        if (message.type != null && $Object.hasOwnProperty.call(message, "type"))
-            object.type = options.enums === $String ? $root.FlexValueType[message.type] === $undefined ? message.type : $root.FlexValueType[message.type] : message.type;
-        if (message.unit != null && $Object.hasOwnProperty.call(message, "unit"))
-            object.unit = options.enums === $String ? $root.Unit[message.unit] === $undefined ? message.unit : $root.Unit[message.unit] : message.unit;
-        if (message.decimalpower != null && $Object.hasOwnProperty.call(message, "decimalpower"))
+        if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+            object.type = options.enums === String ? $root.FlexValueType[message.type] === undefined ? message.type : $root.FlexValueType[message.type] : message.type;
+        if (message.unit != null && Object.hasOwnProperty.call(message, "unit"))
+            object.unit = options.enums === String ? $root.Unit[message.unit] === undefined ? message.unit : $root.Unit[message.unit] : message.unit;
+        if (message.decimalpower != null && Object.hasOwnProperty.call(message, "decimalpower"))
             object.decimalpower = message.decimalpower;
         return object;
     };
@@ -2943,22 +2788,23 @@ $root.FlexDefinition = (function() {
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    FlexDefinition.prototype.toJSON = function() {
-        return FlexDefinition.toObject(this, $protobuf.util.toJSONOptions);
+    FlexDefinition.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
     };
 
     /**
-     * Gets the type url for FlexDefinition
+     * Gets the default type url for FlexDefinition
      * @function getTypeUrl
      * @memberof FlexDefinition
      * @static
-     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-     * @returns {string} The type url
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
      */
-    FlexDefinition.getTypeUrl = function(prefix) {
-        if (prefix === $undefined)
-            prefix = "type.googleapis.com";
-        return prefix + "/FlexDefinition";
+    FlexDefinition.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/FlexDefinition";
     };
 
     return FlexDefinition;
@@ -2966,13 +2812,13 @@ $root.FlexDefinition = (function() {
 
 /**
  * FlexValueType enum.
- * @name FlexValueType
+ * @exports FlexValueType
  * @enum {number}
  * @property {number} FLEX_VALUE_TYPE_INTEGER=0 FLEX_VALUE_TYPE_INTEGER value
  * @property {number} FLEX_VALUE_TYPE_STRING=1 FLEX_VALUE_TYPE_STRING value
  */
 $root.FlexValueType = (function() {
-    var valuesById = $Object.create(null), values = $Object.create(valuesById);
+    var valuesById = {}, values = Object.create(valuesById);
     values[valuesById[0] = "FLEX_VALUE_TYPE_INTEGER"] = 0;
     values[valuesById[1] = "FLEX_VALUE_TYPE_STRING"] = 1;
     return values;
@@ -2980,7 +2826,7 @@ $root.FlexValueType = (function() {
 
 /**
  * Unit enum.
- * @name Unit
+ * @exports Unit
  * @enum {number}
  * @property {number} UNIT_UNKNOWN=0 UNIT_UNKNOWN value
  * @property {number} UNIT_AMPERE=1 UNIT_AMPERE value
@@ -3003,7 +2849,7 @@ $root.FlexValueType = (function() {
  * @property {number} UNIT_DEGREE_FAHRENHEIT=18 UNIT_DEGREE_FAHRENHEIT value
  */
 $root.Unit = (function() {
-    var valuesById = $Object.create(null), values = $Object.create(valuesById);
+    var valuesById = {}, values = Object.create(valuesById);
     values[valuesById[0] = "UNIT_UNKNOWN"] = 0;
     values[valuesById[1] = "UNIT_AMPERE"] = 1;
     values[valuesById[2] = "UNIT_VOLT"] = 2;
@@ -3028,7 +2874,7 @@ $root.Unit = (function() {
 
 /**
  * DeviceType enum.
- * @name DeviceType
+ * @exports DeviceType
  * @enum {number}
  * @property {number} DEVICE_TYPE_UNKNOWN=0 DEVICE_TYPE_UNKNOWN value
  * @property {number} DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM=1 DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM value
@@ -3096,7 +2942,7 @@ $root.Unit = (function() {
  * @property {number} DEVICE_TYPE_ENERGY_MANAGEMENT_SYSTEM=63 DEVICE_TYPE_ENERGY_MANAGEMENT_SYSTEM value
  */
 $root.DeviceType = (function() {
-    var valuesById = $Object.create(null), values = $Object.create(valuesById);
+    var valuesById = {}, values = Object.create(valuesById);
     values[valuesById[0] = "DEVICE_TYPE_UNKNOWN"] = 0;
     values[valuesById[1] = "DEVICE_TYPE_PHOTOVOLTAIC_SYSTEM"] = 1;
     values[valuesById[2] = "DEVICE_TYPE_ELECTRIC_VEHICLE"] = 2;
@@ -3166,7 +3012,7 @@ $root.DeviceType = (function() {
 
 /**
  * Status enum.
- * @name Status
+ * @exports Status
  * @enum {number}
  * @property {number} STATUS_UNKNOWN=0 STATUS_UNKNOWN value
  * @property {number} STATUS_OK=1 STATUS_OK value
@@ -3174,7 +3020,7 @@ $root.DeviceType = (function() {
  * @property {number} STATUS_ERROR=3 STATUS_ERROR value
  */
 $root.Status = (function() {
-    var valuesById = $Object.create(null), values = $Object.create(valuesById);
+    var valuesById = {}, values = Object.create(valuesById);
     values[valuesById[0] = "STATUS_UNKNOWN"] = 0;
     values[valuesById[1] = "STATUS_OK"] = 1;
     values[valuesById[2] = "STATUS_WARNING"] = 2;
@@ -3184,7 +3030,7 @@ $root.Status = (function() {
 
 /**
  * Class enum.
- * @name Class
+ * @exports Class
  * @enum {number}
  * @property {number} CLASS_UNKNOWN=0 CLASS_UNKNOWN value
  * @property {number} CLASS_CONSUMER=1 CLASS_CONSUMER value
@@ -3192,7 +3038,7 @@ $root.Status = (function() {
  * @property {number} CLASS_HYBRID=3 CLASS_HYBRID value
  */
 $root.Class = (function() {
-    var valuesById = $Object.create(null), values = $Object.create(valuesById);
+    var valuesById = {}, values = Object.create(valuesById);
     values[valuesById[0] = "CLASS_UNKNOWN"] = 0;
     values[valuesById[1] = "CLASS_CONSUMER"] = 1;
     values[valuesById[2] = "CLASS_PRODUCER"] = 2;
@@ -3222,39 +3068,26 @@ $root.google = (function() {
 
             /**
              * Properties of a Timestamp.
-             * @typedef {Object} google.protobuf.Timestamp.$Properties
-             * @property {number|null} [seconds] Timestamp seconds
-             * @property {number|null} [nanos] Timestamp nanos
-             * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
-             */
-
-            /**
-             * Properties of a Timestamp.
              * @memberof google.protobuf
              * @interface ITimestamp
-             * @augments google.protobuf.Timestamp.$Properties
-             * @deprecated Use google.protobuf.Timestamp.$Properties instead.
-             */
-
-            /**
-             * Shape of a Timestamp.
-             * @typedef {google.protobuf.Timestamp.$Properties} google.protobuf.Timestamp.$Shape
+             * @property {number|null} [seconds] Timestamp seconds
+             * @property {number|null} [nanos] Timestamp nanos
              */
 
             /**
              * Constructs a new Timestamp.
              * @memberof google.protobuf
              * @classdesc Represents a Timestamp.
+             * @implements ITimestamp
              * @constructor
-             * @param {google.protobuf.Timestamp.$Properties=} [properties] Properties to set
-             * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+             * @param {google.protobuf.ITimestamp=} [properties] Properties to set
              */
-            var Timestamp = function (properties) {
+            function Timestamp(properties) {
                 if (properties)
-                    for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null && keys[i] !== "__proto__")
                             this[keys[i]] = properties[keys[i]];
-            };
+            }
 
             /**
              * Timestamp seconds.
@@ -3277,14 +3110,10 @@ $root.google = (function() {
              * @function create
              * @memberof google.protobuf.Timestamp
              * @static
-             * @param {google.protobuf.Timestamp.$Properties=} [properties] Properties to set
+             * @param {google.protobuf.ITimestamp=} [properties] Properties to set
              * @returns {google.protobuf.Timestamp} Timestamp instance
-             * @type {{
-             *   (properties: google.protobuf.Timestamp.$Shape): google.protobuf.Timestamp & google.protobuf.Timestamp.$Shape;
-             *   (properties?: google.protobuf.Timestamp.$Properties): google.protobuf.Timestamp;
-             * }}
              */
-            Timestamp.create = function(properties) {
+            Timestamp.create = function create(properties) {
                 return new Timestamp(properties);
             };
 
@@ -3293,24 +3122,21 @@ $root.google = (function() {
              * @function encode
              * @memberof google.protobuf.Timestamp
              * @static
-             * @param {google.protobuf.Timestamp.$Properties} message Timestamp message or plain object to encode
+             * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            Timestamp.encode = function (message, writer, _depth) {
+            Timestamp.encode = function encode(message, writer, q) {
                 if (!writer)
                     writer = $Writer.create();
-                if (_depth === $undefined)
-                    _depth = 0;
-                if (_depth > $util.recursionLimit)
-                    throw $Error("max depth exceeded");
-                if (message.seconds != null && $Object.hasOwnProperty.call(message, "seconds") && (typeof message.seconds === "object" ? message.seconds.low || message.seconds.high : message.seconds !== 0))
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
+                if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int64(message.seconds);
-                if (message.nanos != null && $Object.hasOwnProperty.call(message, "nanos") && message.nanos !== 0)
+                if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
                     writer.uint32(/* id 2, wireType 0 =*/16).int32(message.nanos);
-                if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
-                    for (var i = 0; i < message.$unknowns.length; ++i)
-                        writer.raw(message.$unknowns[i]);
                 return writer;
             };
 
@@ -3319,12 +3145,12 @@ $root.google = (function() {
              * @function encodeDelimited
              * @memberof google.protobuf.Timestamp
              * @static
-             * @param {google.protobuf.Timestamp.$Properties} message Timestamp message or plain object to encode
+             * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
              * @param {$protobuf.Writer} [writer] Writer to encode to
              * @returns {$protobuf.Writer} Writer
              */
-            Timestamp.encodeDelimited = function(message, writer) {
-                return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+            Timestamp.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer && writer.len ? writer.fork() : writer).ldelim();
             };
 
             /**
@@ -3334,69 +3160,51 @@ $root.google = (function() {
              * @static
              * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
              * @param {number} [length] Message length if known beforehand
-             * @returns {google.protobuf.Timestamp & google.protobuf.Timestamp.$Shape} Timestamp
+             * @returns {google.protobuf.Timestamp} Timestamp
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Timestamp.decode = function (reader, length, _end, _depth, _target) {
+            Timestamp.decode = function decode(reader, length, error, long) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                if (_depth === $undefined)
-                    _depth = 0;
-                if (_depth > $Reader.recursionLimit)
-                    throw $Error("max depth exceeded");
-                var end, message, value;
-                if (length === $undefined)
+                if (long === undefined)
+                    long = 0;
+                if (long > $Reader.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
+                var end, message;
+                if (length === undefined)
                     end = reader.len;
                 else {
                     end = reader.pos + length;
                     if (end > reader.len)
-                        throw $RangeError("index out of range");
+                        throw RangeError("index out of range");
                     length = reader.len;
                     reader.len = end;
                 }
-                message = _target || new $root.google.protobuf.Timestamp();
+                message = new $root.google.protobuf.Timestamp();
                 while (reader.pos < end) {
-                    var start = reader.pos;
-                    var tag = reader.tag();
-                    if (tag === _end) {
-                        _end = $undefined;
+                    var tag = reader.uint32();
+                    if (tag === error)
                         break;
-                    }
-                    var wireType = tag & 7;
-                    switch (tag >>>= 3) {
+                    switch (tag >>> 3) {
                     case 1: {
-                            if (wireType !== 0)
-                                break;
-                            if (typeof (value = reader.int64()) === "object" ? value.low || value.high : value !== 0)
-                                message.seconds = value;
-                            else
-                                delete message.seconds;
-                            continue;
+                            message.seconds = reader.int64();
+                            break;
                         }
                     case 2: {
-                            if (wireType !== 0)
-                                break;
-                            if (value = reader.int32())
-                                message.nanos = value;
-                            else
-                                delete message.nanos;
-                            continue;
+                            message.nanos = reader.int32();
+                            break;
                         }
-                    }
-                    reader.skipType(wireType, _depth, tag);
-                    if (!reader.discardUnknown) {
-                        $util.makeProp(message, "$unknowns", false);
-                        (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                    default:
+                        reader.skipType(tag & 7, long);
+                        break;
                     }
                 }
-                if (length !== $undefined) {
+                if (length !== undefined) {
                     if (reader.pos !== end)
-                        throw $RangeError("index out of range");
+                        throw RangeError("index out of range");
                     reader.len = length;
                 }
-                if (_end !== $undefined)
-                    throw $Error("missing end group");
                 return message;
             };
 
@@ -3406,11 +3214,11 @@ $root.google = (function() {
              * @memberof google.protobuf.Timestamp
              * @static
              * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {google.protobuf.Timestamp & google.protobuf.Timestamp.$Shape} Timestamp
+             * @returns {google.protobuf.Timestamp} Timestamp
              * @throws {Error} If the payload is not a reader or valid buffer
              * @throws {$protobuf.util.ProtocolError} If required fields are missing
              */
-            Timestamp.decodeDelimited = function(reader) {
+            Timestamp.decodeDelimited = function decodeDelimited(reader) {
                 if (!(reader instanceof $Reader))
                     reader = new $Reader(reader);
                 return this.decode(reader, reader.uint32());
@@ -3424,17 +3232,17 @@ $root.google = (function() {
              * @param {Object.<string,*>} message Plain object to verify
              * @returns {string|null} `null` if valid, otherwise the reason why it is not
              */
-            Timestamp.verify = function (message, _depth) {
+            Timestamp.verify = function verify(message, long) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
-                if (_depth === $undefined)
-                    _depth = 0;
-                if (_depth > $util.recursionLimit)
-                    return "max depth exceeded";
-                if (message.seconds != null && $Object.hasOwnProperty.call(message, "seconds"))
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    return "maximum nesting depth exceeded";
+                if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
                     if (!$util.isInteger(message.seconds) && !(message.seconds && $util.isInteger(message.seconds.low) && $util.isInteger(message.seconds.high)))
                         return "seconds: integer|Long expected";
-                if (message.nanos != null && $Object.hasOwnProperty.call(message, "nanos"))
+                if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
                     if (!$util.isInteger(message.nanos))
                         return "nanos: integer expected";
                 return null;
@@ -3448,29 +3256,27 @@ $root.google = (function() {
              * @param {Object.<string,*>} object Plain object
              * @returns {google.protobuf.Timestamp} Timestamp
              */
-            Timestamp.fromObject = function (object, _depth) {
+            Timestamp.fromObject = function fromObject(object, long) {
                 if (object instanceof $root.google.protobuf.Timestamp)
                     return object;
                 if (!$util.isObject(object))
-                    throw $TypeError(".google.protobuf.Timestamp: object expected");
-                if (_depth === $undefined)
-                    _depth = 0;
-                if (_depth > $util.recursionLimit)
-                    throw $Error("max depth exceeded");
+                    throw TypeError(".google.protobuf.Timestamp: object expected");
+                if (long === undefined)
+                    long = 0;
+                if (long > $util.recursionLimit)
+                    throw Error("maximum nesting depth exceeded");
                 var message = new $root.google.protobuf.Timestamp();
                 if (object.seconds != null)
-                    if (typeof object.seconds === "object" ? object.seconds.low || object.seconds.high : $Number(object.seconds) !== 0)
-                        if ($util.Long)
-                            message.seconds = $util.Long.fromValue(object.seconds, false);
-                        else if (typeof object.seconds === "string")
-                            message.seconds = $parseInt(object.seconds, 10);
-                        else if (typeof object.seconds === "number")
-                            message.seconds = object.seconds;
-                        else if (typeof object.seconds === "object")
-                            message.seconds = new $util.LongBits(object.seconds.low >>> 0, object.seconds.high >>> 0).toNumber();
+                    if ($util.Long)
+                        message.seconds = $util.Long.fromValue(object.seconds, false);
+                    else if (typeof object.seconds === "string")
+                        message.seconds = parseInt(object.seconds, 10);
+                    else if (typeof object.seconds === "number")
+                        message.seconds = object.seconds;
+                    else if (typeof object.seconds === "object")
+                        message.seconds = new $util.LongBits(object.seconds.low >>> 0, object.seconds.high >>> 0).toNumber();
                 if (object.nanos != null)
-                    if ($Number(object.nanos) !== 0)
-                        message.nanos = object.nanos | 0;
+                    message.nanos = object.nanos | 0;
                 return message;
             };
 
@@ -3483,30 +3289,30 @@ $root.google = (function() {
              * @param {$protobuf.IConversionOptions} [options] Conversion options
              * @returns {Object.<string,*>} Plain object
              */
-            Timestamp.toObject = function (message, options, _depth) {
+            Timestamp.toObject = function toObject(message, options, q) {
                 if (!options)
                     options = {};
-                if (_depth === $undefined)
-                    _depth = 0;
-                if (_depth > $util.recursionLimit)
-                    throw $Error("max depth exceeded");
+                if (q === undefined)
+                    q = 0;
+                if (q > $util.recursionLimit)
+                    throw Error("max depth exceeded");
                 var object = {};
                 if (options.defaults) {
                     if ($util.Long) {
                         var long = new $util.Long(0, 0, false);
-                        object.seconds = options.longs === $String ? long.toString() : options.longs === $Number ? long.toNumber() : typeof $BigInt !== "undefined" && options.longs === $BigInt ? long.toBigInt() : long;
+                        object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : typeof BigInt !== "undefined" && options.longs === BigInt ? long.toBigInt() : long;
                     } else
-                        object.seconds = options.longs === $String ? "0" : typeof $BigInt !== "undefined" && options.longs === $BigInt ? $BigInt("0") : 0;
+                        object.seconds = options.longs === String ? "0" : typeof BigInt !== "undefined" && options.longs === BigInt ? BigInt("0") : 0;
                     object.nanos = 0;
                 }
-                if (message.seconds != null && $Object.hasOwnProperty.call(message, "seconds"))
-                    if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
-                        object.seconds = typeof message.seconds === "number" ? $BigInt(message.seconds) : $util.Long.fromBits(message.seconds.low >>> 0, message.seconds.high >>> 0, false).toBigInt();
+                if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
+                    if (typeof BigInt !== "undefined" && options.longs === BigInt)
+                        object.seconds = typeof message.seconds === "number" ? BigInt(message.seconds) : $util.Long.fromBits(message.seconds.low >>> 0, message.seconds.high >>> 0, false).toBigInt();
                     else if (typeof message.seconds === "number")
-                        object.seconds = options.longs === $String ? $String(message.seconds) : message.seconds;
+                        object.seconds = options.longs === String ? String(message.seconds) : message.seconds;
                     else
-                        object.seconds = options.longs === $String ? $util.Long.prototype.toString.call(message.seconds) : options.longs === $Number ? new $util.LongBits(message.seconds.low >>> 0, message.seconds.high >>> 0).toNumber() : message.seconds;
-                if (message.nanos != null && $Object.hasOwnProperty.call(message, "nanos"))
+                        object.seconds = options.longs === String ? $util.Long.prototype.toString.call(message.seconds) : options.longs === Number ? new $util.LongBits(message.seconds.low >>> 0, message.seconds.high >>> 0).toNumber() : message.seconds;
+                if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
                     object.nanos = message.nanos;
                 return object;
             };
@@ -3518,22 +3324,23 @@ $root.google = (function() {
              * @instance
              * @returns {Object.<string,*>} JSON object
              */
-            Timestamp.prototype.toJSON = function() {
-                return Timestamp.toObject(this, $protobuf.util.toJSONOptions);
+            Timestamp.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
             };
 
             /**
-             * Gets the type url for Timestamp
+             * Gets the default type url for Timestamp
              * @function getTypeUrl
              * @memberof google.protobuf.Timestamp
              * @static
-             * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
-             * @returns {string} The type url
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
              */
-            Timestamp.getTypeUrl = function(prefix) {
-                if (prefix === $undefined)
-                    prefix = "type.googleapis.com";
-                return prefix + "/google.protobuf.Timestamp";
+            Timestamp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/google.protobuf.Timestamp";
             };
 
             return Timestamp;
