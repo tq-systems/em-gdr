@@ -1,13 +1,16 @@
 include:
-  - project: tq-em/build/docker/toolchain-ci
-    file: apps.yml
-    ref: v7.2.1_tc7.5.0
+- project: tq-em/build/docker/toolchain
+  file: ci/apps.yml
+  ref: v9.0.8-tc13.0.4
 
 Lint:
   extends: .go-lint
 
 Code Generation:
   extends: .go-generate-code
+
+Frontend Code Generation:
+  script: yarn install --immutable && yarn generate && git diff --exit-code
 
 Unit tests:
   extends: .go-unit-tests
@@ -17,3 +20,6 @@ Go Sec Linter:
 
 Gitleaks:
   extends: .gitleaks
+
+Yarn Audit:
+  extends: .yarn-audit
