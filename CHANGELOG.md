@@ -1,3 +1,7 @@
+## [2.9.1] - 2026-11-04
+### Changed
+- Updated copyright license and file headers
+
 ## [2.9.0] - 2026-09-18
 ### Added
 - new device type "DEVICE_TYPE_ENERGY_MANAGEMENT_SYSTEM"
